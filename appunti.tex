@@ -546,4 +546,34 @@ Spesso un sottoinsieme di $k$ elementi di un insieme di $n$ elementi viene chiam
 	\end{equation}
 \end{defn}
 
+
+\begin{esem}
+	Calcola i sotttoinsiemi con $3$ elementi di $I_6$
+\end{esem}
+
+\begin{dimo}
+	La soluzione è data da una semplice applicazione della formula prima vista:
+	\begin{equation}
+		\bfrac{6}{3}\ =\ \frac{6!}{3!3!}\ =\ 20
+	\end{equation}
+\end{dimo}
+
+
+\begin{esem}
+	Calcola il numero di partite giocate nella fase a gironi dei Mondiali di calcio. Ci sono 3$2$ squadre divise in $8$ gironi da $4$ squadre ed in ogni girone una squadra deve giocare contro le altre una volta sola.
+\end{esem}
+
+\begin{dimo}
+	Il numero di partite totale è $8$ volte le partite giocate in un singolo girone.
+	L'insieme delle 4 squadre in un girone possiamo identificarlo con $I_4$, e una partita tra 2 squadre con un sottoinsieme di $2$ elementi di $I_4$. Il numero di partite giocate in un girone\textbf{è il numero di sottoinsiemi} di $2$ elementi di $I_4$ ovvero:
+	\begin{equation}
+		\bfrac{4}{2}\ =\ \frac{4!}{2!(4-2)! }\ =\ \frac{4\times 3\times 2\times 1}{2\times 2}\ = \frac{24}{4}\ =\ 6
+	\end{equation}
+	Infine il risultato equivale a: $ 6 \times 8 = 48$
+\end{dimo}
+
+
+
+
+
 \end{document}
