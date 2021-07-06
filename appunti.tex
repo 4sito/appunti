@@ -1,10 +1,12 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 
-\usepackage{graphicx, float, amssymb, wrapfig, amsthm, enumitem, amsmath}
+\usepackage{graphicx, float, amssymb, wrapfig, amsthm, enumitem, amsmath, mathtools}
 
 \graphicspath{ {pics/} }
 
+
+% break style 
 \newtheoremstyle{break}
 {\topsep}
 {\topsep}%
@@ -42,7 +44,8 @@
 \theoremstyle{lemma}
 \newtheorem{esem}{Esempio}
 
-
+% custom fraction
+\newcommand*{\bfrac}[2]{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}
 \title{Appunti}
 \author{Andreas Araya Osorio}
 \date{3 June 2021}
@@ -77,7 +80,7 @@ Una funzione $f(x)$ può essere di 3 tipi:
     \item \textbf{biiettiva} se è \underline{sia} \textbf{iniettiva} e  \textbf{suriettiva}
     \end{enumerate}
 
-\begin{defn} Una funzione si dice \textbf{iniettiva} quando ad elementi \textbf{distinti} del \textsc{dominio} corrispondono elementi \textbf{distinti} del \textsc{codominio}\\
+    \begin{defn} Una funzione si dice \textbf{iniettiva} quando ad elementi \textbf{distinti} del \normalfont{\textsc{dominio}} corrispondono elementi \textbf{distinti} del \normalfont{\textsc{codominio}}
 \begin{equation}
   f(a_1) = f(a_2) \Rightarrow a_1 = a_2
 \end{equation}
@@ -120,7 +123,7 @@ Non può essere iniettiva perchè per ogni numero reale positivo ne esiste uno u
 
 \begin{equation}
   se\quad x_1 = -x_2 \quad \Rightarrow \quad f(x_1) = f(x_2)
-\end{equation}  \\
+\end{equation}  
 
 \vspace{2mm}
 si può provare inoltre che non è una funzione suriettva in quanto \textbf{nessun} numero negativo fa parte del codominio ed esso è formato da $\mathbb{R}$ dunque
@@ -130,7 +133,7 @@ si può provare inoltre che non è una funzione suriettva in quanto \textbf{ness
 \end{dimo}
 
 \begin{eser}
-Dimostra di che tipo è questa funzione:\\
+Dimostra di che tipo è questa funzione:
 \begin{equation}
   f :\mathbb{N}\rightarrow \mathbb{N} \qquad f(x)=x^2
 \end{equation}
@@ -144,9 +147,9 @@ Dimostra di che tipo è questa funzione:\\
 \end{equation}
 
 \vspace{3.5mm}
-Per \textbf{qualsiasi} coppia di numeri naturali diversi fra loro non è possibile pensare che il loro quadrato sia uguale, per tanto la funzione è iniettiva. \\
+Per \textbf{qualsiasi} coppia di numeri naturali diversi fra loro non è possibile pensare che il loro quadrato sia uguale, per tanto la funzione è iniettiva. 
 \vspace{2.5mm}
-Inoltre \textbf{qualsiasi} numero dispari non avrà una propria immagine, in quanto l'insieme racchiude \textbf{solo} numeri interi positivi. Ovvero:\\
+Inoltre \textbf{qualsiasi} numero dispari non avrà una propria immagine, in quanto l'insieme racchiude \textbf{solo} numeri interi positivi. Ovvero:
 
 \begin{equation}
   \exists \frac{x}{2} \in \mathbb{N}: \{y = x + 1\} \quad
@@ -170,19 +173,19 @@ Essa si può considerare invertibile se è \textbf{biiettiva}.
 \end{eser}
 
 \begin{dimo}
-Ponendo l'equazione $ y =\ 2x\ +\ 1$ deduciamo che\\
+Ponendo l'equazione $ y =\ 2x\ +\ 1$ deduciamo che
 
-\begin{equation}
-  f^{(-1)}(x) = \frac{x\ -\ 1}{2}
-\end{equation}
+	\begin{equation}
+  		f^{(-1)}(x) = \frac{x\ -\ 1}{2}
+	\end{equation}
 
 \vspace{1.5mm}
-quindi:\\
+quindi:
 \begin{equation}
   f^{(-1)}(f(x))= f^{(-1)}(2x\ +\ 1)\ = \frac{(2x\ +\ 1)\ -\ 1}{2}\ =\ x;
 \end{equation}
-\vspace{1.5mm}\\
-e allo stesso tempo\\
+\vspace{1.5mm}
+e allo stesso tempo
 
 \vspace{1.5mm}
 \begin{equation}
@@ -208,7 +211,7 @@ Data la funzione
 \end{figure}
 
 \begin{defn}
-Definiamo una \textbf{coppia} di rette orientate disposte \textbf{perpendicolarmente} fra loro \textbf{assi coordinati}.\\
+Definiamo una \textbf{coppia} di rette orientate disposte \textbf{perpendicolarmente} fra loro \textbf{assi coordinati}.
 \begin{itemize}
   \item{La retta da destra verso sinistra viene chiamata \textbf{asse delle ascisse}}
   \item{la retta dal basso verso l'alto viene chiamata \textbf{asse delle ordinate}}
@@ -521,6 +524,26 @@ Nella definzione di sequenze l'ordine degli elementi della $k$-upla è important
   \end{equation}
 \end{defn}
 
-		
+\subsection{Numero di Insiemi}
+\begin{defn}
+	Il \textbf{numero di sottoinsiemi} di $k$ elementi di $I_n$ si distinguono esclusivamente dagli elementi di cui fanno parte: \textbf{l'ordine non conta}.
+\end{defn}
+
+Spesso un sottoinsieme di $k$ elementi di un insieme di $n$ elementi viene chiamato \textbf{combinazione} (semplice, senza ripetizioni) di $n$ elementi a $k$ a $k$
+
+\begin{defn}
+	Siano $k,n \in \mathbb{N}$ il \textbf{binomiale} di $n$ su $k$ è:
+	\begin{equation}
+		\bfrac{n}{k}\ =
+		\begin{cases}
+			\frac{n!}{k!(n-k)!}, & \mbox{se} k\ \leq\ n,\\
+			0, 		    & \mbox{se} k\ > n.
+		\end{cases}
+	\end{equation}
+	Il numero di sottoinsiemi di $k$ elementi di $I_n$ è 
+	\begin{equation}
+		\bfrac{n}{k}.
+	\end{equation}
+\end{defn}
 
 \end{document}
