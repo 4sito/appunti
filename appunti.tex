@@ -158,13 +158,49 @@ Analogamente \textit{l'estremo inferiore} è presente se l'insieme dei minoranti
 		\end{enumerate}
 
                 
-                \textbf{SUP} Si ha che $\lambda\ =\ sup\ A$ \textbf{se e solo se}
+                \textbf{INF} Si ha che $\mu\ =\ inf\ A$ \textbf{se e solo se}
 		\begin{enumerate}
-			\item $a \leq \lambda \quad \forall a \in A;$
-			\item $\lambda_1 \in X,\ a \leq \lambda_1 \quad \forall a \in A \implies\  \lambda \leq \lambda_1$
+			\item $\mu \leq a \quad \forall a \in A;$
+			\item $\mu_1 \in X,\ \mu_1 \leq a \quad \forall a \in A \implies\  \mu_1 \leq \mu $
 		\end{enumerate}
 
 \end{defn}
+
+\begin{defn} Siano $(X,\leq)$ un insieme ordinato e $A\ \subseteq\ X, A\ \neq\ \varnothing $, allora:
+	\begin{enumerate}
+		\item se $A$ ha massimo, allora si ha $max A\ =\ sup A$
+		\item se $A$ ha minimo, allora si ha $min A\ =\ inf A$
+	\end{enumerate}
+\end{defn}
+
+\subsection{Numeri reali}
+Un \textbf{gruppo commutativo} e' un insieme $X$ dotato di un'operazione binaria $*\ : X \times X \rightarrow X$ tale che:
+
+\begin{enumerate} 
+	\item \textsc{proprietà associativa:} $(x \star y) \star z\ =\ x \star (y * z) \quad \forall x,y,z \in X$
+	\item \textsc{elemento neutro:} $ \exists e \in X \rightarrow e * x = x * e = e$
+	\item \textsc{inverso:}$\ \forall x \in X \quad \exists y \in X \rightarrow x * y = y * x = e$
+	\item \textsc{proprietà commutativa;} $ \forall x, y \in X\ \rightarrow \ x * y = y * x$
+\end{enumerate}
+Se le prime 3 proprietà sono valide allora $X$ e' un \textit{gruppo}. Se e' valida solo la prima allora si chiama \textit{semigruppo}
+
+\begin{defn} \textbf{Campo dei numeri reali $\mathbb{R} $}
+	
+	\begin{itemize}
+		\item $A_1$) $(\mathbb{R}, +) \rightarrow$ gruppo commutativo, neutro = 0
+		\item $A_2$) $(\mathbb{R} \setminus \{ 0 \} , \cdot) \rightarrow$  gruppo commutativo, neutro = 1
+		\item $A_3$) $ x \cdot (y+z) = x \cdot y+x \cdot z \quad \forall x,y,z \in \mathbb{R}$, proprietà distributiva
+		\item $A_4$) $(\mathbb{R}, \leq ) \rightarrow $ totalmente ordinato
+		\item $A_5$) $ (\leq )\ \rightarrow $ compatibile con $ + \land \cdot $
+		\item $A_6$) $(\mathbb{R}, \leq ) \rightarrow $ completo 
+
+	\end{itemize}
+	Le proprietà $ A_1, \dots , A_3 \Longrightarrow (\mathbb{R}, +, \cdot) \rightarrow $ campo \newline
+	Le proprietà $ A_1, \dots , A_6 \Longrightarrow (\mathbb{R}, +, \cdot, \leq) \rightarrow $ campo \textbf{ordinato e completo}.
+
+\end{defn}
+
+
 
 \section{Funzioni}
 
