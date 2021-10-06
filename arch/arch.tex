@@ -1,0 +1,184 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+	\usepackage{graphicx, float, amssymb, wrapfig, amsthm, enumitem, amsmath, mathtools}
+
+\graphicspath{ {pics/} }
+
+
+% break style 
+\newtheoremstyle{break}
+{\topsep}
+{\topsep}%
+{\itshape}
+{}%
+{\bfseries}
+{:}%
+{\newline}
+{}%
+
+\newtheoremstyle{lemma}% style name
+{2ex}% above space
+{2ex}% below space
+{\upshape}% body font
+{}% indent amount
+{\scshape}% head font
+{.}% post head punctuation
+{\newline}% post head punctuation
+{}% head spec
+
+%theorem styles
+
+\theoremstyle{break}
+\newtheorem{defn}{Definizione}
+\AfterEndEnvironment{definizione}{\noindent\ignorespaces}
+
+
+\theoremstyle{lemma}
+\newtheorem{eser}{Esercizio}
+
+
+\theoremstyle{lemma}
+\newtheorem{dimo}{Dimostrazione}
+
+\theoremstyle{lemma}
+\newtheorem{esem}{Esempio}
+
+% custom fraction
+\newcommand*{\bfrac}[2]{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}
+\title{Appunti Architettura}
+\author{Andreas Araya Osorio}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\section{ TODO }
+\subsection{Interruzioni}
+Il meccansimo tramite il quale dei moduli possono interrompere la normale di sequenza di esecuzione. \newline
+
+\begin{itemize}
+	\item Program
+	\item Timer
+	\item I/O
+	\item Guasto Hardware
+	\end{itemize}
+Si interrompe per
+\begin{itemize}
+	\item efficienza elaborazione
+\end{itemize}
+
+Ciclo interruzione:
+\begin{itemize}
+	\item viene aggiunto al ciclo di esecuzione
+	\item la cpu controlla (fetch) le interruzioni pendenti
+	\item se non ce ne sono, prende la prossima istruzione
+	\item se ce ne sono: 
+	\begin{itemize}
+		\item sospende esecuzione
+		\item salva contesto
+		\item imposta il pc all'indirizzo di inizio del programma di gestione
+		\item esegue il programma di gestione dell'hardware
+		\item rimette il contesto al suo posto e continua il programma interrotto
+	\end{itemize}
+\end{itemize}
+In caso di interruzioni multiple: esistono vari livelli di interruzione. Le int. di basso livello hanno minore priorità rispetto a quelle di alto livello. 
+Il sistema operativo blocca quelle di basso livello per risolvere quelle di alto livello e così via
+\subsection{Connessioni}
+Tutti i componenti \textbf{devono} essere connessi \newline
+Esistono vari tipi di connessioni per vari tipi di componenti
+\begin{itemize}
+	\item CPU
+	\item Memoria 
+	\item I/O
+\end{itemize}
+
+\subsection{Bus}
+Tutti i dispostivi sono collegati dal bus di sistema \newline
+Il bus:
+\begin{enumerate}
+	\item collega \textbf{2 o più} dispositivi
+	\item mezzo trasmissione condiviso
+	\item un segnale trasmesso ad un bus è disponibile a tutti i dispositivi
+	\item arbitro bus: solo un dispostivo alla volta può trasmettere
+	\item varie linee di comunicazione ( trasmettono uno 0 o un 1)
+	\item varie linee trasmettono in parallelo numeri binari. Un bus da 8 bit trasmette un dato di 8 bit
+\end{enumerate}
+
+Bus di sistema:
+\begin{itemize}
+	\item connette cpu, i/o, M
+	\item da 50 a qualche centinaio di linee
+	\item 3 gruppi di linee
+	\begin{enumerate}
+		\item bus dati
+		\item indirizzi
+		\item controllo
+	\end{enumerate}
+\end{itemize}
+
+Bus dati:
+\begin{itemize}
+	\item trasporta dati o istruzioni
+	\item ampiezza --$ > $ efficienza  del sistema
+	\begin{itemize}
+		\item con poche linee --$>$ accessi in memoria
+	\end{itemize}
+\end{itemize}
+
+Bus indirizzi
+\begin{itemize}
+	\item indica sorgente o destinazione dati
+	\item l'ampiezza determina la massima quantità di M indirizzabile
+\end{itemize}
+
+Bus controllo
+\begin{itemize}
+	\item per controllare accesso, uso linee dati e indirizzi
+	\begin{enumerate}
+		\item M write
+		\item M read
+		\item richiesta bus
+		\item bus grant
+		\item interrupt request
+		\item clock
+	\end{enumerate}
+\end{itemize}
+
+Bus usage:
+se un modulo vuole inviare dati ad un altro:
+\begin{itemize}
+	\item bus grant
+	\item data transfer
+\end{itemize}
+
+se un module vuole ricevere dati da un altro:
+\begin{itemize}
+	\item bus grant
+	\item trasferire una richiesta all'altro modulo sulle linee di controllo 
+	\item attendere invio dati
+\end{itemize}
+
+Bus singoli e multipli
+\begin{itemize}
+	\item singolo bus = ritardo e congestione
+	\item vari bus = risoluzione problema
+\end{itemize}
+
+\subsection{Temporizzazione}
+\begin{itemize}
+	\item Coordinazione degli eventi su un bus
+	\item Sincrona
+	\begin{itemize}
+		\item clock determined events
+		\item single clock line
+		\item single sequence is a clock cicle
+		\item every device connected to the bus can read the clock line
+		\item every event starts at the beginning of a clock cycle
+	\end{itemize}
+\end{itemize}
+
+
+
+\end{document}
