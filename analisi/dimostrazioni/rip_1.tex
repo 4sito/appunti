@@ -1,0 +1,149 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx, float, amssymb, wrapfig, amsthm, 
+	    enumitem, amsmath, mathtools, ulem}
+
+\graphicspath{ {pics/} }
+
+
+% break style 
+\newtheoremstyle{break}
+{\topsep}
+{\topsep}%
+{\itshape}
+{}%
+{\bfseries}
+{:}%
+{\newline}
+{}%
+
+\newtheoremstyle{lemma}% style name
+{2ex}% above space
+{2ex}% below space
+{\upshape}% body font
+{}% indent amount
+{\scshape}% head font
+{.}% post head punctuation
+{\newline}% post head punctuation
+{}% head spec
+
+%theorem styles
+
+\theoremstyle{break}
+\newtheorem{defn}{Definizione}
+\AfterEndEnvironment{definizione}{\noindent\ignorespaces}
+
+
+\theoremstyle{lemma}
+\newtheorem{eser}{Esercizio}
+
+
+\theoremstyle{lemma}
+\newtheorem{dimo}{Dimostrazione}
+
+\theoremstyle{lemma}
+\newtheorem{esem}{Esempio}
+
+% custom fraction
+\newcommand*{\bfrac}[2]{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}
+\title{Ripasso}
+\author{Corso Informatica UNIPD A.A 2021/2022}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{PROPRIETA' POTENZE}
+\begin{dimo}[IPOTESI: $P(n)$ è vera]
+	
+	\begin{equation}
+	P(n)\ =\quad (a+b)^n\ =\ \sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n-k}
+	\end{equation}
+Per il principio di induzione dovremmo essere capaci di dimostrare anche: 
+$P(n+1)$ come vera.
+
+	\begin{equation}
+	P(n+1)\ =\quad (a+b)^{n+1}\ =\ 
+	\sum_{k=0}^{n+1}\ (_{n+1}^{k})\ a^k\ b^{n+1-k} 
+	\end{equation}
+
+	\begin{equation}
+	(a+b)^{n+1}\ =\ (a+b)(a+b)^n\ \Rightarrow\ 
+	(a+b)\sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n-k}
+	\end{equation}
+Ricordiamo la proprietà distributiva: $(a+b)c\ =\ ac + bc$
+
+	\begin{equation}
+	\sum_{k=0}^{n}\ (_{n}^{k})\ a^{k+1}\ b^{n-k}\ +\ 
+	\sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n+1-k}
+	\end{equation}
+
+	\begin{equation} 
+	\big\Downarrow
+	\end{equation}
+
+	\begin{equation}
+	\sum_{k=1}^{n+1}\ (_{n}^{k-1})\ a^{k}\ b^{n+1-k}\ + \ 
+	\sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n+1-k}\ + (_{n}^{0})\ a^0\ b^{n+1-0}
+	\end{equation}
+
+	\begin{equation} 
+	\big\Downarrow
+	\end{equation}
+	
+	\begin{equation}
+	\sum_{k=0}^{n+1}\ [(_{n}^{k-1}) + (_{n}^{k})]\ a^{k}\ b^{n+1-k}\
+	\end{equation}
+	
+	\begin{equation}
+	\big\Downarrow
+	\end{equation}
+	
+	\begin{equation}
+	\frac{n!}{(k-1)!(n-k+1)!}\ +\ \frac{n!}{k!(n-k)!}\ =\
+	\frac{\underline{n!}}{(\underline{k-1)!}(n-k+1)(\underline{n-k)!}}\ +\ 
+	\frac{\underline{n!}}{k\underline{(k-1)!}\ \underline{(n-k)!}}
+	\end{equation}
+			
+	\begin{equation}
+	\big\Downarrow
+	\end{equation}
+	
+	\begin{equation} 
+	\frac{n!}{(k-1)!(n-k)!}\ \left( \frac{1}{(n-k+1)}\ + \frac{1}{k} \right)\
+	\end{equation}
+
+	\begin{equation}
+	\big\Downarrow
+	\end{equation}
+	
+
+	\begin{equation}
+	\frac{n!}{(k-1)!(n-k)!}\ \cdot\ 
+	\frac{\xout{k} + n - \xout{k} + 1}{k (n-k+1)}\
+	\end{equation}
+
+	\begin{equation}
+	\big\Downarrow
+	\end{equation}
+	
+	
+	\begin{equation}
+	\overbrace{
+	\frac{n!}{(k-1)!(n-k)!}\ \cdot\
+	\frac{n+1}{k(n-k+1)}\ } \quad =
+	\frac{(n+1!)}{k!((n+1)-k)!}
+	\end{equation}
+L'ultima semplificazione è conseguenza di: $(n+1)!\ =\ (n+1) \cdot n!$
+e di $(n-1)!\ \cdot \ n\ =\ n!$
+
+In conclusione abbiamo che:
+	\begin{equation}
+	\sum_{k=0}^{n+1}\ [(_{n}^{k-1}) + (_{n}^{k})]\ a^{k}\ b^{n+1-k}\ =
+	\sum_{k=0}^{n+1}\ (_{n+1}^{k})\ a^{k}\ b^{n+1-k}\ =
+	(a + b)^{n+1}
+	\end{equation}
+
+\end{dimo}
+\end{document}
