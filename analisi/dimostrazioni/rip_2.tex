@@ -62,10 +62,41 @@
 \begin{dimo}[$x^n < y$]
 
 	\begin{equation}
-	x^n < y \ \iff\ \exists\epsilon \in \R
+	x^n < y \ \iff\ \exists\epsilon \in \R, 
+	\epsilon > 0 \ :\ (x + \epsilon)^n < y
+	\end{equation}
+Sia $\epsilon \in ]0,1[$
 
+	\begin{equation}
+	(x + \epsilon)^n\ =\ ((x + \epsilon)^n - x^n) + x^n\ =\
+	((\xout{x} + \epsilon)- \xout{x})((x+ \epsilon)^{n-1}\ +\	
+	\dots\ +\ x^{n-1}) + x^n\
+	\end{equation}
+	
+	\begin{equation}
+	\big\Downarrow
+	\end{equation}
 
+	\begin{equation}
+	\epsilon ( (x + \epsilon)^{n-1} + \dots + x^{n-1}) + x^n\ \leq\
+	\epsilon \cdot n \cdot (x + 1)^{n-1} + x^n
+	\end{equation}
 
+	\begin{equation}
+	\big\Downarrow
+	\end{equation}
+	
+	\begin{equation}
+	\epsilon n (x+1)^{n-1} + x^n < y \ \iff\ 
+	\epsilon < \frac{y - x^n}{n(x+1)^{n-1}} : \overset{def.}{=} \epsilon > 0
+	\end{equation}
 
+	\begin{equation}
+	0\ <\ \epsilon\ <\ \frac{y - x^n}{n(x+1)^{n-1}} 	
+	\end{equation}
+Questo è valido per: $ \epsilon \in \R $ 
+
+		
+\end{dimo}
 
 \end{document}
