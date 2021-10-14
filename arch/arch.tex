@@ -106,7 +106,7 @@ Il bus:
 	\item varie linee trasmettono in parallelo numeri binari. Un bus da 8 bit trasmette un dato di 8 bit
 \end{enumerate}
 
-Bus di sistema:
+\subsubsection{Bus di sistema:}
 \begin{itemize}
 	\item connette cpu, i/o, M
 	\item da 50 a qualche centinaio di linee
@@ -118,7 +118,7 @@ Bus di sistema:
 	\end{enumerate}
 \end{itemize}
 
-Bus dati:
+\subsubsection{Bus dati:}
 \begin{itemize}
 	\item trasporta dati o istruzioni
 	\item ampiezza --$ > $ efficienza  del sistema
@@ -127,13 +127,13 @@ Bus dati:
 	\end{itemize}
 \end{itemize}
 
-Bus indirizzi
+\subsubsection{Bus indirizzi}
 \begin{itemize}
 	\item indica sorgente o destinazione dati
 	\item l'ampiezza determina la massima quantità di M indirizzabile
 \end{itemize}
 
-Bus controllo
+\subsubsection{Bus controllo}
 \begin{itemize}
 	\item per controllare accesso, uso linee dati e indirizzi
 	\begin{enumerate}
@@ -160,7 +160,7 @@ se un module vuole ricevere dati da un altro:
 	\item attendere invio dati
 \end{itemize}
 
-Bus singoli e multipli
+\subsubsection{Bus singoli e multipli}
 \begin{itemize}
 	\item singolo bus = ritardo e congestione
 	\item vari bus = risoluzione problema
@@ -179,6 +179,136 @@ Bus singoli e multipli
 	\end{itemize}
 \end{itemize}
 
+\subsection{Memoria}
+Tutte le locazioni di memoria sono suddivise in blocchi. \newline
+La memoria è suddivisia in 2 tipi differenti:
+\begin{itemize}
+	\item Cache la più veloce e suddivisa in diversi livelli
+		\begin{itemize}
+			\item L1 cache
+			\item L2 cache
+			\item L3 cache
+		\end{itemize}
+	\item Ram più lenta della cache ma più capiente
+\end{itemize}
 
+La memoria Ram è composta da:
+\begin{enumerate}
+	\item indirizzo di memoria
+	\item blocco di memoria 
+\end{enumerate}
+Il numero di parole in un blocco è una potenza di 2. \newline
+Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come "indirizo" del bit, mentre i restanti 2 come identificativi del bit.
 
+\subsubsection{Gerarchia di memoria}
+Un blocco di memoria richiesto dalla CPU può essere presente \textbf{hit} o non presente \textbf{miss} in memoria. (generalmente è presente). \newline
+$T_a$: Tempo medio di accesso ad un dato in memoria cache 
+\begin{equation} T_a\ =\ T_h \times P_h + T_m(1-P_h) \end{equation}
+$T_h$: tempo di accesso ad un dato presnte in cache
+$T_m$: tempo medio di accesso ad un dato \textbf{non} in cache (dimensione blocco)
+$P_h$: probabilità di hit \newline
+\textit{Tecnica generale} \newline
+\begin{enumerate}
+	\item Suddivisione della memoria centrale in blocchi logici
+	\item dimensionamento della cache in multiplo di blocchi
+	\item ogni indirizzo emesso dalla cpu
+		\begin{itemize}
+			\item hit $\iff$ il dato viene fornito immediatamente alla cpu
+			\item miss
+				\begin{enumerate}
+					\item la cache richiede il dato al livello inferiore 
+					\item viene posto in cache 
+					\item viene fornito alla cpu 
+				\end{enumerate}
+		\end{itemize}
+\end{enumerate}
+
+\begin{defn}[\textbf{associazione diretta / direct mapping}] 
+Ogni blocco del livello ineriore può essere allocato solo in una specifica posizione  \textbf{linea/slot} del livello superiore
+\begin{enumerate}
+	\item \textbf{ILS} = indirizzo di livello superiore
+	\item \textbf{ILI} = indirizzo di livello inferiore 
+	\item $ILS = ILI\ mod\ N$
+\end{enumerate}	
+
+\begin{enumerate}
+	\item vantaggi
+		\begin{itemize}
+			\item semplicità traduzione indirizzo ILI a ILS
+			\item determinazione velocità hit o miss
+		\end{itemize}
+	\item svantaggi
+		\begin{itemize}
+			\item necessità di contraddistinguere blocco in ILS
+			\item swap frequenti per accesso a dati di blocchi adiacenti		    \end{itemize}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[\textbf{associazione completa / fully associative}] 
+Ogni blocco del livello inferiore può essere posto in qualunque posizione del livello superiore. \newline
+Ad una cache di N blocchi viene associata una tabella di N posizioni contenenti il numero di blocco effettivo (tag)
+\begin{itemize}
+	\item vantaggi: massima efficienza di allocazione
+	\item molto tempo per la corrispondenza ILS-ILI e della verifica hit/miss
+\end{itemize}
+\end{defn}
+
+\begin{defn}[\textbf{associazinone a N-gruppi / N-way set associative}] 
+Ogni blocco di un certo insieme di blocchi del livello inferiore può essere allocato liberamente in uno specifico gruppo di blocchi del livello superiore
+
+\begin{esem}
+Per una cache di 32 linee con un $N$ equivalente a 2, ogni gruppo avrà 16 linee.
+\end{esem}
+Questo tipo di associazione è una via di mezzo fra gli altri due tipi. 
+La cache composta da $R$ gruppi di $N$ posizioni di blocco, si affiancano $R$ tabelle di $N$ elementi contenenti i tag.
+Ha una buona efficienza di allocazione, nonstante abbia una certa complessità
+\end{defn}
+
+\begin{defn}[Politiche di rimpiazzo dei blocchi]
+Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?
+Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della cache corrisponde un blocco della memoria centrale.
+
+\begin{enumerate}
+	\item \textit{casuale}, viene occupato lo spazio omogeneamente, facile implementazione
+	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a lungo in cache, complicata implementazione
+	\item \textit{Least Frequently Used(LFU)}, il blocco con meno accessi, complicata implementazione hardware
+	\item \textit{Least Recently Used(LRU)}, il blocco con l'accesso più distante, per preservare quelli accessi più recentemente, implementazione difficile.
+\end{enumerate}
+A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU. Ad aumentare il livello di cache è sempre meno significativo il miglioramento offerto da queste tecnologie.
+\end{defn}
+
+La scrittura dati determina incoerenza tra il blocco in cache e quello nei livelli inferiori
+\begin{defn}[write through]
+\begin{enumerate}
+	\item scrittura contemporanea in cache e livello inferiore
+	\item aumento traffico per frequenti scritture nel medesimo blocco, dati coerenti fra blocchi
+	\item si ricorre a buffere asincroni verso la memoria
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[write back]
+\begin{enumerate}
+	\item scrittura in memoria inferiore differita al rimpiazzo del blocco di cache corrisp.
+	\item occore ricordare operazioni di scrittura nel blocco
+	\item ottimizazione del traffico tra livelli
+	\item periodi di incoerenza
+\end{enumerate}
+\end{defn}
+Occore ricordare che tra memoria centrale (RAM) e cache si passano \textbf{BLOCCHI} e non \textbf{PAROLE}.
+
+\begin{esem}[scenario problematico]
+\begin{itemize}
+	\item più dispositivi connessi allo stesso bus con cache locale
+	\item memoria centrale condivisa
+\end{itemize}
+Nessun tipo di "write" (through, back) può assicurare coerenza.
+\end{esem}
+Possibili soluzioni
+\begin{itemize}
+	\item \textbf{monitoraggio del bus con write through}, controllori intercettano modifiche locazioni condivise
+	\item \textbf{trasparenza hardware}, hardware aggiuntivo: modifica a RAM = modifica a cache
+	\item \textbf{memoria non cacheable}, solo una porzione è condivisa e non cacheable
+\end{itemize}
+Si può estendere il discorso fatto a livelli più alti prendendo in considerazione come memorie la ram e la memoria di tipo swap, basata sui dischi di archiviazione. 
 \end{document}
+

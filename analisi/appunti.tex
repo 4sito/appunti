@@ -184,8 +184,8 @@ Un \textbf{gruppo commutativo} e' un insieme $X$ dotato di un'operazione binaria
 \end{enumerate}
 Se le prime 3 proprietà sono valide allora $X$ e' un \textit{gruppo}. Se e' valida solo la prima allora si chiama \textit{semigruppo}
 
-\begin{defn} \textbf{Campo dei numeri reali $\mathbb{R} $}
-	
+\begin{defn}[\textbf{Campo dei numeri reali $\mathbb{R} $}]
+I 6 assiomi di completezza:
 	\begin{itemize}
 		\item $A_1$) $(\mathbb{R}, +) \rightarrow$ gruppo commutativo, neutro = 0
 		\item $A_2$) $(\mathbb{R} \setminus \{ 0 \} , \cdot) \rightarrow$  gruppo commutativo, neutro = 1
@@ -200,18 +200,78 @@ Se le prime 3 proprietà sono valide allora $X$ e' un \textit{gruppo}. Se e' val
 
 \end{defn}
 
-\begin{defn} 
+\begin{defn}[Sottoinsiemi induttivi] 
 	Un sottoinsieme $ I \subseteq \mathbb{R} $ si dice \textbf{induttivo} se:
 	\begin{enumerate}
    	\item $ 1 \in I $
 	\item $ x \in I\ \Rightarrow\ x + 1 \in I $
         \end{enumerate}
-	$ \textit{F} $ indica la famiglia degli insiemi induttivi di $\mathbb{R} $:
+	$ \mathcal{F} $ indica la famiglia degli insiemi induttivi di $\mathbb{R} $:
 	\begin{equation}
-		\mathbb{N} \overset{def.}{=} \{ x \in \mathbb{R}\ : x \in I \forall I \in \textit{F} \} 
+		\mathbb{N} \overset{def.}{=} \{ x \in \mathbb{R}\ : x \in I \forall I \in \mathcal{F} \} 
 	\end{equation}
+$\mathbb{N}$ è per definizione \textit{l'interesezione} di tutti gli insiemi induttivi 
+\begin{equation}
+	\mathbb{N}\ =\ \underset{I \in \mathcal{F}}{\cap} I
+\end{equation}
 \end{defn}
 
+\begin{dimo}[Il principio di induzione]
+	Se $M \subseteq \mathbb{N} $ è induttivo $ \iff\ M=\mathbb{N}$ \newline
+	Dato che $M$ è induttivo $\mathbb{N} \subseteq M\ \iff\ \mathbb{N}\ =\ M$ \newline
+	Questo ragionamento introduce il \textit{principio di induzione}.
+\end{dimo}
+
+\begin{defn}[Il minimo di $\mathbb{N}$]
+	\begin{equation}
+		1 \leq n \ \forall n \in \mathbb{N}
+	\end{equation}
+Il $min\mathbb{N}\ =\ 1$
+\end{defn}
+
+\begin{defn}[$\mathbb{Z}\ $ l'anello dei numeri interi]
+
+	\begin{equation}
+	\mathbb{Z} \overset{def.}{=}\ \mathbb{N}\ \cup \{ 0 \} \cup \{ -n:n \in \mathbb{N} \}
+	\end{equation}	
+$\mathbb{Z}$ è chiuso per somma e motliplicazione
+	\begin{equation}
+	n,m \in \mathbb{Z}\ \Rightarrow n+m,\ n\cdot m\ \in \mathbb{Z}
+	\end{equation}
+Se $A \subseteq \mathbb{Z},\ A \neq \varnothing$
+\begin{itemize}
+	\item se $A$ è superiormente limitato, ammette massimo $\exists\ maxA$
+	\item se $A$ è inferiormente limitato ammette minimo $\exists\ minA$
+\end{itemize}
+\end{defn}
+
+\begin{defn}[$\mathbb{Q} $ l'anello dei numeri razionali]
+	\begin{equation}
+		\mathbb{Q} \overset{def.}{=} \left\{ \frac{p}{q}: \in \mathbb{Z},q \in \mathbb{N} \right\}
+	\end{equation}
+$\mathbb{Q}$ è chiuso per somma e moltiplicazione
+\begin{equation} 
+	x,y \in \mathbb{Q}\ \Rightarrow\ x+y, x \cdot y \in \mathbb{Q}
+\end{equation}
+$\mathbb{Q}$ è un campo \textit{totalmente ordinato} ossia sono validi gli assiomi $A_1,\ \dots, A_5$ escluso l' $A_6$
+\end{defn}
+
+\subsection{Radice n-esima}
+Sia $n\in \mathbb{N}$ e sia $x\in \mathbb{R}, x \geq 0. \newline$
+$y \in \mathbb{R}$ è la radice n-esima di $x$ se $ y \geq 0, y^n\ =\ x$
+\begin{equation}
+y \overset{def.}{=} x^{\frac{1}{n}},\ \sqrt[n]{x}
+\end{equation}
+
+\begin{defn}
+	Proprietà della radice n-esima: per ogni $x,y \in \mathbb{R},\ x,y \geq 0$:
+	\begin{enumerate}[label = $P_{\arabic*}$]
+		\item $x^n \leq y^n\ \iff\ x \leq y$
+		\item $x^n = y^n\ \iff\ x=y$
+		\item $x^n < y\ \iff\ \exists \epsilon \in \mathbb{R}, \epsilon > 0, : (x+\epsilon)^n <y$
+		\item $x^n > y\ \iff\ \exists \epsilon \in \mathbb{R}, \epsilon > 0, : (x-\epsilon)^n>y$
+\end{enumerate}
+\end{defn}
 
 
 \section{Funzioni}
