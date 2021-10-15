@@ -1,0 +1,53 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\begin{dimo}
+
+\begin{equation}
+	\lim \limits_{n \to +\infty}\underset{(a_n + b_n)} = l + m
+\end{equation}
+
+\begin{equation}
+	\lim \limits_{n \to +\infty} a_n = l \quad \& \quad
+	\lim \limits_{n \to +\infty} b_n = m
+\end{equation}
+
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+
+\begin{equation}
+	| a_n - l | < \frac{\epsilon}{2} \quad \mbox{se}\quad  n > \overline{n_1}
+\end{equation}
+\begin{equation}
+	| b_n - m | < \frac{\epsilon}{2} \quad \mbox{se}\quad  n > \overline{n_2}
+\end{equation}
+$n> \max\{ \overline{n_1}, \overline{n_2} \}$
+
+\begin{equation}
+	| a_n + b_n - l - m | \leq | a_n - l | + | b_n - m | < 
+	\frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+\end{equation}
+
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+
+\begin{equation}
+	\forall \epsilon > 0, \exists \overline{n} \equiv \max \{
+	\overline{n_1}, \overline{n_2} \} \ :\ n > \overline{n}\ 
+	\Rightarrow\ \underbrace{| (a_n + b_n) - ( l + m ) |}_{0} < \epsilon
+\end{equation}
+
+\begin{equation}
+	( a_n + b_n ) - ( l + m ) = 0
+\end{equation}
+\begin{equation}
+	a_n + b_n = l + m
+\end{equation}
+
+\end{dimo}
+
+\end{document}

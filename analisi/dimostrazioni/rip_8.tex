@@ -1,0 +1,48 @@
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\begin{defn}[Teorema dei 2 carabinieri]
+
+Se $ \underbrace{ \{ a_n \}\ , \{ b_n \} }_{\mbox{convergono a $\ l$}} , \{ c_n \}$
+
+\begin{equation}
+	\mbox{è ovvio che:}\ a_n \leq c_n \leq b_n \ \Longrightarrow\ 
+	c_n \mbox{converge a}\ l
+\end{equation}
+\end{defn}
+
+\begin{dimo}
+\begin{equation}
+	\forall \epsilon > 0, \exists \overline{n_1}, \overline{n_2} \in \N :
+\end{equation}
+
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+
+\begin{equation}
+	l - \epsilon < a_n < l + \epsilon \qquad \& \qquad
+	l - \epsilon < b_n < l + \epsilon
+\end{equation}
+se $ n > \max \{ \overline{n_1}, \overline{n_2} \} $
+
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+
+\begin{equation}
+	l - \epsilon < a_n \leq c_n \leq b_n  < l + \epsilon \qquad
+	\forall n > \overline{n}
+\end{equation}
+
+\begin{equation}
+	\underbrace{ l - \epsilon < c_n < l + \epsilon }_{
+	| c_n - l | < \epsilon } \Longrightarrow 
+	\lim \limits_{n \to +\infty} c_n = l
+\end{equation}
+
+\end{dimo}
+ 
+\end{document}
