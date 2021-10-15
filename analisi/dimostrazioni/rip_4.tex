@@ -1,0 +1,52 @@
+\input{preamble}
+
+\begin{document}
+
+\begin{dimo}[Il limite se esiste è unico]
+\begin{equation}
+	\lim \limits_{x \to \infty} a_n = l \quad \land \quad 
+	\lim \limits_{x \to \infty} a_n = m \quad
+	\iff \quad l\ =\ m
+\end{equation}
+\end{dimo}
+
+\begin{esem}
+Poniamo per assurdo che $l \neq m$
+Fissiamo $\epsilon > 0$
+\begin{equation}
+	\underbrace{
+	\underbrace{| a_n - l | < \frac{\epsilon}{2} }_{ n>\overline{n_1} }
+	\quad \& \quad 
+	\underbrace{| a_n - m | < \frac{\epsilon}{2} }_{ n>\overline{n_2}} }_{
+	n\ >\ \max \{ \overline{n_1}, \overline{n_2} \} }
+\end{equation}
+
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+Ricordiamo che $ | a_n - m | = | m - a_n |$
+
+\begin{equation}
+	| \cancel{-a_n} - l - \cancel{-a_n} + m |
+	| a_n - l |\ +\ |m - a_n | < 
+	\frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+\end{equation}
+
+
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+
+\begin{equation}
+	| m - l | < \epsilon \quad \Longrightarrow \quad | m - l | = 0
+\end{equation}
+Ma questo è assurdo perchè: $\epsilon > 0, \forall \epsilon \in \R$
+
+\begin{equation}
+	m = l 
+\end{equation}
+\end{esem}
+
+
+\end{document}
+
