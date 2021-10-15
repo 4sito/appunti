@@ -1,10 +1,9 @@
-\input{preamble}
+\documentclass[../rip.tex]{subfiles}
 
 \begin{document}
-\maketitle
 
-\section{PRINCIPIO D'INDUZIONE E BINOMIO DI NEWTON}
-\begin{dimo}[IPOTESI: $P(n)$ è vera]
+\begin{dimo}[Principio d'induzione e binomio di Newton]
+IPOTESI: $P(n)$ è vera
 	
 	\begin{equation}
 	P(n)\ =\quad (a+b)^n\ =\ \sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n-k}
@@ -28,26 +27,26 @@ Ricordiamo la proprietà distributiva: $(a+b)c\ =\ ac + bc$
 	\sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n+1-k}
 	\end{equation}
 
-	\begin{equation} 
+	\begin{equation*} 
 	\big\Downarrow
-	\end{equation}
+	\end{equation*}
 
 	\begin{equation}
 	\sum_{k=1}^{n+1}\ (_{n}^{k-1})\ a^{k}\ b^{n+1-k}\ + \ 
 	\sum_{k=0}^{n}\ (_{n}^{k})\ a^k\ b^{n+1-k}\ + (_{n}^{0})\ a^0\ b^{n+1-0}
 	\end{equation}
 
-	\begin{equation} 
+	\begin{equation*} 
 	\big\Downarrow
-	\end{equation}
+	\end{equation*}
 	
 	\begin{equation}
 	\sum_{k=0}^{n+1}\ [(_{n}^{k-1}) + (_{n}^{k})]\ a^{k}\ b^{n+1-k}\
 	\end{equation}
 	
-	\begin{equation}
+	\begin{equation*}
 	\big\Downarrow
-	\end{equation}
+	\end{equation*}
 	
 	\begin{equation}
 	\frac{n!}{(k-1)!(n-k+1)!}\ +\ \frac{n!}{k!(n-k)!}\ =\
@@ -55,27 +54,27 @@ Ricordiamo la proprietà distributiva: $(a+b)c\ =\ ac + bc$
 	\frac{\underline{n!}}{k\underline{(k-1)!}\ \underline{(n-k)!}}
 	\end{equation}
 			
-	\begin{equation}
+	\begin{equation*}
 	\big\Downarrow
-	\end{equation}
+	\end{equation*}
 	
 	\begin{equation} 
 	\frac{n!}{(k-1)!(n-k)!}\ \left( \frac{1}{(n-k+1)}\ + \frac{1}{k} \right)\
 	\end{equation}
 
-	\begin{equation}
+	\begin{equation*}
 	\big\Downarrow
-	\end{equation}
+	\end{equation*}
 	
 
 	\begin{equation}
 	\frac{n!}{(k-1)!(n-k)!}\ \cdot\ 
-	\frac{\xout{k} + n - \xout{k} + 1}{k (n-k+1)}\
+	\frac{\cancel{k} + n - \cancel{k} + 1}{k (n-k+1)}\
 	\end{equation}
 
-	\begin{equation}
+	\begin{equation*}
 	\big\Downarrow
-	\end{equation}
+	\end{equation*}
 	
 	
 	\begin{equation}
