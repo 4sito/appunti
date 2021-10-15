@@ -1,0 +1,179 @@
+\documentclass[../appunti.tex]{subfiles}
+\graphicspath{{\subfix{../pics/}}}
+
+
+
+\begin{document}
+
+\section{Combinatoria e probabilità}
+\subsection{Introduzione}
+
+\begin{defn}
+  L'\bt{analisi combinatoria} è la branca della matematica applicata per risolvere problemi nel quale è necessario saper "contare" efficacemente esiti e probabilità di determinate situazioni.\\
+  Essa è infatti la disciplina che ci permette di \bt{contare senza contare}
+\end{defn}
+
+\subsection{Combinatoria}
+\begin{defn}[Principio di moltiplicazione]
+  Un insieme $X$ soddisfa le ipotesi del principio di moltiplicazione se:
+
+  \begin{itemize}
+    \item è possibile ottenere ciascuno dei suoi elementi come risultato di una procedura composta da $n$ fasi successive.
+    \item se ad una fase interemedia si sono ottenuti due esisti distinti allora la procedura conduce ad elementi distinti di $X$
+  \end{itemize}
+
+Nella prima fase avremo $m_1$ possibili esiti nella seconda fase avremo $m_2$ esiti sino alla n-esima fase avremo $m_n$ esiti
+
+\begin{equation}
+  |X|\ = m_1\ \times\ m_2\ \times\ ...\ \times\ m_k
+\end{equation}
+\end{defn}
+
+\begin{eser}
+  Calcoliamo il numero di coppie ordinate $(a,b)$ contenenti un numero primo ed uno non primo compresi tra 1 ed 8
+\end{eser}
+
+\begin{dimo}
+  I numeri primi tra 1 e 8 sono $\{ 2, 3, 5, 7\}$ mentre i numeri non primi tra 1 e 8 sono $\{ 1, 4, 6, 8\}$
+
+\begin{enumerate}[label=\Roman*.]
+  \item Scegliamo un qualsiasi elemento di $I_8$: abbiamo 8 possibilità.
+  \item Se il primo elemento era primo il secondo non lo sarà, e viceversa se il numero non era primo. In ogni caso avremo 4 distinte possiblità
+
+\end{enumerate}
+Il numero di coppie è: $8\ \times\ 4\ =\ 32$
+\end{dimo}
+
+\begin{eser}
+  Consideriamo un'estrazione in successione di 3 numeri della tombola \bt{tenendo conto dell'ordine}. Quanti sono i possibili esiti?
+\end{eser}
+
+\begin{dimo}
+  I numeri della tombola sono 90. Gli scenari possibili sono 2:\\
+  Nel primo caso \bt{senza rimpiazzo} se ogni numero può essere scelto una volta sola, mentre sarà \bt{con rimpiazzo} se un numero può essere scelto più di una volta.\\
+
+Nel primo caso $(a_1, a_2, a_3)\ :\rightarrow\ (a_1\ \neq\ a_2\ \neq\ a_3\ )$ :
+
+\begin{enumerate}[label=\Roman* \textsc{fase}:]
+    \item  $a_1 = 90$
+    \item  $a_2 = 90 - 1 = 89$
+    \item  $a_3 = 90 - 2 = 88$
+\end{enumerate}
+
+Quindi il numero di possibili esiti è:
+\begin{equation}
+  90\ \times\ 89\ \times\ 88\ =\ 704880
+\end{equation}
+
+Nel secondo caso $(a_1,a_2,a_3) :\rightarrow (a_1\ =\ a_2\ =\ a_3)$:
+\begin{enumerate}[label=\Roman* \textsc{fase}:]
+    \item  $a_1\ =\ 90$
+    \item  $a_2\ =\ 90$
+    \item  $a_3\ =\ 90$
+\end{enumerate}
+Quindi il numero di possibili esiti è:
+
+\begin{equation}
+  90\ \times\ 90\ \times\ 90\ =\ 90^3\ =\ 729000
+\end{equation}
+\end{dimo}
+
+\begin{defn}
+  Definiamo una regola general per $k$-sequenze di $I_n$.
+  Siano $k,n\ \in\ \N$ definiamo $k$-sequenza di $I_n$ una $k$-upla \bt{ordinata} $(a_1,\ldots ,a_k)$ di elementi \bt{non necessariamente distinti} di $I_n$ Ovvero:
+  \begin{equation}
+    (a_1,\ldots,a_k)\in\ \underbrace{I_n\times\ \ldots\ \times\ I_n\ }
+  \end{equation}
+  % with the command |underbrace or upbrace we can have curly braces up or down a section of a given equation
+\end{defn}
+
+Nella definzione di sequenze l'ordine degli elementi della $k$-upla è importante: le 3-sequenze (2, 1 ,3 ) e (3, 1, 2) sono diverse anceh se composte dagli stessi numeri. Vengono comunemente dette \bt{disposizioni} di \bt{n} oggetti a $k$ a $k$
+
+\begin{esem}
+  Sia $I_4\ =\ {1,2,3,4}$. Allora
+  \begin{equation}
+    (1,2,3,3,4),\qquad (1,1,1,1,1),\qquad (2,2,1,3,4)
+  \end{equation}
+  sono 5-sequenze di $I_4$. Invece
+  \begin{equation}
+    (1,2,3),\qquad (1,1,1),\qquad (2,3,4)
+  \end{equation}
+  sono 3-sequenze di $I_4$
+\end{esem}
+
+\subsection{Fattoriale}
+
+\begin{equation}
+  5!=\ 5\ \times\ 4\ \times\ 3\ \times\ 2\ \times\ 1
+\end{equation}
+
+\begin{equation}
+  n!=
+  \begin{cases}
+    n\ \times\ (n-1)\ \times\ (n-2)\ \times\ \ldots\ 3\ \times\ 2\
+    \times\ 1 &  \mbox{se } n\geq\ 1 \\
+    1 &  \mbox{se }n\ =\ 0
+  \end{cases}
+      % 'cases' is used for system of equations. Write the conditions of the if statements AFTER the & symbol
+\end{equation}
+
+\begin{defn}
+  Il \bt{fattoriale} di un numero equivale al prodotto di quel numero per tutti i numeri che lo precedono. I valori dei fattoriale crescono esponenzialmente
+  \begin{equation}
+    0!=\ 1 \qquad 5!=\ 120 \qquad 6!=\ 720 \qquad 7!=\ 5040 \qquad 10!=\ 3628800
+  \end{equation}
+\end{defn}
+
+\subsection{Numero di Insiemi}
+\begin{defn}
+	Il \bt{numero di sottoinsiemi} di $k$ elementi di $I_n$ si distinguono esclusivamente dagli elementi di cui fanno parte: \bt{l'ordine non conta}.
+\end{defn}
+
+Spesso un sottoinsieme di $k$ elementi di un insieme di $n$ elementi viene chiamato \bt{combinazione} (semplice, senza ripetizioni) di $n$ elementi a $k$ a $k$
+
+\begin{defn}
+	Siano $k,n \in \N$ il \bt{binomiale} di $n$ su $k$ è:
+	\begin{equation}
+		\bfrac{n}{k}\ =
+		\begin{cases}
+			\frac{n!}{k!(n-k)!}, & \mbox{se} k\ \leq\ n,\\
+			0, 		    & \mbox{se} k\ > n.
+		\end{cases}
+	\end{equation}
+	Il numero di sottoinsiemi di $k$ elementi di $I_n$ è 
+	\begin{equation}
+		\bfrac{n}{k}.
+	\end{equation}
+\end{defn}
+
+
+\begin{esem}
+	Calcola i sotttoinsiemi con $3$ elementi di $I_6$
+\end{esem}
+
+\begin{dimo}
+	La soluzione è data da una semplice applicazione della formula prima vista:
+	\begin{equation}
+		\bfrac{6}{3}\ =\ \frac{6!}{3!3!}\ =\ 20
+	\end{equation}
+\end{dimo}
+
+
+\begin{esem}
+	Calcola il numero di partite giocate nella fase a gironi dei Mondiali di calcio. Ci sono 3$2$ squadre divise in $8$ gironi da $4$ squadre ed in ogni girone una squadra deve giocare contro le altre una volta sola.
+\end{esem}
+
+\begin{dimo}
+	Il numero di partite totale è $8$ volte le partite giocate in un singolo girone.
+	L'insieme delle 4 squadre in un girone possiamo identificarlo con $I_4$, e una partita tra 2 squadre con un sottoinsieme di $2$ elementi di $I_4$. Il numero di partite giocate in un girone\bt{è il numero di sottoinsiemi} di $2$ elementi di $I_4$ ovvero:
+	\begin{equation}
+		\bfrac{4}{2}\ =\ \frac{4!}{2!(4-2)! }\ =\ \frac{4\times 3\times 2\times 1}{2\times 2}\ = \frac{24}{4}\ =\ 6
+	\end{equation}
+	Infine il risultato equivale a: $ 6 \times 8 = 48$
+\end{dimo}
+
+
+
+
+
+\end{document}

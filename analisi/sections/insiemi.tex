@@ -1,0 +1,229 @@
+\documentclass[../appunti.tex]{subfiles}
+\graphicspath{{\subfix{../pics/}}}
+
+
+
+
+
+\begin{document}
+
+\section{Insiemi}
+\subsection{Introduzione}
+
+\begin{defn}
+	Un insieme è una "collezione" di oggetti.
+\end{defn}
+
+Sia $A$ un \textsc{insieme}, la scrittura $ x \in A $ significa che $x \quad
+appartiene \quad ad \quad A$.
+
+Analogamento, scrivendo $ x \notin A $ si intende che $ x \quad non \quad appartiene \quad ad \quad A$.
+
+Gli insiemi \bt{finiti} si possono denotare all'interno di parentesi graffe $ " \{ , \} " $
+
+Un qualsiasi insieme può definirsi mediante una \bt{proprietà astratta}
+
+\begin{esem}
+	\begin{equation}
+	A\ =\ \{\ x \in \N\ |\ x\ pari\ \}
+	\end{equation} 
+	Questo insieme raccoglie \bt{tutti i numeri naturali pari} e si può meglio riscrivere così:
+	\begin{equation}
+	A\ =\ \{\ x\ \in \N\ |\ \exists y \in \N\ :\ x\ =\ 2y\ \}
+	\end{equation}
+\end{esem}
+
+\subsection{Insiemi ed operazioni}
+Sia $X$ un insieme e siano $A,B\ \subseteq\ X$
+\begin{itemize}
+	\item \bt{UNIONE} $A \cup B$, L'unione di A e B come l'insieme 
+		\begin{equation}
+			A \cup B\ =\ \{ x \in X\ :\ x\in A\ o\ x\in B\ \}
+		\end{equation}
+	\item \textsc{INTERSEZIONE} $A \cap B$, L'intersezione di A e B come l'insieme
+		\begin{equation}
+			A \cap B\ =\ \{ x \in X\ :\ x\in A\ e\ x\in B\ \}
+		\end{equation}
+	\item \textsc{DIFFERENZA} $A \setminus B$, che equivale a
+		\begin{equation}
+			A \setminus B\ =\ \{x \in X\ :\ x \in A\ e\ x \notin B\ \}
+		\end{equation}
+	\item \textsc{COMPLEMENTARE} L'insieme complementare di $A$ in $X$ è:
+		\begin{equation}
+			A^C\ =\ X \setminus A\ =\ \{x \in X\ :\ x \notin A\ \}
+		\end{equation}
+\end{itemize}
+
+\begin{esem}
+
+Il complementare dell'unione è l'intersezione dei complementari, mentre il complementare dell'intersezione è l'unione dei complementari.
+
+	\begin{itemize}
+	\item $ X \setminus (A \cup B)\ =\ (X \setminus A) \cap(X \setminus B) $
+	\item $ X \setminus (A \cap B)\ =\ (X \setminus A) \cup (X \setminus B) $
+        \end{itemize}
+\end{esem}
+
+\begin{dimo}
+	Si dice relazione da $A$ a $B$ ogni sottoinsieme $R$ di $A\times B$ Se $(a,b)\ \in\ R$.
+	$a$ è in relazione $R$ con $b$, si scrive $aRb$. 
+	\begin{equation} 
+	\tit{R}\ = \{ (a,b) \in \N\ \times \N: \exists p \in \N\ |\ a\ = p \cdot b\ \}
+	\end{equation}
+\end{dimo}
+
+\subsection{Relazioni d'ordine}
+Sia $A\ \neq\ \varnothing$ un insieme non vuoto e sia $R\ \subseteq\ A\ \times\ A$ una relazione di $A$ con $A$. $R$ è:
+
+\begin{enumerate}
+	\item riflessiva se $xRx \quad \forall x \in A$,
+	\item simmetrica se $xRy\ \rightarrow\ yRx$,
+	\item transitiva se $xRy\ \land\ yRz\ \rightarrow\ xRz$,
+	\item antisimmetrica se $xRy\ \land\ yRz\ \rightarrow\ x\ =\ y$.
+\end{enumerate}
+Una \bt{relazione d'equivalenza} è tale se è \textsc{riflessiva, simmetrica e transitiva}.
+
+\begin{defn} 
+ 	Una relazione d'ordine su un insieme $X\ \neq \ \varnothing $ è detta di  \tit{ordine totale} se $\forall\ x,y\ \in\ X $ si ha $x\ \leq\ y\ \lor\ y\ \leq\ x$. Se su $X$ c'è una relazione d'ordine totale, $X$ è totalmente ordinato. 
+\end{defn}
+
+\begin{defn} Sia $(X,\leq)$, insieme non vuoto e ordinato e sia $A \subseteq X,\ A \neq\ \varnothing$
+\begin{itemize}
+	\item $x \in X$ è un \bt{maggiorante} di $A$ se $a \leq x\ \forall a\in A$
+	\item $y \in X$ è un \bt{minorante} di $A$ se $y \leq x\ \forall a\in A$
+	\item $A$ ha \bt{massimo} se $\exists \lambda \in A\ |\ a \leq \lambda\ \forall a \in A\ \implies\ \lambda\ =\ max\ A$
+	\item $A$ ha \bt{minimo} se $\exists \mu \in A\ |\ \mu \leq a\ \forall a \in A\ \implies\ \mu\ =\ min\ A$
+\end{itemize}
+\end{defn}
+
+\begin{defn} Siano $(X,\leq)$ un insieme ordinato e $A\ \subseteq\ X, A\ \neq\ \varnothing$. $A$ ha \tit{estremo superiore} se l'insieme dei maggioranti di $A$ è non vuoto e ha minimo. $sup A$ è il più piccolo dei maggioranti.
+Analogamente \tit{l'estremo inferiore} è presente se l'insieme dei minoranti di $A$ è non vuoto ed esso ne è il più piccolo: $inf A$.
+\end{defn}
+
+\begin{defn} \bt{Proprietà di $sup$ e $inf$:}
+
+		Siano $(X,\leq)$ un insieme ordinato e $A\ \subseteq\ X, A\ \neq\ \varnothing $.
+
+                \bt{SUP} Si ha che $\lambda\ =\ sup\ A$ \bt{se e solo se}
+		\begin{enumerate}
+			\item $a \leq \lambda \quad \forall a \in A;$
+			\item $\lambda_1 \in X,\ a \leq \lambda_1 \quad \forall a \in A \implies\  \lambda \leq \lambda_1$
+		\end{enumerate}
+
+                
+                \bt{INF} Si ha che $\mu\ =\ inf\ A$ \bt{se e solo se}
+		\begin{enumerate}
+			\item $\mu \leq a \quad \forall a \in A;$
+			\item $\mu_1 \in X,\ \mu_1 \leq a \quad \forall a \in A \implies\  \mu_1 \leq \mu $
+		\end{enumerate}
+
+\end{defn}
+
+\begin{defn} Siano $(X,\leq)$ un insieme ordinato e $A\ \subseteq\ X, A\ \neq\ \varnothing $, allora:
+	\begin{enumerate}
+		\item se $A$ ha massimo, allora si ha $max A\ =\ sup A$
+		\item se $A$ ha minimo, allora si ha $min A\ =\ inf A$
+	\end{enumerate}
+\end{defn}
+
+\subsection{Numeri reali}
+Un \bt{gruppo commutativo} e' un insieme $X$ dotato di un'operazione binaria $*\ : X \times X \rightarrow X$ tale che:
+
+\begin{enumerate} 
+	\item \textsc{proprietà associativa:} $(x \star y) \star z\ =\ x \star (y * z) \quad \forall x,y,z \in X$
+	\item \textsc{elemento neutro:} $ \exists e \in X \rightarrow e * x = x * e = e$
+	\item \textsc{inverso:}$\ \forall x \in X \quad \exists y \in X \rightarrow x * y = y * x = e$
+	\item \textsc{proprietà commutativa;} $ \forall x, y \in X\ \rightarrow \ x * y = y * x$
+\end{enumerate}
+Se le prime 3 proprietà sono valide allora $X$ e' un \tit{gruppo}. Se e' valida solo la prima allora si chiama \tit{semigruppo}
+
+\begin{defn}[\bt{Campo dei numeri reali $\R $}]
+I 6 assiomi di completezza:
+	\begin{itemize}
+		\item $A_1$) $(\R, +) \rightarrow$ gruppo commutativo, neutro = 0
+		\item $A_2$) $(\R \setminus \{ 0 \} , \cdot) \rightarrow$  gruppo commutativo, neutro = 1
+		\item $A_3$) $ x \cdot (y+z) = x \cdot y+x \cdot z \quad \forall x,y,z \in \R$, proprietà distributiva
+		\item $A_4$) $(\R, \leq ) \rightarrow $ totalmente ordinato
+		\item $A_5$) $ (\leq )\ \rightarrow $ compatibile con $ + \land \cdot $
+		\item $A_6$) $(\R, \leq ) \rightarrow $ completo 
+
+	\end{itemize}
+	Le proprietà $ A_1, \dots , A_3 \Longrightarrow (\R, +, \cdot) \rightarrow $ campo \newline
+	Le proprietà $ A_1, \dots , A_6 \Longrightarrow (\R, +, \cdot, \leq) \rightarrow $ campo \bt{ordinato e completo}.
+
+\end{defn}
+
+\begin{defn}[Sottoinsiemi induttivi] 
+	Un sottoinsieme $ I \subseteq \R $ si dice \bt{induttivo} se:
+	\begin{enumerate}
+   	\item $ 1 \in I $
+	\item $ x \in I\ \Rightarrow\ x + 1 \in I $
+        \end{enumerate}
+	$ \mathcal{F} $ indica la famiglia degli insiemi induttivi di $\R $:
+	\begin{equation}
+		\N \overset{def.}{=} \{ x \in \R\ : x \in I \forall I \in \mathcal{F} \} 
+	\end{equation}
+$\N$ è per definizione \tit{l'interesezione} di tutti gli insiemi induttivi 
+\begin{equation}
+	\N\ =\ \underset{I \in \mathcal{F}}{\cap} I
+\end{equation}
+\end{defn}
+
+\begin{dimo}[Il principio di induzione]
+	Se $M \subseteq \N $ è induttivo $ \iff\ M=\N$ \newline
+	Dato che $M$ è induttivo $\N \subseteq M\ \iff\ \N\ =\ M$ \newline
+	Questo ragionamento introduce il \tit{principio di induzione}.
+\end{dimo}
+
+\begin{defn}[Il minimo di $\N$]
+	\begin{equation}
+		1 \leq n \ \forall n \in \N
+	\end{equation}
+Il $min\N\ =\ 1$
+\end{defn}
+
+\begin{defn}[$\Z\ $ l'anello dei numeri interi]
+
+	\begin{equation}
+	\Z \overset{def.}{=}\ \N\ \cup \{ 0 \} \cup \{ -n:n \in \N \}
+	\end{equation}	
+$\Z$ è chiuso per somma e motliplicazione
+	\begin{equation}
+	n,m \in \Z\ \Rightarrow n+m,\ n\cdot m\ \in \Z
+	\end{equation}
+Se $A \subseteq \Z,\ A \neq \varnothing$
+\begin{itemize}
+	\item se $A$ è superiormente limitato, ammette massimo $\exists\ maxA$
+	\item se $A$ è inferiormente limitato ammette minimo $\exists\ minA$
+\end{itemize}
+\end{defn}
+
+\begin{defn}[$\mathbb{Q} $ l'anello dei numeri razionali]
+	\begin{equation}
+		\mathbb{Q} \overset{def.}{=} \left\{ \frac{p}{q}: \in \Z,q \in \N \right\}
+	\end{equation}
+$\mathbb{Q}$ è chiuso per somma e moltiplicazione
+\begin{equation} 
+	x,y \in \mathbb{Q}\ \Rightarrow\ x+y, x \cdot y \in \mathbb{Q}
+\end{equation}
+$\mathbb{Q}$ è un campo \tit{totalmente ordinato} ossia sono validi gli assiomi $A_1,\ \dots, A_5$ escluso l' $A_6$
+\end{defn}
+
+\subsection{Radice n-esima}
+Sia $n\in \N$ e sia $x\in \R, x \geq 0. \newline$
+$y \in \R$ è la radice n-esima di $x$ se $ y \geq 0, y^n\ =\ x$
+\begin{equation}
+y \overset{def.}{=} x^{\frac{1}{n}},\ \sqrt[n]{x}
+\end{equation}
+
+\begin{defn}
+	Proprietà della radice n-esima: per ogni $x,y \in \R,\ x,y \geq 0$:
+	\begin{enumerate}[label = $P_{\arabic*}$]
+		\item $x^n \leq y^n\ \iff\ x \leq y$
+		\item $x^n = y^n\ \iff\ x=y$
+		\item $x^n < y\ \iff\ \exists \epsilon \in \R, \epsilon > 0, : (x+\epsilon)^n <y$
+		\item $x^n > y\ \iff\ \exists \epsilon \in \R, \epsilon > 0, : (x-\epsilon)^n>y$
+\end{enumerate}
+\end{defn}
+
+\end{document}
