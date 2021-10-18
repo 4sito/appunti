@@ -1,0 +1,44 @@
+\documentclass[../appunti.tex]{subfiles}
+
+\begin{document}
+
+\section{Successioni}
+\subsection{Successioni in $\R$}
+Sia $X \neq \varnothing$, una qualsiasi funzione $f: \N \to X$ si dice: 
+\bt{successione in $X$}. \newline
+Una notazione si indica $ \{ f_n \}_{n \in \N} $ o $f_1, f_2, \dots , f_n $ \newline
+$ f_n $ si chiama termine n-esimo. \newline
+$ k_1, k_2, \dots , k_n $ è una successione di numeri naturali:
+
+\begin{equation}
+	k_1 < k_2 < \dots < k_n < k_{n+1} < \dots \quad \forall n \in \N
+\end{equation}
+La successione $ \{ f_{k_n} \} $ è una \tit{sottosuccessione} di $ \{ f_n \} $.
+
+\begin{defn}
+Se $ a_n$ tende a $ l \in \R$ per $n \to \infty$, si dice che 
+$ \lim \limits_{n \to \infty} a_n = l $
+
+\begin{equation}
+	\forall \epsilon > 0 \exists \ol{n}: \forall n \in \N
+	( n > \ol{n}\ \Rightarrow\ | a_n - l | < \epsilon )
+\end{equation}
+$ \{ a_n \} $ converge ad $l$ ed esso è il limite di $ \{ a_n \} $ 
+\end{defn}
+
+\begin{esem}
+\begin{equation}
+	\lim \limits_{ n \to \infty} \frac{1}{n} = 0
+\end{equation}
+Ovvero
+
+\begin{equation}
+	\forall \epsilon > 0 \exists \ol{n}: \forall n \in \N
+	\left( n > \ol{n}\ \Rightarrow\ | \frac{1}{n} - 0 | < \epsilon \right)
+\end{equation}
+\end{esem}
+
+\input{../dimo/rip/rip_4.tex}
+
+
+\end{document}

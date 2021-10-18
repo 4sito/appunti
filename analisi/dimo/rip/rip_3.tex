@@ -1,0 +1,32 @@
+\begin{equation}
+	a>1 \quad a^n>1 \quad \forall n \in \Q, n>0 \qquad
+	p,q \in \N\ \land\ q \neq 0\ : n=\frac{p}{q}
+\end{equation}
+
+\begin{equation}
+	a^n = \sqrt[q]{a^p} \geq \sqrt[q]{a} > \sqrt[q]{1} = 1
+\end{equation}
+Questo perchè $ a^n>1 \land a>1\ \Rightarrow\ 1,000000000001^n > 1$ \newline
+Dalle proprietà delle potenze ricordiamo che:
+
+\begin{equation}
+	x < y\ \Rightarrow\ a^x < a^y\ \Rightarrow\ 
+	\frac{1}{a^x} > \frac{1}{x^y}
+\end{equation}
+
+\begin{equation}
+	x - y < 0\ \overset{\cdot (-1)}{\Longrightarrow}\ y - x > 0
+\end{equation}
+
+\begin{equation}
+	a^x - a^y < 0\ \overset{\cdot (-1)}{\Longrightarrow}\
+	a^y - a^x > 0
+\end{equation}
+
+\begin{equation}
+	\big\Downarrow
+\end{equation}
+\begin{equation}
+	\underbrace{
+	\underbrace{a^x}_{>0} \underbrace{(a^{y-x} - 1)}_{a^n > 1}}_{>0} > 0
+\end{equation}
