@@ -78,7 +78,132 @@ Allora (con $\epsilon = 1$)
 	\exists \ol{n}: \forall n \in \N
         ( n > \ol{n}\ \Rightarrow\ | a_n - l | < 1 )
 \end{equation}
+Segue quindi che $ | a_n | \leq | a_n - l | + | l | < 1 + | l |, \ n > \ol{n} $ 
+
+\begin{equation}
+	| a_n | \leq 1 + | l |
+\end{equation}
+
+\begin{defn}[Retta reala ampliata] 
+	\begin{equation}
+		\ol{\R} := \R \cup \{ + \infty \} \cup \{ - \infty \}
+	\end{equation}
 \end{defn}
+
+\begin{defn}
+Sia $ \{ a_n \}_{n \in \N} \subseteq \R $
+
+\begin{equation}
+	\begin{aligned}
+	\lim \limits_{n \to + \infty} & a_n = + \infty \\	
+	&\big\Downarrow \\
+	\forall k \in \R \exists \ol{n} \in N\ &:\
+	\forall n \in \N ( n > \ol{n} \implies a_n > k)
+	\end{aligned}
+\end{equation}
+La scrittura è analoga per $ - \infty $ invertendo il segno: $ ( a_n < k) $ \\
+Potremo dire che $ a_n $ \tit{diverge positivamente o negativamente}
+\end{defn}
+
+\subsection{Forme indeterminate}
+Se $ \{ a_n \}, \{ b_n \} \subseteq \R$ e 
+$ \{ a_n \} \to + \infty, \{ b_n \} \to - \infty \}$ allora:
+
+\begin{equation} 
+	a_n + b_n \to + \infty - \infty =\ ?
+\end{equation}
+$ + \infty$ e $ - \infty$ non sono veri e propri numeri, piuttosto sono dei 
+\bt{simboli}, quindi il risultato sarà detto:\textsc{forma indeterminata 
+$ +\infty - \infty$}
+
+\end{defn}
+Altri tipi di forme indeterminate sono:
+	 
+\begin{equation} 
+	\frac{\infty}{\infty},\  \frac{0}{0},\ 
+	0 \cdot \infty,\ 1^{\infty},\
+	0^0,\ \infty^0
+\end{equation}
+
+\subsection{Teoremi generali di esistenza}
+Una successione $\{ a_n \}_{n \in \N} \subseteq \R$ è detta monotona crescente se 
+$ a_n \leq a_{ n + 1 }, \forall n \in \N$ \\
+Si dice invece monotona decrescente se $ a_n \geq a_{ n + 1}, \forall n \in \N $. \\
+Sono rispettivamente \bt{strettamente} monotone crescenti o decrescenti se le disuguaglianze sono \bt{strette}
+
+Le scritture $ a_n \nearrow$ e $ a_n \searrow $ indicano monotonia crescente e decrescente  
+
+\begin{defn}
+Ogni successione monotona ammette limite: \\
+Se $ \{ a_n \}_{n \in \N} \subseteq \R $:
+
+\begin{enumerate}
+	\item $ a_n \nearrow \implies \lim \limits_{n \to + \infty} a_n = 
+	\sup_{n \in \N} a_n$
+	\item $ a_n \searrow \implies \lim \limits_{n \to + \infty} a_n =
+	\inf_{n \in \N} a_n $
+\end{enumerate}
+\end{defn}
+
+\begin{dimo}
+Se $ \{ a_n \}$ è superiormente limitata per l'assioma di completezza:
+
+\begin{equation}
+	\exists \underset{n \in \N}{\sup a_n} = \lambda
+\end{equation}
+Per la proprietà del $ \sup$ si ha che $ a_n \leq \lambda, \forall n \in \N$ dunque:
+
+\begin{equation}
+	a_n < \lambda + \epsilon \ \forall n \in \N, \ \forall \epsilon > 0
+\end{equation}
+
+\begin{equation}
+	\forall \epsilon > 0, \exists \ol{n} \in \N\ :\
+	\lambda < a_{\ol{n}} + \epsilon
+\end{equation}
+La definizione di limite è:
+
+\begin{equation}
+	\lim \limits_{n \to + \infty} a_n = \lambda
+\end{equation}
+\end{dimo}
+
+\begin{eser}[Il numero di nepero $ e $]
+
+\begin{equation}
+	e \equiv \lim \limits_{n \to + \infty} \left( 1 + \frac{1}{n} \right)^n
+\end{equation}
+Si nota che $a_n = \left( 1 + \frac{1}{n} \right)^n$ e $ b_n =
+\left( 1 + \frac{1}{n} \right)^{n+1}$ sono successioni \bt{convergenti} che hanno lo stesso limite $ e $, inoltre sono \bt{strettamente monotone} 
+
+\begin{equation}
+	a_n < a_{n + 1} \quad \mbox{e} \quad b_n > b_{n+1} \ \forall n \in \N
+\end{equation}
+Inoltre 
+
+\begin{equation}
+	a_n < b_n\ \forall n \in \N 
+\end{equation}
+allora: 
+
+\begin{equation}
+	a_n < a_p < b_p < b_m \quad \forall n,m,p; p = \max \{n, m\}
+\end{equation}
+Entrambe le successioni convergono: $a_n$ è monotona crescente e superiormente limitata e $b_n$ è monotona decrescente e inferiormente limitata.
+
+\begin{equation}
+	\lim \limits_{n \to + \infty} \frac{b_n}{a_n} = 
+	\lim \limits_{n \to + \infty} \left( 1 + \frac{1}{n} \right) = 1
+\end{equation}
+Questo implica che:
+
+\begin{equation} 
+	\lim \limits_{n \to + \infty} b_n = 
+	\lim \limits_{n \to + \infty} a_n = e
+\end{equation}
+
+\end{eser}
+
 
 
 \end{document}
