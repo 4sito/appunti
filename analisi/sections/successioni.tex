@@ -204,6 +204,76 @@ Questo implica che:
 
 \end{eser}
 
+\input{../dimo/rip/rip_9.tex}
+
+\begin{defn}[Bolzano - Weierstrass]
+Ogni successione reale limitata ammette una sottosuccessione convergente.
+\end{defn}
+\begin{dimo}
+	Per ogni $ \{ a_n \}_{n \in \N} \subseteq \R $ esiste 
+	$M > 0\ :\ | a_n | \leq M,\ \forall n \in \N\ 
+	\exists k_n \nearrow\ :\ a_{k_n} \underset{n \to +\infty}{\to} l \in \R $  
+	
+	\begin{equation}
+	-M \leq a_n \leq M\ \forall n \in \N
+	\end{equation}
+
+	\begin{equation}
+	\alpha_n = \sup{a_k : k \geq n},\ n \in \N \quad \implies \quad
+	-M \leq \alpha_n \leq M\ \forall n \in \N
+	\end{equation}
+	Quindi dalla definizione ne segue che:
+
+	\begin{equation}
+		\begin{aligned}
+		\alpha_{n+1} \leq \alpha_n\ \forall n \in \N & 
+		\Rightarrow \alpha_n \searrow\\	
+		&\big\Downarrow
+		\end{aligned}
+	\end{equation}
+
+	\begin{equation}
+		\exists \lim \limits_{n \to + \infty} \alpha_n \equiv l
+		\quad \implies l \equiv \inf_{n \in \N} \alpha_n
+	\end{equation}
+
+	\begin{equation}
+		\begin{aligned}
+		\forall \epsilon > 0,\ \forall p \in \N\ 
+		&\exists n \geq p: l - \epsilon \leq a_n\\
+		\alpha_p\searrow \Rightarrow l \leq \alpha_p \Rightarrow
+		& l - \epsilon < \alpha_p\ \forall \epsilon > 0\ \forall p
+		\end{aligned}
+	\end{equation}
+Dato che $\alpha_p = \sup\{ a_n : n \geq p\}$, deve esistere 
+$n \geq p : a_n > l - \epsilon$ \\
+Sia $ k_n : \N \to \N$ definita per ricorrenza:
+
+\begin{equation}
+	\left\{ 
+	\begin{aligned}
+	& k_1 = \min\{ k \in \N: l -1 < a_k\} \\
+	& k_{n+1} = \min\{ k \in \N: k > k_n \land l - \frac{1}{n+1} < a_k \}
+\end{aligned} \right.
+\end{equation}
+	
+\begin{equation*}
+	\big\Downarrow
+\end{equation*}
+
+\begin{equation}
+	k_{n+1} > k_n, \ \forall n \quad \land \quad 
+	l - \frac{1}{n} < a_{k_n}\ \forall n
+\end{equation}
+Questo implica che $ \{ a_{k_n} \}_{n \in \N}$ verifica le disuguaglianze
+
+\begin{equation}
+	l - \frac{1}{n} < a_{k_n} \leq \alpha_{k_n}\ \implies\ 
+	\alpha_{k_n} \underset{n \to + \infty}{\to} l \implies\
+	a_{k_n} \to l
+\end{equation}
 
 
+
+\end{dimo}
 \end{document}
