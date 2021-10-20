@@ -1,0 +1,64 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{appunti}[2021/09/15 1.0.0 first project]
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{graphicx, float, amssymb, wrapfig, amsthm, 
+	    	enumitem, cancel, amsmath, mathtools, subfiles}
+
+\graphicspath{ {pics/} }
+
+
+\setcounter{tocdepth}{2}
+
+
+% break style 
+\newtheoremstyle{break}
+{\topsep}
+{\topsep}%
+{\itshape}
+{}%
+{\bfseries}
+{:}%
+{\newline}
+{}%
+
+\newtheoremstyle{lemma}% style name
+{2ex}% above space
+{2ex}% below space
+{\upshape}% body font
+{}% indent amount
+{\scshape}% head font
+{.}% post head punctuation
+{\newline}% post head punctuation
+{}% head spec
+
+%theorem styles
+
+\theoremstyle{break}
+\newtheorem{defn}{Definizione}
+\AfterEndEnvironment{definizione}{\noindent\ignorespaces}
+
+
+\theoremstyle{lemma}
+\newtheorem{eser}{Esercizio}
+
+
+\theoremstyle{lemma}
+\newtheorem{dimo}{Dimostrazione}
+
+\theoremstyle{lemma}
+\newtheorem{esem}{Esempio}
+
+% custom fraction
+\newcommand*{\bfrac}[2]{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}
+
+%custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\bt}{\textbf}
+\newcommand{\tit}{\textit}
+\newcommand{\ol}{\overline}
+
