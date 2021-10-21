@@ -273,7 +273,148 @@ Questo implica che $ \{ a_{k_n} \}_{n \in \N}$ verifica le disuguaglianze
 	a_{k_n} \to l
 \end{equation}
 
-
-
 \end{dimo}
+
+\begin{defn}[Successioni di Cauchy]
+	Una successione $ \{ a_n \}_{n \in \N} \subseteq \R $ si chiama successione di Cauchy se:
+
+\begin{equation}
+	\forall \epsilon > 0,\ \exists \ol{n} \in \N:\ \forall n,m \in \N 
+	(n,m > \ol{n} \Rightarrow | a_n - a_m | < \epsilon )
+\end{equation}
+Una successione si dice di Cauchy se i suoi termini sono "arbitrariamente" vicini tra loro.
+\end{defn}
+
+\begin{defn}[Ogni successione convergente è di Cauchy]
+
+\begin{equation}
+	\{ a_n \}_{n \in \N} \subseteq \R, a_n \to l \in \R = \mbox{di Cauchy}
+\end{equation}
+\end{defn}
+
+\begin{dimo} 
+Se $ \lim \limits_{n \to + \infty} a_n = l \in \R $ implica che:
+
+\begin{equation}
+	\forall \epsilon, \exists \ol{n} \forall n 
+	\left( n > \ol{n} \Rightarrow | a_n - l | < \frac{\epsilon}{2} \right)
+\end{equation}
+La scrittura $ \exists \ol{n} $ significa che esiste un indice dopo il quale 
+ogni indice successivo sarà maggiore di quello preso e da esso si nota la convergenza.
+In seguito avremo che:
+
+\begin{equation}
+	| a_n - a_m | = | (a_n - l) + (l - a_m) \leq 
+	| a_n - l | + | a_m - l | \leq \cancel{2} \cdot \frac{\epsilon}{\cancel{2}}
+	\quad n,m > \ol{n}
+\end{equation}
+$ \{ a_n \} $ è di Cauchy 
+\end{dimo}
+
+
+\subsection{Rappresentazione decimale di numeri reali}
+Se $ x \in \R $ è:
+
+\begin{equation}
+	[ x ] = \mbox{parte intera} = max\{ p \in \Z: p < x \} 
+\end{equation}
+\bda
+
+\begin{equation}
+	[ x ] \leq x < [ x ] + 1\ \forall x \in \R 
+\end{equation}
+\bda 
+
+\begin{equation}
+	x_n = \frac{[b^nx]}{b^n}
+\end{equation}
+Le seguenti affermazioni sono vere:
+
+\begin{enumerate}
+	\item $\{ x_n \} \nearrow $ 
+	\item $x_n \leq x < x_n + \frac{1}{b_n}\ \forall n \in \N $
+	\item $\lim \limits_{n \to + \infty} x_n = x $
+	\item $\exists \alpha_0 \in \Z, \exists \{ \alpha_n \}_{n \in \N} \subseteq \Z $
+\end{enumerate}
+
+
+\begin{defn}[Decimali]
+I numeri decimali sono i numeri razionali:
+
+\begin{equation}
+	\frac{m}{10^n} ( m \in \Z, n \in \N )
+\end{equation}
+Ogni numero decimale si puo' scrivere come 
+
+\begin{equation}
+	x = \alpha_0 + \frac{\alpha_1}{10} + \frac{\alpha_2}{10^2} + \dots + \frac{\alpha_n}{10^n}
+\end{equation}
+con $ \alpha_0 \in \Z,\ \alpha_1 \alpha_2, \dots, \alpha_n \in \{ 0,1,2,\dots,9 \}$
+
+\end{defn}
+
+\subsection{Cardinalità di insiemi}
+Due insiemi $ A, B \neq \varnothing $ si dicono \bt{equipotenti} se 
+
+\begin{equation}
+	\exists f: A \underset{1 - 1}{\overset{su}{\to}} B \quad
+	\implies \quad A \cong B
+\end{equation}
+Vale a dire che esiste una \bt{funzione biunivoca} fra i due insiemi ed essi hanno stessa
+\bt{cardinalità}
+
+\begin{equation}
+	card(A)=card(B)
+\end{equation}
+\bda
+
+\begin{equation}
+	I_n = \{ k \in \N : 1 \leq k \leq n \}, \quad card(A) \cong card(I_n)
+	\implies card(A) = n
+\end{equation}
+$A$ è un insieme finito. Un iniseme è infinito se non è finito. 
+
+\begin{itemize}
+	\item $A$ è finito $ B \subseteq A, B \neq \varnothing \implies B$ è finito
+	\item $A$ è finito e $B$ è sottoinsieme proprio di $A \implies A \cong B$
+	\item $A$ è finito, allora il numero dei suoi elementi è unico
+	\item $B$ è infinito e $ B \subseteq A \implies A$ è infinito
+\end{itemize}
+Altre proposizione che ne conseguono sono:
+
+\begin{itemize} 
+	\item $A \neq \varnothing \implies A \cong A$
+	\item $A \cong B \iff B \cong A$
+	\item $ A \cong B, B \cong C \implies A \cong C$
+\end{itemize}
+L'equipotenza è una relazione di \bt{equivalenza}
+
+\begin{defn}[ $ \N $ è infinito]
+Dimostriamo che $ \N $ è equivalente ad un suo sottoinsieme proprio: 
+
+\begin{equation} 
+	P = \{ n \in \N : = 2m, m \in \N \}, \
+	f: P \to \N, f(n) = \frac{n}{2}
+\end{equation}
+$f$ è biunivoca quindi $ P \subset \N \implies P \cong \N $ 
+\end{defn}
+
+\begin{defn}[ $ \Z, \Q, \R$ sono infiniti]
+Tutti questi insiemi contengono $ \N $ 
+\end{defn}
+
+\begin{defn}[Assioma della scelta]
+Sia $\mathcal{B}$ una famiglia $ \neq \varnothing$ di insiemi. Sia $A$ un insieme t.c.
+
+\begin{equation}
+	B \subseteq A \ \forall B \in \mathcal{B}
+\end{equation}
+\bda
+
+\begin{equation}
+	\exists \varphi: \mathcal{B} \to A\ :\ \varphi(B) \in B \ \forall B \in \mathcal{B}
+\end{equation}
+
+\end{defn}
+
 \end{document}
