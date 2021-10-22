@@ -6,24 +6,54 @@
 \subsection{Successioni in $\R$}
 Sia $X \neq \varnothing$, una qualsiasi funzione $f: \N \to X$ si dice: 
 \bt{successione in $X$}. \newline
-Una notazione si indica $ \{ f_n \}_{n \in \N} $ o $f_1, f_2, \dots , f_n $ \newline
+In notazione si indica $ \{ f_n \}_{n \in \N} $ o $f_1, f_2, \dots , f_n $ \newline
 $ f_n $ si chiama termine n-esimo. \newline
 $ k_1, k_2, \dots , k_n $ è una successione di numeri naturali:
 
 \begin{equation}
 	k_1 < k_2 < \dots < k_n < k_{n+1} < \dots \quad \forall n \in \N
 \end{equation}
-La successione $ \{ f_{k_n} \} $ è una \tit{sottosuccessione} di $ \{ f_n \} $.
+La successione $ \{ f_{k_n} \} $ è una \tit{sottosuccessione} di $ \{ f_n \} $.\\
+Il limite di una successione $ \{ a_n \} = l $. Vale a dire che $ l \in \R $
+è un numero vicino ai termini della successione. Esso è più precisamente un 
+\bt{numero reale} tale che \tit{comunque si scelga} un intervallo di numeri intorno
+ad $a$.
+\bda
+\begin{equation}
+	\underbrace{( a - \epsilon, a + \epsilon)}_{\mbox{un intervallo attorno a 
+	$l$}} , \epsilon > 0\ |\ \exists 
+	\underbrace{\ol{n}}_{\mbox{un indice $n$ t.c.}} n > \ol{n}.
+\end{equation}
+$a_n$ si trova in questo \tit{intorno}
+
+\begin{defn}[Successione]
+Una \tit{successione} è una legge che ad ogni numero \bt{naturale} $n$ 
+fa corrispondere\bt{uno ed uno solo} numero \tit{reale} $a_n$.
+
+\begin{equation}
+	\{ a_n \}_{n \in \N} = a_1, a_2, a_3, \dots , a_n
+\end{equation}
+Una successione è una funzione che collega degli \tit{indici $n$} a dei numeri 
+\tit{ reali $ a \in \R $ }
+\end{defn}
+
 
 \begin{defn}
 Se $ a_n$ tende a $ l \in \R$ per $n \to \infty$, si dice che 
-$ \lim \limits_{n \to \infty} a_n = l $
+
 
 \begin{equation}
-	\forall \epsilon > 0 \exists \ol{n}: \forall n \in \N
-	( n > \ol{n}\ \Rightarrow\ | a_n - l | < \epsilon )
+	\begin{aligned}
+ 	\lim \limits_{n \to \infty} a_n &= l\\
+	\big\Downarrow\\
+	\forall \epsilon > 0,\ \exists \ol{n}:\
+	&( n > \ol{n}\ \Rightarrow\ | a_n - l | < \epsilon )\\
+	\big\Downarrow\\
+	| a_n - l | &< \epsilon
+	\end{aligned}
 \end{equation}
-$ \{ a_n \} $ converge ad $l$ ed esso è il limite di $ \{ a_n \} $ 
+
+$ \{ a_n \} $ converge ad $l$ ed esso è il \bt{limite} di tale \bt{tale successione}
 \end{defn}
 
 \begin{esem}
@@ -127,11 +157,31 @@ Altri tipi di forme indeterminate sono:
 
 \subsection{Teoremi generali di esistenza}
 Una successione $\{ a_n \}_{n \in \N} \subseteq \R$ è detta monotona crescente se 
-$ a_n \leq a_{ n + 1 }, \forall n \in \N$ \\
-Si dice invece monotona decrescente se $ a_n \geq a_{ n + 1}, \forall n \in \N $. \\
-Sono rispettivamente \bt{strettamente} monotone crescenti o decrescenti se le disuguaglianze sono \bt{strette}
 
+
+\begin{equation}
+	a_n \leq a_{ n + 1 },\  \forall n \in \N 
+\end{equation}
+Si dice invece monotona decrescente se
+
+
+\begin{equation}
+	a_n \geq a_{ n + 1}, \forall n \in \N
+\end{equation}
+Sono rispettivamente \bt{strettamente} monotone crescenti o decrescenti 
+se le disuguaglianze sono \bt{strette} $ ( <, >) $\\
 Le scritture $ a_n \nearrow$ e $ a_n \searrow $ indicano monotonia crescente e decrescente  
+
+\begin{defn}[Successioni costanti]
+Se $ a_n = a \ \forall n \in \N$, con $a$ numero reale fissato si dice che 
+
+
+\begin{equation}
+	\{ a_n \}_{n \in \N} = l,\ l \in \R \quad 
+	\{ a_n \} \nearrow \searrow = \mbox{costante}
+\end{equation}
+
+\end{defn}
 
 \begin{defn}
 Ogni successione monotona ammette limite: \\
@@ -296,12 +346,12 @@ Una successione si dice di Cauchy se i suoi termini sono "arbitrariamente" vicin
 Se $ \lim \limits_{n \to + \infty} a_n = l \in \R $ implica che:
 
 \begin{equation}
-	\forall \epsilon, \exists \ol{n} \forall n 
+	\forall \epsilon, \epsilon > 0 \exists \ol{n} \forall n 
 	\left( n > \ol{n} \Rightarrow | a_n - l | < \frac{\epsilon}{2} \right)
 \end{equation}
 La scrittura $ \exists \ol{n} $ significa che esiste un indice dopo il quale 
-ogni indice successivo sarà maggiore di quello preso e da esso si nota la convergenza.
-In seguito avremo che:
+ogni indice successivo sarà maggiore di quello.\\
+Di conseguenza:
 
 \begin{equation}
 	| a_n - a_m | = | (a_n - l) + (l - a_m) \leq 
@@ -311,7 +361,10 @@ In seguito avremo che:
 $ \{ a_n \} $ è di Cauchy 
 \end{dimo}
 
-
+\begin{equation}
+	\{ a_n \} \mbox{ di Cauchy} \Rightarrow \{ a_n \} \nearrow \quad \iff
+ 	\quad \{ a_n \}  \nearrow \Rightarrow  \{a_n \}  \mbox{ di Cauchy}
+\end{equation}
 \subsection{Rappresentazione decimale di numeri reali}
 Se $ x \in \R $ è:
 
@@ -344,7 +397,7 @@ I numeri decimali sono i numeri razionali:
 \begin{equation}
 	\frac{m}{10^n} ( m \in \Z, n \in \N )
 \end{equation}
-Ogni numero decimale si puo' scrivere come 
+Ogni numero decimale si può scrivere come 
 
 \begin{equation}
 	x = \alpha_0 + \frac{\alpha_1}{10} + \frac{\alpha_2}{10^2} + \dots + \frac{\alpha_n}{10^n}
@@ -352,6 +405,23 @@ Ogni numero decimale si puo' scrivere come
 con $ \alpha_0 \in \Z,\ \alpha_1 \alpha_2, \dots, \alpha_n \in \{ 0,1,2,\dots,9 \}$
 
 \end{defn}
+
+\begin{defn}[Decimali propri]
+Sia $ x \in \R,\ x = \alpha_0, \alpha_1, \dots, \alpha_n, \dots$.
+La rappresentazione decimale di $x$ si dice \bt{propria} se:
+
+\begin{equation}
+	\nexists p \in \N : \alpha_n = 9\ \forall n \geq p
+\end{equation}
+\end{defn}
+Ogni numero reale ammette un'\bt{unica} rappresentazione decimale propria.\\
+Se $ x \in \R\ \Rightarrow\ x = \alpha_0, \alpha_1, \dots, \alpha_n, \dots$
+è la rappresentazione decimale propria di x \bt{se e solo se}
+
+\begin{equation}
+	\alpha_0, \alpha_1, \dots, \alpha_n \leq x < 
+	\alpha_0, \alpha_1, \dots, \alpha_n + \frac{1}{10^n}\ \forall n \in \N
+\end{equation}
 
 \subsection{Cardinalità di insiemi}
 Due insiemi $ A, B \neq \varnothing $ si dicono \bt{equipotenti} se 
@@ -393,7 +463,7 @@ L'equipotenza è una relazione di \bt{equivalenza}
 Dimostriamo che $ \N $ è equivalente ad un suo sottoinsieme proprio: 
 
 \begin{equation} 
-	P = \{ n \in \N : = 2m, m \in \N \}, \
+	P = \{ n \in \N : = 2m, n \in \N \}, \
 	f: P \to \N, f(n) = \frac{n}{2}
 \end{equation}
 $f$ è biunivoca quindi $ P \subset \N \implies P \cong \N $ 
