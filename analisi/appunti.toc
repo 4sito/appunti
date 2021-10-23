@@ -10,20 +10,21 @@
 \contentsline {subsection}{\numberline {2.2}Forme indeterminate}{13}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Teoremi generali di esistenza}{13}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Rappresentazione decimale di numeri reali}{17}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Cardinalità di insiemi}{17}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Funzioni}{19}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Introduzione}{19}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Tipi di funzioni}{19}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Funzioni invertibili}{21}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Piano Cartesiano}{22}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Grafici di funzioni}{23}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Funzioni Pari e Dispari}{23}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Funzioni crescenti e decrescenti}{24}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Funzioni inverse}{25}{subsection.3.8}%
-\contentsline {subsection}{\numberline {3.9}Modelizzazione matematica}{26}{subsection.3.9}%
-\contentsline {subsection}{\numberline {3.10}Proporzioni}{27}{subsection.3.10}%
-\contentsline {section}{\numberline {4}Combinatoria e probabilità}{28}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introduzione}{28}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Combinatoria}{28}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Fattoriale}{30}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Numero di Insiemi}{30}{subsection.4.4}%
+\contentsline {subsection}{\numberline {2.5}Cardinalità di insiemi}{18}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}O grande, o piccolo, $\sim $ equivalente}{20}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Funzioni}{20}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Introduzione}{20}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Tipi di funzioni}{21}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Funzioni invertibili}{23}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Piano Cartesiano}{23}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Grafici di funzioni}{24}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Funzioni Pari e Dispari}{25}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Funzioni crescenti e decrescenti}{25}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Funzioni inverse}{27}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Modelizzazione matematica}{27}{subsection.3.9}%
+\contentsline {subsection}{\numberline {3.10}Proporzioni}{29}{subsection.3.10}%
+\contentsline {section}{\numberline {4}Combinatoria e probabilità}{29}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Introduzione}{29}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Combinatoria}{30}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Fattoriale}{32}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Numero di Insiemi}{32}{subsection.4.4}%

@@ -473,6 +473,19 @@ $f$ è biunivoca quindi $ P \subset \N \implies P \cong \N $
 Tutti questi insiemi contengono $ \N $ 
 \end{defn}
 
+\begin{defn}[Insiemi numerabili]
+	Un insieme si dice \bt{numerabile} se è \bt{equipotente} ad $\N$
+\end{defn}
+Un insieme $A$ è numerabile se si possono \tit{elencare i suoi elementi}:\\
+ovvero se esiste una successione biiettiva $\{ a_n \}_{n \in \N}$ che ha come
+immagine $A$, il nome di tale successione è \bt{numerazione}
+
+\begin{defn}
+Sia $A$ un insieme numerbaile se $ M \subseteq A$, $M$ è infinito\\
+$\implies M \cong \N$
+\end{defn}
+Ogni sottoinsieme infinito di un insieme numerabile \bt{è numerabile}.\\
+\bt{Ogni} sottoinsieme di $\N$ è un insieme \bt{infinito o numerabile}.
 \begin{defn}[Assioma della scelta]
 Sia $\mathcal{B}$ una famiglia $ \neq \varnothing$ di insiemi. Sia $A$ un insieme t.c.
 
@@ -482,9 +495,113 @@ Sia $\mathcal{B}$ una famiglia $ \neq \varnothing$ di insiemi. Sia $A$ un insiem
 \bda
 
 \begin{equation}
-	\exists \varphi: \mathcal{B} \to A\ :\ \varphi(B) \in B \ \forall B \in \mathcal{B}
+	\exists \varphi: \mathcal{B} \to A\ :\ \varphi(B) \in B \ 
+	\forall B \in \mathcal{B} \Rightarrow \bt{AC}
+\end{equation}
+Ovvero in parole: data una \bt{famiglia} di insiemi $\mathcal{B}$ non vuoti, esiste
+una funzione che ad ogni insieme della famiglia fa corrispondere un suo elemento.
+\end{defn}
+L'assioma assicura che, quando viene data una collezione di insiemi non vuoti si 
+può sempre costruire un nuovo insieme \tit{"scegliendo"} un \bt{singolo elemento}
+da ciascuno di quelli di partenza.
+
+\begin{defn}
+Dati due insiemi $A,B$:
+\begin{equation}
+	card(A) \leq card(B)
+\end{equation}
+Se esiste $B_0 \subseteq B$, t.c. $card(A) = card(B_0)$. Se $card(A) \leq card(B)$
+e $card(A) \neq card(B) \implies card(A) < card(B)$
+\end{defn}
+Un insieme si dice finito \bt{se e solo se}: $ card(A) < card(\N)$
+
+
+\begin{defn}[Numeri algebrici]
+Un numero reale si dice \bt{algebrico} se risolve un'equazione 
+
+\begin{equation}
+	p(x) = 0, \qquad p \in \Z 
+\end{equation}
+con $p$ un polinomio con coefficienti in $\Z$.\\
+I nuemri reali \bt{non} algebrici si dicono \bt{trascendenti}
+\end{defn}
+
+\begin{dimo}
+I numeri algebrici sono i razionali , infatti essi sono:
+
+
+\begin{equation}
+	x = \frac{m}{n}\ \implies 
+	nx - m = 0
 \end{equation}
 
+
+\begin{equation}
+	p(x) = 3x^7 - 5x^2 + 3 \to h = 7 + 3 + | - 5 | + 2 + 3 = 20
+\end{equation}
+
+\end{dimo}
+
+
+\begin{defn}[Gerarchia di infiniti]
+Esiste una gerarchi di \bt{infiniti}, ovvero "certi infiniti valgono di più di altri
+infiniti" 
+
+
+\begin{equation}
+	\mathcal{N}_0 = card(\N), \mathcal{N}_1 = card(\R)\ \implies\
+	\mathcal{N}_0 < \mathcal{N}_1
+\end{equation}
 \end{defn}
+
+\subsection{O grande, o piccolo, $\sim$ equivalente}
+
+\begin{defn}[o piccolo]
+Siano $ \{ a_n \}_{n \in \N},\ \{ b_n \}_{n \in \N} \subseteq \R $ due successioni
+reali, si dice che $a_n$ è un \tit{"o piccolo"} di $b_n$ per $n \to + \infty$
+
+\begin{equation}
+	a_n = o(b_n) \ ( n \to + \infty) \quad \iff \quad
+	\lim \limits_{n \to + \infty} \frac{a_n}{b_n} = 0
+\end{equation}
+\end{defn}
+
+\begin{defn}[O grande]
+Siano $ \{ a_n \}_{n \in \N},\ \{ b_n \}_{n \in \N} \subseteq \R $ due successioni
+reali, si dice che $a_n$ è un \tit{"O grande"} di $b_n$ per $n \to + \infty$
+
+\begin{equation}
+	a_n = O(b_n)\ (n \to + \infty) \quad \iff \quad
+	\exists \ol{n} \in \N, \exists M \in \R\ :\ \left(
+	\left|\frac{a_n}{b_n}\right| \leq M\ \forall n > \ol{n} \right)
+\end{equation}
+Occore notare che se esiste il limite di $ \frac{a_n}{b_n} $
+
+
+\begin{equation}
+	\limm \frac{a_n}{b_n} = l \in \R
+\end{equation}
+Si può sempre scrivere $ a_n = O(b_n)$
+\end{defn}
+
+\begin{defn}[ $ \sim $ equvialente]
+Siano $ \{ a_n \}_{n \in \N},\ \{ b_n \}_{n \in \N} \subseteq \R $ due successioni
+reali, si dice che $a_n$ è un \tit{"equivalente"} di $b_n$ per $n \to + \infty$
+
+
+\begin{equation}
+	a_n \sim b_n \ (n \to + \infty) \quad \iff \quad
+	\limm \frac{a_n}{b_n} = 1
+\end{equation}
+Questo vale a dire che le due successioni hanno lo stesso limite.\\ 
+\end{defn}
+Consideriamo anche che, se due successioni sono equivalenti $ a_n \sim b_n $ implica
+che :
+
+
+\begin{equation} 
+	a_n \sim b_n\ \implies \ a_n = O(b_n)\ \iff\ b_n=  O(a_n) 
+\end{equation}
+
 
 \end{document}
