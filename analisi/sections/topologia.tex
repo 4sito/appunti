@@ -1,0 +1,212 @@
+\documentclass[../appunti.tex]{subfiles}
+
+\begin{document}
+
+\section{Topologia della retta euclidea}
+
+\subsection{Intervalli}
+Siano $a,b \in \R$, si pone per definizione 
+
+
+\begin{equation}
+	\begin{aligned}
+	\mbox{aperto}    \ ] a,b [ &= \{ x \in \R : a < x < b \}\\
+	\mbox{semiaperto}\ [ a,b [ &= \{ x \in \R : a \leq x < b\}\\
+	\mbox{semiaperto}\ ] a,b ] &= \{ x \in \R : a < x \leq b\}\\
+	\mbox{chiuso}    \ [ a,b ] &= \{ x \in \R : a \leq x \leq b\}
+	\end{aligned} % ]
+\end{equation}
+Se uno degli estremi è $\pm \infty,\ (a = - \infty, b = + \infty)$
+
+
+\begin{equation}
+	\begin{aligned}
+		] a, +\infty [ &= \{ x \in \R: x > a \}\\
+		] -\infty, a [ &= \{ x \in \R: x < a \}\\
+		[ a, +\infty [ &= \{ x \in \R: x \geq a \}\\
+		] -\infty, a ] &= \{ x \in \R: x \leq a \}\\
+	\end{aligned}
+\end{equation}
+
+\begin{defn}
+Se $ x_0 \in \R, \rho > 0$ , si pone 
+
+
+\begin{equation}
+	B( x_0, \rho) = ] x_0 - \rho, x_0 + \rho [
+\end{equation}
+si chiama \tit{intorno aperto} di $x_0$ di raggio $\rho \in \R_+$.\\
+La \tit{famiglia} degli intorni aperti di $x_0$ si denota come
+
+
+\begin{equation}
+	\mathcal{U}_{x_0} = \{ ] x_0 - \rho, x_0 + \rho [ : \rho > 0 \}
+\end{equation}
+\end{defn}
+
+\subsection{Punti di accumulazione, isolati e aderenti}
+
+\begin{defn}[Punti di accumulazione]
+	Siano $ \acr, x_0 \in \R $, si dice che $x_0$ è un 
+	\bt{punto di accumulazione} di $A$ se per ogni $W$ (intorno) $\in 
+	\mathcal{U}_{x_0}$ (famiglia degli intorni):
+	
+
+	\begin{equation}
+		A \setminus \{ x_0 \} \cap W = \varnothing
+	\end{equation}
+	\bda
+
+
+	\begin{equation}
+		(A \setminus \{ x_0 \} ) \cap\ ] x_0 - \rho, x_0 + \rho [
+		\neq \varnothing\ \forall \rho > 0
+	\end{equation}
+In parole, se prendiamo l'insieme $A$ e ad esso sottriamo un qualsiasi punto $x_0$
+e ad esso intersechiamo l'intervallo formato di raggio 
+\tit{rho} "$\rho$" e con centro $x_0$. 
+Questo insieme è un punto di accumulazione se quanto citato prima
+\bt{non è} un insieme vuoto, ovvero in esso troviamo almeno \bt{un elemento}. \\
+L'\bt{insieme} dei punti di accumulazione si chiama \bt{derivato} di $A\ =\ D(A)$.\\
+Per definizione poniamo $D(\varnothing) = \varnothing$
+\end{defn}
+\begin{defn}[Punto isolato]
+	Se $ x \in A $ e $ x \notin  D(A)$ si dice che $x$ è un \bt{punto isolato}
+\end{defn}
+
+\begin{dimo}
+Se $A \subset R$ è un insieme finito, questo implica che $D(A) = \varnothing$.\\
+
+\begin{enumerate}
+
+\item 
+Se $A = \varnothing\ \implies D(\varnothing) = \varnothing$
+
+\item 
+Se $A = \{ x_1, x_2, \dots, x_p \}$ Nessuno $ z \in \R$ 
+è punto di accumulazione per A:
+\begin{equation}
+	z \notin D(A),\ \forall z \in \R
+\end{equation}	
+
+	\begin{itemize}
+	\item 
+	
+	Supponiamo che $z$ non sia in $\R$: \\
+	$ z \in \R \setminus A\ \to\ z \neq x_j,\ \forall j = 1, \dots, p$
+	\begin{equation}
+	\rho = \{ | z - x_j |:\ j\ =\ 1, \dots, p \}
+	\end{equation}
+	$ | z - x_j | = 0 \ \iff z = x_j $ ma $z$ è escluso dall'insieme $A$
+	\begin{equation} 
+		(A \setminus \{ z \}\ \cap\ ] z - \rho, z + \rho [ = \varnothing
+	\end{equation}
+
+	\item
+
+	Supponiamo invece che $z$ sia in $A$:\\
+	$ z \in A \to z = x_1$
+	\begin{equation}
+	\rho = \{  | x_1 - x_j | :\ j\ =\ 2, \dots, p \}
+	\end{equation}
+	$\rho > 0 $ dato che i punti di $x_j \in A$ sono diversi tra loro.\\
+	Se ne deduce quindi che l'intorno aperto $B(x_1, \rho)$ di centro
+	$x_1$ di raggio $\rho$ esclude qualsiasi altro punto di $A$
+	\begin{equation}
+	( A \setminus \{ x_1 \} )\ \cap\ ] x_1 - \rho, x_1 + \rho [ = \varnothing
+	\end{equation}
+
+	\end{itemize}
+\end{enumerate}
+\end{dimo}
+
+\begin{esem}[$ \acr $ e $ D(A) \neq \varnothing\ \implies\ A$ è \bt{infinito}]
+Ovvero, se $A$ è un insieme contenuto nell'insieme dei numeri reali e 
+l'insieme dei suoi punti di accumulazione \bt{non} è vuoto allora $A$ 
+è infinito.\\
+Ciò non è vero in quanto questa proposizione è solamente una 
+\bt{condizione necessaria} ma \bt{non sufficiente}. \\
+$\N$ è infinito ma $D(\N) = \varnothing$
+\end{esem}
+
+\begin{defn} 
+Siano $ \acr,\ x_0 \in \R$, allora:
+
+
+\begin{equation}
+	x_0 \in D(A)\ \iff\ \exists \{ x_n \}_{n \in \N} \subseteq A
+	\setminus \{ x_0 \}: x_n \underset{\nti}{\to} x_0
+\end{equation}
+% TODO dimostrazione tramite assioma scelta%
+
+\end{defn}
+
+\begin{defn}
+Sia $ \acr $, $A$ infinito e limitato, allora $D(A) \neq \varnothing$ 
+\end{defn}
+
+\begin{dimo}
+	$A$ è infinito quindi esiste $\{ x_n \}_{n \in \N} \subseteq A$ t.c. 
+	$x_n \neq x_m, \ \forall n,m \in \N, n \neq m$.\\
+	$A$ è limitato quindi $ \{ x_n \}_{n \in \N}$\\
+	 TEOREMA BOLZANO-WEIERSTRASS : 
+	
+	
+	\begin{equation}
+		\exists \{ x_n \}_{n \in \N}\ :\ x_{k_n} 
+		\underset{\nti}{\to} x_0 \in \R
+	\end{equation}
+	Se $ x_{k_n} \neq x_0$ per ogni $ n \in \N$, allora 
+	$\{ x_{k_n} \}_{n \in \N} \subseteq A \setminus \{x_0\}$ e converge a $x_0$
+	Quindi $ x_0 \in D(A) $\\
+	Se $ x_{k_p} = x_0,\ p \in \N$, avremo che 
+	$\{ x_{k_{n + p}}  \}_{n \in \N} \subseteq A \setminus \{ x_0 \}$ e 
+	questa successione converge ad $x_0$. 
+	$x_{k_n} \neq x_{k_p},\ \forall n \neq p$.\\
+	In entrambi i casi: $ \exists x_0 \in D(A)$
+\end{dimo}
+
+
+\begin{defn}[Punti aderenti]
+Sia $\acr$, sia $x_0 \in \R$, $x_0$ è aderente in $A$ se 
+
+
+\begin{equation}
+	A \cap W \neq \varnothing\ \forall W \in \mathcal{U}_{x_0}
+\end{equation}
+\bda
+
+
+\begin{equation}
+	A \cap ] x_0 - \rho, x_0 + \rho [ \neq \varnothing\ \forall \rho > 0
+\end{equation}
+\end{defn}
+
+
+\begin{defn}[Chiusura]
+Si dice \bt{chiusura} di $A$, $\ol{A}$, l'insieme dei punti aderenti ad $A$:
+
+
+\begin{equation}
+	\ol{A} = \{ x \in \R: x \mbox{è aderente ad} A \}
+\end{equation}
+\end{defn}
+La chisura dell'insieme vuoto corrsiponde per convenzione all'insieme vuoto.
+
+
+\begin{equation} 
+	\ol{\varnothing} = \varnothing
+\end{equation}
+Dalle definizioni precedenti ricaviamo:
+
+
+\begin{equation}
+	D(A) \subseteq \ol{A}\ \&\ A \subseteq \ol{A}
+\end{equation}
+Il fatto per cui, l'insieme dei punti di accumulazione di $A$ è contenuto
+nell'insieme dei punti di aderenza di $A$ è dovuto dal fatto che al primo insieme
+"togliamo" $x_0$, ovvero il centro dell'intervallo di riferimento, mentre
+fa parte del secondo.
+
+
+\end{document}
