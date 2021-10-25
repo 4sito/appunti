@@ -209,4 +209,115 @@ nell'insieme dei punti di aderenza di $A$ è dovuto dal fatto che al primo insie
 fa parte del secondo.
 
 
+\begin{defn}[ $ \ol{A} = A \cup D(A) $ ]
+Sia $\acr$, si ha $\ol{A} \supseteq A,\ \&\ \ol{A} \supseteq D(A) 
+\ \implies\ \ol(A) \supseteq A \cup D(A)$\\
+Proviamo che:
+
+
+\begin{equation}
+	x_0 \in A \cup D(A)\ \forall x_0 \in \ol{A}
+\end{equation}
+Se $x_0$ è in $A$, è ovvio. Proviamolo nel caso in cui $x_0 \in \ol{A} \setminus A$.
+
+
+\begin{equation}
+	A \cap W \neq \varnothing\ \forall W \in \mathcal{U}_{x_0}
+\end{equation}
+\bda
+
+
+\begin{equation} 
+	A \setminus \{ x_0 \} = A\ \implies\ A \setminus \{ x_0 \} \cap W
+	\neq \varnothing \quad \forall W \in \mathcal{U}_{x_0}
+\end{equation}
+Quindi $x_0 \in D(A)$.
+\end{defn}
+
+
+\begin{defn}
+Siano $ \acr , x_0 \in \R$:
+
+\begin{equation}
+	x_0 \in \ol{A}\ \iff\ \exists \{ x_n \}_{n \in \N} \subseteq
+	A : x_n \underset{\nti}{to} x_0
+\end{equation}
+\end{defn}
+
+% TODO dimostrazione con assioma della scelta
+
+\subsection{Insiemi aperti e chiusi. Insiemi compatti}
+
+\begin{defn}[Insieme chiuso]
+$\acr$ è \bt{chiuso} se $A = \ol{A}$, ma questo è possibile se:
+
+
+\begin{equation}
+	A = \ol{A}\ \iff\ D(A) \subseteq A
+\end{equation}
+\end{defn}
+Se $\acr$ sono valide le seguenti affermazioni:
+
+\begin{itemize}
+	\item $A$ è chiuso
+	\item Se $\{ x_n \}_{n \in \N}\ x_n 
+	      \underset{\nti}{\to} x_0\ \implies\ x_0 \in A$
+\end{itemize}
+
+
+\begin{defn}[Insieme compatto]
+Sia $\acr$, $A$ è detto \bt{compatto} se ad ogni successione di punti di $A$ si
+può estrarre una sotto-successione convergente ad un punto di $A$:
+
+
+\begin{equation}
+	A \mbox{compatto}\ \iff\ 
+	\begin{cases}
+	\forall \{ x_n \}_{n \in \N} \subseteq A\ & \exists \{ x_{k_n} \}\\
+	\exists x_0 \in A	 		  & \limm x_{k_n} = x_0
+	\end{cases}
+\end{equation}
+\end{defn}
+Possiamo dimostrare che sia $ \acr $:
+
+
+\begin{equation}
+	A \mbox{compatto}\ \iff\ A \mbox{chiuso e limitato}
+\end{equation}
+%TODO dimostrazione 1 > 2 e 2 > 1 apg 83 dispense
+
+
+\begin{dimo}
+Se $A$ è \bt{chiuso e limitato} dimostriamo che $A$ è \bt{compatto}.\\
+Data una successione $ \{ x_n \} $ estraiamo una sotto-successione convergente
+ad un $x_0 \in A$.\\
+Ma se l'insieme che contiene la successione è 
+\bt{limitato} lo è pure la successione\\ 
+Applichiamo il T. BOLZANO-WEIERSTRASS:
+
+
+\begin{equation}
+	\{x_{k_n}\} \in \R, x_0 \in \R,\quad \limm x_{k_n} = x_0
+\end{equation}
+Se $x_0 \in \ol{A}$ e $\ol{A} = A$ (essendo chiuso), quindi $ x_0 \in A $
+\end{dimo}
+
+
+\begin{defn}[Punto interno e Insieme Aperto]
+Sia $\acr$. $x_0$ si dice \bt{interno} ad $A$ se esiste $\rho > 0$ t.c. 
+
+
+\begin{equation}
+] x_0 - \rho, x_0 + \rho [ \subseteq A
+\end{equation}
+Un insieme $ \acr$ è detto \bt{aperto} se \bt{ogni suo punto} è interno ad $A$
+
+
+\begin{equation}
+	A\ \mbox{è aperto}\ \iff\ A = \mbox{\r{A}}
+\end{equation}
+\end{defn}
+
+
+
 \end{document}
