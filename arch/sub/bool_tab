@@ -1,0 +1,23 @@
+
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c | c | c ||}
+\hline
+A & B & ($\ol{\mbox{A}}$) & A $\cdot$ B & 
+A + B & $\ol{\mbox{A} \cdot \mbox{B}}$ & 
+$\ol{\mbox{A + B}}$ & A $\oplus$ B\\
+\hline
+0 & 0 & 1 & 0 & 
+0 & 1 & 1 & 0 \\
+\hline
+0 & 1 & 1 & 0 &
+1 & 1 & 0 & 1 \\
+\hline
+1 & 0 & 0 & 0 &
+1 & 1 & 0 & 1 \\
+\hline
+1 & 1 & 0 & 1 & 
+1 & 0 & 0 & 0 \\ [1ex]
+\hline
+
+\end{tabular}
+\end{center}

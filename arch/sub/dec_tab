@@ -1,0 +1,30 @@
+
+\begin{center}
+\begin{tabular}{||c | c ||}
+\hline
+Binario & Esadecimale \\
+
+\hline\hline
+0000 & 0 \\
+\hline
+0001 & 1 \\
+\hline
+0010 & 2\\
+\hline
+0011 & 3\\
+\hline
+0100 & 4\\
+\hline
+0101 & 5\\
+\hline
+0110 & 6\\
+\hline
+0111 & 7\\
+1000 & 8\\
+\hline
+1001 & 9\\ [1ex]
+\hline
+
+
+\end{tabular}
+\end{center}

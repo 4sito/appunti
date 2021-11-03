@@ -1,7 +1,7 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{appunti}
 
-\title{Appunti Architettura}
+\title{Appunti di Architettura degli Elaboratori}
 \author{Andreas Araya Osorio}
 \date{\today}
 
@@ -9,7 +9,313 @@
 \maketitle
 
 
-\section{ TODO }
+
+\section{Rappresentazione dei numeri}
+
+I numeri possono essere rappresentati in qualsiasi base, noi utilizziamo la base
+10 come conseguenza del numero delle nostre dita.\\
+I \bt{calcolatori} utilizzano la base 2, ovvero il binario, che può facilmente
+essere ricondotta alla condizione di uno stato elettrico
+o \bt{positivo (1)} o \bt{negativo (0)}\\
+Per la rappresentazione di un numero in qualsiasi base:
+\begin{defn}
+La sequenza di $k$ cifre:
+
+\begin{equation}
+	d_k \cdot d_{k-1} \cdot \dots \cdot d_1 \cdot d_0
+\end{equation}
+E questa sequenza la moltiplichiamo per la base scelta:
+
+\begin{equation}
+	d_k \times b^k \cdot d_{k-1} \times b^{k-1} \cdot 
+	\dots \cdot d_1 \times b^1 \cdot d_0 \times b^0
+\end{equation}
+dove \bt{b} è la base da noi scelta.
+\end{defn}
+
+\begin{defn}[Numero di cifre in una base N]
+In una qualsiasi base $N$ il numero di cifre equivale a:
+
+
+\begin{equation}
+	\mbox{cifre} = N - 1, N - 2, \dots, 1, 0.
+\end{equation}
+\end{defn}
+\subsection{Binario}
+Con la base 2 abbiamo le cifre dallo 0 allo 1.\\
+Per la definizione precedente la rappresentazione sarà:
+
+
+\begin{equation}
+	d_k \times 2^k \cdot d_{k-1} \times 2^{k-1} \cdot 
+	\dots \cdot d_1 \times 2^1 \cdot d_0 \times 2^0
+\end{equation}
+
+\begin{defn}[Valore minimo e massimo]
+Il valore minmo e massimo di un numero di $n$ cifre è:	
+	\begin{itemize}
+		\item \bt{Valore minimo} = $ 000000\dots00(n\ \mbox{times}) = 0$
+		\item \bt{Valore massimo} =$ 111111\dots11(n\ \mbox{times}) = 2^n-1$
+		
+		\begin{equation}
+			2^{n-1} + 2^{n-2} + \dots + 2^2 + 2^1 + 2^0 = 2^n -1
+		\end{equation}
+	\end{itemize}
+\end{defn}
+
+\begin{esem}
+
+
+\begin{equation} 
+	n = 3 \implies 111 = 2^2 + 2^1 + 2^0 = 7 = 2^3 - 1 = 8 - 1
+\end{equation}
+\end{esem}
+
+\subsection{Notazione}
+\begin{defn}[BIT]
+\bt{Bit} = binary digit, uno dei due simboli (0, 1) del sistema numerico binario.
+Esso è l'unità elementare dell'informazione trattata da un elaboratore.\\
+Numeri di 8, 16, 32 bit equivale in base 10 
+a parlare di numeri a 3, 4, 5, ... cifre \\
+\end{defn}
+
+\begin{defn}[BYTE]
+\bt{Byte} = 8 bit, è una sequenza di bit, convenzionalmente l'unità di misura
+delle capacità di una memoria.\\
+Può assumere $2^8 = 256 (0\ -\ 255)$ possibili valori
+\end{defn}
+
+\begin{defn}[Parola]
+\bt{Word/Parola} = corrisponde a 16, 32 o 64 bit in base al tipo di IS
+(Instruction Set), essa è l'unità più piccola di informazione su cui un elaboratore
+può intervenire.
+\end{defn}
+
+\input{sub/byte_tab}
+Convenzionalmente si utlizzano come unità di misura: 
+\begin{itemize}
+	\item il B(yte) per la capacità di una memoria
+	\item il b(it)/s per la velocità di trasmissione di dati.
+\end{itemize}
+\subsection{Decimale}
+Nella rappresentazione decimale abbiamo le cifre dallo 0 al 9.\\
+Un qualsiasi numero in base decimale si può rappresentare come:
+
+
+\begin{equation}
+	d_k \times 10^k \cdot d_{k-1} \times 10^{k-1} \cdot 
+	\dots \cdot d_1 \times 10^1 \cdot d_0 \times 10^0
+\end{equation}
+
+
+	\input{sub/dec_tab}
+
+\subsection{Ottale}
+Nella rappresentazione ottale si hanno le cifre dallo 0 al 7.\\
+Questa base viene utilizzata perchè essendo un multiplo di 2 si possono facilmente
+convertire numeri ottali in binario:\\
+Con 3 cifre si possono rappresentare 8 bit.
+In questo modo si possono avere numeri più facilmente maneggiabili da umani,
+rispetto a lunge stringhe di 0 o 1.
+
+\input{sub/oct_tab}
+\subsection{Esadecimale}
+
+Nella rappresentazione esadecimale si hanno 15 cifre: dallo 0, ..., 9, A, ..., F.\\
+Un simbolo (cifra) in questa base rappresenta 4 cifre binarie (4 bit).\\
+Con 4 cifre esadecimali si possono rappresentare 16 bit.
+
+\input{sub/hex_tab}
+\subsection{Algebra di Boole}
+Essa viene utillizzata per la specifica di funzioni logiche.\\
+Una qualsiasi variabile può assumere 2 valori:
+\bt{vero} o \bt{falso}
+
+\begin{defn}[Operazoini logiche di base]
+	\begin{equation}
+	\begin{aligned}
+		A\ AND\ B\ &=\ A \cdot B\\
+		A\ OR\ B\ &=\ A + B\\
+		NOT\ A\ &=\ \ol{A}
+	\end{aligned}
+	\end{equation}
+	\input{sub/log_tab}
+\end{defn}
+Si indica con: $\oplus = xor$, è l'or esclusivo, esso è vero solo quando una delle due variabili
+è vera, non quando lo sono entrambe.\\
+$\ol{A \cdot B} = nand$, l'opposto dell'AND classico\\
+Grazie a XOR e NAND si possono rappresentare tutte le altre funzioni logiche
+attraverso delle combinazioni di questi due.
+
+\input{sub/bool_tab}
+
+%TODO Boolean postulates and identitities.
+
+
+\section{APPROACH}
+There's a difference between \\
+\bt{Computer architecture} and 
+\bt{Computer organization}.
+
+\begin{itemize}
+	\item C.Architecture = attributes of a system visible to a programmer. \\
+		\bt{ISA} = Instruction set architecture, is a synonym of C.A.
+	\item C.Organization = operational units and their interconnections 
+		that realize the architectural specifications. Examples:
+		\begin{itemize}
+		\item instruction set
+		\item number of bits used to represent various data types
+		\item I/O mechanisms and techniques for adressing memory
+		\end{itemize}
+\end{itemize} 
+
+\subsection{Structure and function}
+A modern computer is a hierarchical system, and is a set of interrelated subssytems.
+These have, in turn, have subsystems of their own until we reach the lowest level
+of subsystems.
+There's a huge difference between:
+
+\begin{itemize}
+	\item \bt{structure} the way components are interrelated
+	\item \bt{function} the operation of each individual 
+\end{itemize}
+The way that is considered most efficient and the clearest approach
+for describing pc components is:\bt{TOP-DOWN}
+
+\section{ Componenti principali}
+Le componenti principali di un elaboratore sono:
+
+\begin{itemize}
+	\item CPU
+	\item Memoria
+	\item Sistemi di I/O
+	\item Interconnessioni
+\end{itemize}
+
+\begin{defn}[Architettura di Von Neumann]
+Secondo questo tipo di architettura, un elaboratore è composto di questi
+principali componenti:
+\begin{itemize}
+	\item dati e istruzioni in memoria
+	\item memoria accessibile per indirizzo
+	\item esecuzione sequenziale delle istruzioni
+\end{itemize}
+\end{defn}
+
+\begin{defn}[Programma cablato]
+	Conaiste nel costruire i componenti logici in modo tale che il risultato 
+	sia quello voluto e non può essere modificato in seguito.\\
+	Vuol dire "programmare" a livello hardware, ovvero con le 
+	componenti fisiche.\\
+	Non è un sistema flessibile, esegue solo operazioni predeterminate.
+\end{defn}
+
+\begin{defn}[Programma]
+	Un programma è una sequenza di passi\\
+	Ogni passo corrsiponde ad un'operazionie logica.\\
+	Ogni operazione determina un diverso insieme di segnali di controllo.\\
+\end{defn}
+
+\begin{defn}[Programmazione software]
+	Nasce con Von Neumann, si parte da un hardware generico, 
+	si ha una parte che preleva il codice di una istruzione, è generale:
+	L'hardware di cui parliamo si dice \bt{general purpose}, utile a vari scopi.
+	Si hanno poi dei segnali di controllo corrispondenti.\\
+	Questo sistema è molto più flessibile di quello "cablato".\\
+	La CPU assume delle funzioni diverse ovvero:
+	
+	\begin{itemize}
+	\item interprete delle istruzioni
+	\item generico modulo per operazioni aritmetico logiche = ALU
+	\end{itemize}
+	I segnali di controllo sono necessari per far eseguire 
+	al giusto modulo la giusta operazione: ALU\\
+	ALU prende segnali di controllo ed esegue le istruzioni codificate\\
+	In questo sistema si ha la codifica 
+	delle istruzioni e la decodifica delle istruzioni.
+
+\end{defn}
+
+
+
+\begin{defn}[Memoria principale nell'architettura di Von Neumann]
+Si ha la possibilità di salti oltre che all'esecuzione sequenziale(in serie)\\
+Per esempio con le operazioni che richiedono accesso a più dati in memoria
+nello stesso momento.\\
+Inoltre essa ha il compito di immaggazzinare dati e istruzioni
+\end{defn}
+
+\begin{esem}
+Somma con 2 numeri in locazione di memoria diverse
+\end{esem}
+
+\subsection{CPU}
+Essa non deve solo eseguire istruzioni ma anche gestire dei segnali di controllo e 
+getstire delle risorse.\\
+Composta da Vari componenti principali:
+
+\begin{itemize}
+\item bt{EU} = execution unit = alu
+
+\item bt{IR} = instruction register, registro che 
+	contiene l'istruziuone da eseguire successivamente a quella nel PC.
+\item \bt{PC} = program counter, puntatore all'istruzione 
+	indirizzo dell'istruzione da eseguire presente nella memoria.
+\item \bt{MAR} = memory address register, registro di interfaccia con 
+	il bus di sistema, contiene solo registri
+\item \bt{MBR} = memory buffer register, contiene solo dati.\\
+Il MAR e il MBR mantengono le infromazioni fino a che non è 
+disponibile il bus di sistema per essere impiegato.
+
+	\begin{itemize}
+		\item in caso di lettura raccolgono il dato dal bus.
+		\item in caso di scrittura contengono il dato.
+	\end{itemize}
+\item \bt{I/O AR} indirizzo periferica con cui scambiare dati, 
+	specificare periferica 
+\item \bt{I/O BR} raccolta dati 
+\end{itemize}
+Quando si ha un salto nell'esecuzione delle 
+istruzioni incrementa l'indirizzo del PC\\
+Inoltre è presente un buffer nel modulo I/O: è una memoria interna al sistema di 
+input output, esso serve perchè la CPU invia dati troppo velocemente rispetto 
+ed esso non può riceverli alla stessa velocità, per questo 
+il buffer dell'I/O, mantiene in memoria i dati inviati dalla più veloce CPU 
+\subsection{Ciclo CPU esecuzione}
+\begin{itemize}
+	\item \bt{Fetch}: reperimento, prelievo dell'istruzione dalla memoria
+	\item \bt{Execute}: esecuzione dell'istruzione prelevata dalla memoria
+\end{itemize}
+Il registro \bt{PC} contiene l'indirizzo di memoria della
+cella di Memoria contenente l'istruzione da eseguire.
+Quando si ha un prelievo di istruzioni dalla memoria, si ha un incremento del PC.\\
+L'istruzione prelevata viene messa in IR poi viene eseguita.
+
+
+\subsection{Tipi di Operazioni}
+
+\begin{enumerate}
+	\item Processore-memoria: trasferimento dati dalla CPU alla Memoria R/W
+	\item Processore-I/O: trasferimento dati da CPU a I/O               R/W
+	\item Elaborazione dati: operazioni logiche e aritmetiche sui dati
+		operazioni della ALU
+	\item Controllo: può alterare la sequenza delle istruzioni, per esempio
+		il salto
+\end{enumerate}
+
+\begin{esem}	
+Parola = 16bit\\
+Istruzione = 16bit\\
+Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
+
+\begin{itemize}
+	\item 0001 carica in AC (accumulatore) una cella di M
+	\item 0010 scrive in M il contenuto di AC
+	\item 0101 somma una cella di M ad AC
+\end{itemize}
+\end{esem}
+
+
 \subsection{Interruzioni}
 Il meccansimo tramite il quale dei moduli possono interrompere la normale di sequenza di esecuzione. \newline
 

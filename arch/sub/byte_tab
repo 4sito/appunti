@@ -1,0 +1,20 @@
+
+
+\begin{center}
+\begin{tabular}{||c | c | c | c||}
+\hline
+Nome & Simbolo & Multiplo in base 10 & Multiplo in base 2 \\
+\hline
+chilobyte & kB & $10^3$ & $2^{10}$\\
+\hline
+megabyte & MB & $10^6$ & $2^{20}$\\
+\hline
+gigabyte & GB & $10^9$ & $2^{30}$\\
+\hline
+terabyte & TB & $10^{12}$ & $2^{40}$\\
+\hline
+petabyte & PB & $10^{15}$ & $2^{50}$\\ [1ex]
+\hline
+\end{tabular}
+
+\end{center}
