@@ -315,10 +315,30 @@ Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
 \end{itemize}
 \end{esem}
 
+\subsection{Ciclo di esecuzione}
+
+\begin{enumerate}
+	\item Instruction Adress Calculation
+	\item Instruction Fetch
+	\item Instruction operation decoding
+	\item Operand address calculation
+	\item Operand Fetch
+	\item Data operation
+	\item Operand address calculation 
+	\item Operand Store
+\end{enumerate}
+Per l'esecuzione di una singola operazione, bisogna prima eseguire una serie
+di altri sottocompiti, che devono essere ben eseguiti. \\
+Per questo è essenziale \bt{l'unità di controllo}, per accertarsi che
+ogni operazione venga eseguita correttamente e nel giusto ordine.\\
+La CPU può eseguire \bt{più operazioni} momentaneamente, mantenendo ogni sua parte attiva
+, breve introduzione al concetto di pipeline
+
 
 \subsection{Interruzioni}
 Il meccansimo tramite il quale dei moduli possono interrompere la normale di sequenza di esecuzione. \newline
 
+Tipi di interruzioni:
 \begin{itemize}
 	\item Program
 	\item Timer
