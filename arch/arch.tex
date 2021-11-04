@@ -1,5 +1,8 @@
 \documentclass[12pt, a4paper]{article}
-\usepackage{appunti}
+\usepackage{appunti, smartdiagram}
+
+
+
 
 \title{Appunti di Architettura degli Elaboratori}
 \author{Andreas Araya Osorio}
@@ -192,7 +195,13 @@ Le componenti principali di un elaboratore sono:
 	\item Interconnessioni
 \end{itemize}
 
-\begin{defn}[Architettura di Von Neumann]
+\begin{center}
+\begin{smartdiagram}[constellation diagram]
+	{System Bus, Cpu, Memoria, Sistemi di I/O}
+\end{smartdiagram}
+\end{center}
+
+\begin{defn}[Architettura di Von Neumann] 
 Secondo questo tipo di architettura, un elaboratore è composto di questi
 principali componenti:
 \begin{itemize}
@@ -286,6 +295,11 @@ il buffer dell'I/O, mantiene in memoria i dati inviati dalla più veloce CPU
 	\item \bt{Fetch}: reperimento, prelievo dell'istruzione dalla memoria
 	\item \bt{Execute}: esecuzione dell'istruzione prelevata dalla memoria
 \end{itemize}
+
+\begin{center}
+\begin{smartdiagram}[flow diagram:horizontal]{Start, Fetch, Execute}
+\end{smartdiagram}
+\end{center}
 Il registro \bt{PC} contiene l'indirizzo di memoria della
 cella di Memoria contenente l'istruzione da eseguire.
 Quando si ha un prelievo di istruzioni dalla memoria, si ha un incremento del PC.\\
@@ -318,7 +332,7 @@ Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
 \subsection{Ciclo di esecuzione}
 
 \begin{enumerate}
-	\item Instruction Adress Calculation
+	\item Instruction Address Calculation
 	\item Instruction Fetch
 	\item Instruction operation decoding
 	\item Operand address calculation
@@ -327,6 +341,10 @@ Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
 	\item Operand address calculation 
 	\item Operand Store
 \end{enumerate}
+\begin{smartdiagram}[circular diagram:clockwise]{Instruction Address Calculation,
+		Instruction Fetch, Instruction operation decoding, Operand address calculation,
+		Operand Fetch, Data operation, Operand address calculation, Operand store}
+\end{smartdiagram}
 Per l'esecuzione di una singola operazione, bisogna prima eseguire una serie
 di altri sottocompiti, che devono essere ben eseguiti. \\
 Per questo è essenziale \bt{l'unità di controllo}, per accertarsi che
