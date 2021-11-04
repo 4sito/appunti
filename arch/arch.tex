@@ -666,23 +666,64 @@ In ordine decrescente per velocità, costo e crescente per ampiezza:
 	\item CD - DVD-ROM
 	\item Nastro (vari PB)
 \end{itemize}
+L'aumento di prestazioni delle CPU si deve a migliorie tecnologiche e architetturali, mentre
+quello delle memorie \bt{solo} ad avanzamenti tecnologici.\\
+Proprieta' dei programmi: 
+
+\begin{itemize}
+	\item Statiche, dal file sorgente
+	\item Dinamiche, dall'esecuzione
+		\begin{itemize}
+			\item Linearita' dei riferimenti, spesso consecutivi
+			\item Localita' dei riferimenti, indirizzi contigui sono piu' probabili
+		\end{itemize}
+\end{itemize}
+
+\begin{defn}[Congettura 90/10]
+Un programma impiega di solito il 90\% del suo tempo di esecuzione alle prese 
+con un numero di istruzioni pari a circa il 10\% di tutte quelle che le compongono.
+\end{defn}
+
+\subsubsection{GERARCHIA DI MEMORIA}
 Tutte le locazioni di memoria sono suddivise in blocchi. \newline
-La memoria è suddivisia in 2 tipi differenti:
+
+Conviene organizzare la memoria in vari livelli gerarchici:
+
 \begin{itemize}
 	\item Cache la più veloce e suddivisa in diversi livelli
 		\begin{itemize}
-			\item L1 cache
-			\item L2 cache
-			\item L3 cache
+			\item L1 cache:\\
+				molto veloce e molto costosa, per i dati ad accesso probabile\\
+				es. 10\% di cui parlavamo prima
+			\item L2 cache, più capiente ma meno veloce della L1.
+			\item L3 cache, più capiente ma meno veloce della L2
 		\end{itemize}
-	\item Ram più lenta della cache ma più capiente
+	\item Ram, più lenta della cache ma più capiente ed economica
 \end{itemize}
-
 La memoria Ram è composta da:
 \begin{enumerate}
 	\item indirizzo di memoria
 	\item blocco di memoria 
 \end{enumerate}
+Memoria a livelli:
+\begin{enumerate}
+	\item Livello inferiore, supporti con capacità più alti, piu' lenti, meno costosi
+	\item A livelli piu' alti diventano progressivamente piu' veloci, piu' costosi
+		e meno capienti.
+\end{enumerate}
+La CPU usa il livello piu' alto. Ogni livello inferiore contiene tutti i dati presenti ai 
+livelli superiori.\\
+
+\subsubsection{SCAMBIO DATI}
+I dati vengono scambiati sotto forma di WORD/PAROLE:
+
+\begin{itemize}
+	\item CPU - Cache: scambio di PAROLE
+	\item CACHE - MEMORIA P. scambio di BLOCCHI (multiplo di PAROLE)
+\end{itemize}
+La memoria lavora efficientemente se la CPU trova il dato cercato nella CACHE. Avendo 
+piu' livelli di cache si ha una maggiore probabilità di trovare questo dato.\\
+
 Il numero di parole in un blocco è una potenza di 2. \newline
 Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come "indirizo" del bit, mentre i restanti 2 come identificativi del bit.
 
