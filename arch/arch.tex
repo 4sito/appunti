@@ -410,13 +410,13 @@ che hanno per il funzionamento del sistema.\\
 
 \subsection{Connessioni}
 Tutti i componenti \textbf{devono} essere connessi \newline
-Esistono vari tipi di connessioni per vari tipi di componenti
+Esistono vari tipi di connessioni per vari tipi di componenti, il bus collega:
 \begin{itemize}
 	\item CPU
 	\item Memoria 
 	\item I/O
 \end{itemize}
-
+Composto da 50 a qualche centinaio di linee
 \subsection{Bus}
 Tutti i dispostivi sono collegati dal bus di sistema \newline
 Il bus:
@@ -426,8 +426,10 @@ Il bus:
 	\item un segnale trasmesso ad un bus è disponibile a tutti i dispositivi
 	\item arbitro bus: solo un dispostivo alla volta può trasmettere
 	\item varie linee di comunicazione ( trasmettono uno 0 o un 1)
-	\item varie linee trasmettono in parallelo numeri binari. Un bus da 8 bit trasmette un dato di 8 bit
+	\item varie linee trasmettono in parallelo numeri binari. 
+		Un bus da 8 bit trasmette un dato di 8 bit
 \end{enumerate}
+Solitamente l'ampiezza del bus corrisponde ad un multiplo della parola.
 
 \subsubsection{Bus di sistema:}
 \begin{itemize}
@@ -446,7 +448,7 @@ Il bus:
 	\item trasporta dati o istruzioni
 	\item ampiezza --$ > $ efficienza  del sistema
 	\begin{itemize}
-		\item con poche linee --$>$ accessi in memoria
+		\item con poche linee --$>$ maggiori accessi in memoria
 	\end{itemize}
 \end{itemize}
 
@@ -455,10 +457,20 @@ Il bus:
 	\item indica sorgente o destinazione dati
 	\item l'ampiezza determina la massima quantità di M indirizzabile
 \end{itemize}
+Deve essere di almeno 1 parola.
+
+\begin{esem}
+Architettura a 64 bit = $ 2^{64} - 1 $ indirizzi\\
+Il bus deve essere di almeno 64 bit.
+\end{esem}
+
 
 \subsubsection{Bus controllo}
+Per controllare accesso e uso di:
+
 \begin{itemize}
-	\item per controllare accesso, uso linee dati e indirizzi
+	\item \bt{linee dati}
+	\item \bt{indirizzi}
 	\begin{enumerate}
 		\item M write
 		\item M read
@@ -469,13 +481,13 @@ Il bus:
 	\end{enumerate}
 \end{itemize}
 
-Bus usage:
+\subsubsection{Uso del bus}
+Con modulo intendiamo una generica componente del computer.\\
 se un modulo vuole inviare dati ad un altro:
 \begin{itemize}
 	\item bus grant
 	\item data transfer
 \end{itemize}
-
 se un module vuole ricevere dati da un altro:
 \begin{itemize}
 	\item bus grant
@@ -483,26 +495,159 @@ se un module vuole ricevere dati da un altro:
 	\item attendere invio dati
 \end{itemize}
 
+
 \subsubsection{Bus singoli e multipli}
 \begin{itemize}
 	\item singolo bus = ritardo e congestione
 	\item vari bus = risoluzione problema
 \end{itemize}
+Esempio di Bus multiplo:
+
+\begin{itemize}
+	\item \bt{connessione punto a punto} fra CPU e cache, il che rende
+	il trasferimento dei dati molto più veloce ed efficiente.\\
+	\item \bt{Bus di espansione},	si interfaccia con i dispositivi I/O
+	\item \bt{Bus ad alta velocità}, si interfaccia con i dispositivi I/O
+		e fornisce una trasmissione di dati più rapida 
+	\item \bt{Bus di sistema}, fra cache e Memoria principale.
+\end{itemize}
+
+
 
 \subsection{Temporizzazione}
+Coordinazione degli eventi su un bus
 \begin{itemize}
-	\item Coordinazione degli eventi su un bus
+	\item Asincrona
+		\begin{itemize}
+		\item più complessa da implementare
+		\end{itemize}
 	\item Sincrona
 	\begin{itemize}
 		\item clock determined events
-		\item single clock line
-		\item single sequence is a clock cicle
+		\item single clock line, with an alternate sequence of 0 and 1,
+			with equal length
+		\item single 1-0 sequence is a clock cicle
 		\item every device connected to the bus can read the clock line
 		\item every event starts at the beginning of a clock cycle
 	\end{itemize}
 \end{itemize}
 
+\subsubsection{QPI}
+\bt{Interconnessione Punto a Punto}, con l'aumentare della velocità dei 
+processori è sempre più frequenta una distribuzione di dati densa e veloce.\\
+Un bus condiviso però rallenta la comunicazione del processore (bottleneck)
+, per questo si adottano delle connessioni punto a punto.\\
+
+\begin{itemize}
+	\item Connessioni dirette multiple:\\
+		più componenti del sistema godono di connessioni dirette a 
+		coppie con altri componenti.
+	\item Architettura di protocollo a strati
+	\item Trassferimento Dati a pacchetto:\\
+		i dati non sono inviati come flussi di dati non elaborato
+		ma come una sequenza di pacchetti, essi includono intestazioni 
+		di controllo e codici di correzione dell'errore.
+\end{itemize}
+Livelli di QPI:
+
+\begin{itemize}
+	\item \bt{fisico}\\
+		la parte hardware, l'unità di trasferimento è di 20 bit (Phit)
+		, tutto è sincronizzato da un clock.
+	\item \bt{Link}\\
+		trasmissione affidabile del controllo del flusso,
+		l'unità di trasferimento è di 80 bit (Flit).\\
+		Protocollo con pacchetti da 72 (dati) + 8 (codice
+		di correzione errore) bit.
+		\begin{itemize}
+			\item Controllo del flusso:\\
+				il mittente non può inviare più dati di quelli
+				che il destinatario può ricevere.
+			\item Controllo dell'erroreç
+				8 bit per rilevare errori di trasmissione 
+				sugli altri 72 bit.\\
+				In caso di errore il mittente deve re-inviare
+				il pacchetto errato.
+		\end{itemize}
+	\item \bt{Routing}\\
+		Struttura per dirigere i pacchetti attraverso essa. Determina il
+		percorso che un pacchetto deve seguire.\\
+		Supportato da tabelle di instradamento:\\
+		\begin{itemize}
+			\item definite da software di basso livello che
+				contiene delle istruzioni
+			\item descrizione percorso che un pacchetto può seguire
+			\item utile in sistemi di maggiori dimensione
+		\end{itemize}
+	\item \bt{Protocollo}\\
+		Insieme di regole ad alto livello per lo scambio di pacchetti.
+		Un pacchetto è un numero intero di Flits. Il contenuto di 
+		un pacchetto è flessibile, per gestire esigenze diverse.\\
+		Supporta il protocollo di coerenza della cache, per garantire 
+		coerenza fra i contenuti della cache dei core e la memoria 
+		principale
+\end{itemize}
+
+
 \subsection{Memoria}
+Caratteristiche principali della memoria:
+
+\begin{itemize}
+	\item Locazione: processore (cache), interna 
+		(principale RAM), esterna (secondaria)
+	\item Capacità: dimensione parola (dipende dall
+		'architettura), numero di parole
+	\item Unità di trasferimento: parola, fra cache e RAM in blocco ( 
+		insieme contiguo di parole)
+	\item Metodo di accesso:
+		\begin{itemize}
+			\item sequenziale: accedere prima a tutte le informazioni
+				che vengono prima: lento. Utilizzato nei nastri
+				magnetici, backup sistemi.
+			\item diretto, organizzata in gruppi,
+				accesso sequenziale ai gruppi. accesso diretto 
+				ad un insieme di informazioni. HDD
+			\item casuale, accesso diretto a quella locazione
+				di memoria, non importa dove si trova la 
+				locazione di memoria dell'informazione. RAM
+			\item associativo, informazione non indviduata da 
+				indirizzo, ma da una parte dell'informazione.
+				CACHE
+		\end{itemize}
+	\item Prestazioni: tempo di accesso, ciclo e velocità di trasferimento
+	\item Modello fisico:
+		\begin{itemize}
+			\item semiconduttore (ROM)
+			\item magnetico, campi magnetici (HDD)
+			\item ottico, laser ottico (CD)
+			\item magnetico-ottico
+		\end{itemize}
+	\item Caratteristiche fisiche:
+		\begin{itemize}
+			\item volatile (cache, quando termina il flusso di 
+				corrente elettrica i dati vengono cancellati)
+			\item non volatile (hdd, i dati vegnono memorizzati
+				permanentemente quando si spegne il computer)
+			\item riscrivibile (RAM, HDD, cache)
+			\item non riscrivibile (ROM, read only memory).
+		\end{itemize}
+	\item Organizzazione, se suddivisa in un singolo chip oppure vari,
+		più o meno moduli.
+\end{itemize}
+Generalmente all'aumentare del costo della memoria aumenta la sua
+velocità ma diminuisce la sua ampiezza.\\
+In ordine decrescente per velocità, costo e crescente per ampiezza:
+
+\begin{itemize}
+	\item Registro (1 parola) 16 - 64 bit
+	\item Cache (1 indirizzo)
+	\item SRAM
+	\item DRAM (8gb - 64gb)
+	\item SSD (1TB - 8TB)
+	\item HDD (16TB-24TB)
+	\item CD - DVD-ROM
+	\item Nastro (vari PB)
+\end{itemize}
 Tutte le locazioni di memoria sono suddivise in blocchi. \newline
 La memoria è suddivisia in 2 tipi differenti:
 \begin{itemize}
@@ -619,6 +764,8 @@ La scrittura dati determina incoerenza tra il blocco in cache e quello nei livel
 \end{defn}
 Occore ricordare che tra memoria centrale (RAM) e cache si passano \textbf{BLOCCHI} e non \textbf{PAROLE}.
 
+
+
 \begin{esem}[scenario problematico]
 \begin{itemize}
 	\item più dispositivi connessi allo stesso bus con cache locale
@@ -627,6 +774,9 @@ Occore ricordare che tra memoria centrale (RAM) e cache si passano \textbf{BLOCC
 Nessun tipo di "write" (through, back) può assicurare coerenza.
 \end{esem}
 Possibili soluzioni
+
+
+
 \begin{itemize}
 	\item \textbf{monitoraggio del bus con write through}, controllori intercettano modifiche locazioni condivise
 	\item \textbf{trasparenza hardware}, hardware aggiuntivo: modifica a RAM = modifica a cache
@@ -634,4 +784,38 @@ Possibili soluzioni
 \end{itemize}
 Si può estendere il discorso fatto a livelli più alti prendendo in considerazione come memorie la ram e la memoria di tipo swap, basata sui dischi di archiviazione. 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
