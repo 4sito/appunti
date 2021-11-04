@@ -337,12 +337,19 @@ La CPU può eseguire \bt{più operazioni} momentaneamente, mantenendo ogni sua p
 
 \subsection{Interruzioni}
 Il meccansimo tramite il quale dei moduli possono interrompere la normale di sequenza di esecuzione. \newline
+Il ciclo di esecuzione con interruzioni è differente: al \bt{termine}
+di un ciclo si ha il controllo delle interruzioni,
+
+\begin{itemize}
+	\item se ce ne sono, esse vengono risolte
+	\item se non ce ne sono, il ciclo ricomincia
+\end{itemize}
 
 Tipi di interruzioni:
 \begin{itemize}
-	\item Program
-	\item Timer
-	\item I/O
+	\item Program, overflow, divisione per zero
+	\item Timer, da un timer inerno alla CPU
+	\item I/O, termine di un'operazione di I/O
 	\item Guasto Hardware
 	\end{itemize}
 Si interrompe per
@@ -359,13 +366,48 @@ Ciclo interruzione:
 	\begin{itemize}
 		\item sospende esecuzione
 		\item salva contesto
-		\item imposta il pc all'indirizzo di inizio del programma di gestione
+		\item imposta il pc all'indirizzo di inizio del 
+			programma di gestione
 		\item esegue il programma di gestione dell'hardware
-		\item rimette il contesto al suo posto e continua il programma interrotto
+		\item rimette il contesto al suo posto e continua 
+			il programma interrotto
 	\end{itemize}
 \end{itemize}
-In caso di interruzioni multiple: esistono vari livelli di interruzione. Le int. di basso livello hanno minore priorità rispetto a quelle di alto livello. 
-Il sistema operativo blocca quelle di basso livello per risolvere quelle di alto livello e così via
+Lunghezza di attesa:
+
+\begin{itemize}
+	\item \bt{breve attesa}, tempo di operazione di I/O minore del
+		tempo tra due istruzione WRITE
+	\item \bt{lunga attesa}, 
+\end{itemize}
+
+\subsubsection{Interruzioni multiple}
+In caso di \bt{interruzioni multiple}: esistono vari livelli di interruzione e 
+differenti tipi di politica di gestione.\\
+Esistono interruzioni di alto livello e basso livello, a seconda dell'importanza
+che hanno per il funzionamento del sistema.\\
+\bt{Politiche di interruzione}:
+
+\begin{itemize}
+	\item Disabilitare le interruzioni:
+		\begin{itemize}
+			\item La CPU \bt{ignora} le altre interruzioni e
+				gestisce la prima e "maschera" le altre
+			\item Le interruzioni rimangono \bt{pendenti}
+			\item vengono gestite nell'\bt{ordine} in cui arrivano
+		\end{itemize}
+	\item Definire le priorità
+		\begin{itemize}
+			\item Interruzioni di bassa priorità vengono
+				interrotte quando si presentano quelle di 
+				alta priorità
+			\item Quando è stata gestita la priorità di 
+				alto livello viene maneggiata
+				quella di basso livello
+			\item Si hanno delle interruzioni \bt{annidate}
+		\end{itemize}
+\end{itemize}
+
 \subsection{Connessioni}
 Tutti i componenti \textbf{devono} essere connessi \newline
 Esistono vari tipi di connessioni per vari tipi di componenti
