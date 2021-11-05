@@ -728,22 +728,46 @@ Il numero di parole in un blocco è una potenza di 2. \newline
 Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come "indirizo" del bit, mentre i restanti 2 come identificativi del bit.
 
 \subsubsection{Gerarchia di memoria}
+Un indirizzo di linea di cache e' costituito generalmente da:
+\begin{enumerate}
+	\item Etichetta (tag), indirizzo del blocco nella memoria principale.
+	\item Blocco di $K$ parole
+\end{enumerate}
+
 Un blocco di memoria richiesto dalla CPU può essere presente \textbf{hit} o non presente \textbf{miss} in memoria. (generalmente è presente). \newline
+Per guadagnare efficienza prestazionale un \bt{hit} deve essere molto probabile ($>$ 90\%), 
+se fosse minore di questa percentuale non avrebbe senso utilizzare quella struttura di memoria.\\
+Un \bt{miss} avvia una procedura di scambio di dati con un livello inferiore.\\ 
+Una linea di cache può memorizzare diversi blocchi diversi, si usano i bit piu' a destra
+per identificare la parola all'interno della linea e i bit piu' a sinistra qual'e' 
+la linea di cache per identificare il blocco.
+
+\begin{defn}[Organizzazione]
+La memoria principale e' suddivisa in blocchi logici\\
+La cache e' suddivisa in un multiplo di blocchi.
+\end{defn}
+
+\begin{defn}[Tempo medio di Accesso]
 $T_a$: Tempo medio di accesso ad un dato in memoria cache 
 \begin{equation} T_a\ =\ T_h \times P_h + T_m(1-P_h) \end{equation}
 $T_h$: tempo di accesso ad un dato presnte in cache
 $T_m$: tempo medio di accesso ad un dato \textbf{non} in cache (dimensione blocco)
 $P_h$: probabilità di hit \newline
+\end{defn}
 \textit{Tecnica generale} \newline
+
+
 \begin{enumerate}
 	\item Suddivisione della memoria centrale in blocchi logici
 	\item dimensionamento della cache in multiplo di blocchi
 	\item ogni indirizzo emesso dalla cpu
 		\begin{itemize}
-			\item hit $\iff$ il dato viene fornito immediatamente alla cpu
-			\item miss
+			\item hit $\iff$ il dato viene fornito immediatamente alla cpu,
+				(sotto forma di parola)
+			\item miss, il dato viene fornito sotto forma di blocco
 				\begin{enumerate}
-					\item la cache richiede il dato al livello inferiore 
+					\item la cache richiede il dato al livello inferiore
+						(memoria principale RAM)
 					\item viene posto in cache 
 					\item viene fornito alla cpu 
 				\end{enumerate}
@@ -755,7 +779,7 @@ Ogni blocco del livello ineriore può essere allocato solo in una specifica posi
 \begin{enumerate}
 	\item \textbf{ILS} = indirizzo di livello superiore
 	\item \textbf{ILI} = indirizzo di livello inferiore 
-	\item $ILS = ILI\ mod\ N$
+	\item $ILS = ILI\ mod\ N$, divisione con resto intero
 \end{enumerate}	
 
 \begin{enumerate}
@@ -767,7 +791,10 @@ Ogni blocco del livello ineriore può essere allocato solo in una specifica posi
 	\item svantaggi
 		\begin{itemize}
 			\item necessità di contraddistinguere blocco in ILS
-			\item swap frequenti per accesso a dati di blocchi adiacenti		    \end{itemize}
+			\item swap frequenti per accesso a dati di blocchi adiacenti,\\
+				il primo blocco di ogni insieme avrà la stessa linea di cache,
+				quindi solo uno di questi puo' essere in cache 
+		\end{itemize}
 \end{enumerate}
 \end{defn}
 
@@ -777,6 +804,8 @@ Ad una cache di N blocchi viene associata una tabella di N posizioni contenenti 
 \begin{itemize}
 	\item vantaggi: massima efficienza di allocazione
 	\item molto tempo per la corrispondenza ILS-ILI e della verifica hit/miss
+	\item molto costoso dal punto di vista hardware e scarsa possibilità di hit 
+	\item difficile identificazione di hit o miss
 \end{itemize}
 \end{defn}
 
@@ -784,40 +813,75 @@ Ad una cache di N blocchi viene associata una tabella di N posizioni contenenti 
 Ogni blocco di un certo insieme di blocchi del livello inferiore può essere allocato liberamente in uno specifico gruppo di blocchi del livello superiore
 
 \begin{esem}
-Per una cache di 32 linee con un $N$ equivalente a 2, ogni gruppo avrà 16 linee.
+Per una cache di 32 linee con un $N$ equivalente a 2, ogni gruppo avrà 16 linee.\\
+Ci sono 16 gruppi da 2 linee e per ogni coppia avremo un blocco di una determinata posizione di
+qualunque insieme.
 \end{esem}
 Questo tipo di associazione è una via di mezzo fra gli altri due tipi. 
-La cache composta da $R$ gruppi di $N$ posizioni di blocco, si affiancano $R$ tabelle di $N$ elementi contenenti i tag.
-Ha una buona efficienza di allocazione, nonstante abbia una certa complessità
+La cache composta da $R$ gruppi di $N$ posizioni di blocco, si affiancano $R$
+tabelle di $N$ elementi contenenti i tag.\\
+Per ottenere facilmente il numero di linee basta semplicemente fare la moltiplicazione
+
+\begin{equation}
+	\mbox{Numero di linee della cache} = N \times R 
+\end{equation}
+Ha una buona efficienza di allocazione, nonstante abbia una certa complessità, e prende 
+i due punti di forza degli altri due tipi:
+
+\begin{itemize}
+	\item uso efficiente delle linee di cache
+	\item facile determinazione di hit o miss
+\end{itemize}
+Non e' necessario avere un grande numero di N per raggiungere il massimo dell'efficienza1
+
 \end{defn}
 
 \begin{defn}[Politiche di rimpiazzo dei blocchi]
-Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?
-Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della cache corrisponde un blocco della memoria centrale.
+Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?\\
+Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della 
+cache corrisponde un blocco della memoria centrale.\\
 
 \begin{enumerate}
 	\item \textit{casuale}, viene occupato lo spazio omogeneamente, facile implementazione
-	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a lungo in cache, complicata implementazione
-	\item \textit{Least Frequently Used(LFU)}, il blocco con meno accessi, complicata implementazione hardware
-	\item \textit{Least Recently Used(LRU)}, il blocco con l'accesso più distante, per preservare quelli accessi più recentemente, implementazione difficile.
+	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a lungo in cache,
+		complicata implementazione
+	\item \textit{Least Frequently Used(LFU)}, il blocco con meno accessi, 
+		complicata implementazione hardware
+	\item \textit{Least Recently Used(LRU)}, il blocco con l'accesso più distante,
+		per preservare quelli accessi più recentemente, implementazione difficile.
 \end{enumerate}
-A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU. Ad aumentare il livello di cache è sempre meno significativo il miglioramento offerto da queste tecnologie.
-\end{defn}
+A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU.\\
+Questo e' il metodo piu' gettonato, e ad aumentare il livello di cache 
+è sempre meno significativo il miglioramento offerto da queste tecnologie.
 
+\end{defn}
 La scrittura dati determina incoerenza tra il blocco in cache e quello nei livelli inferiori
-\begin{defn}[write through]
+
+
+\begin{defn}
+write through:
+
 \begin{enumerate}
 	\item scrittura contemporanea in cache e livello inferiore
-	\item aumento traffico per frequenti scritture nel medesimo blocco, dati coerenti fra blocchi
-	\item si ricorre a buffere asincroni verso la memoria
+	\item aumento traffico per frequenti scritture nel medesimo blocco,
+		dati coerenti fra blocchi
+	\item si ricorre a buffer asincroni verso la memoria, a
+		causa di momenti di congestione del bus.
 \end{enumerate}
 \end{defn}
+La memoria contiene \bt{istruzioni} e \bt{dati} e solo il 50\% delle operazioni
+sui dati sono scritture.
 
-\begin{defn}[write back]
+
+\begin{defn}
+write back:
+
 \begin{enumerate}
 	\item scrittura in memoria inferiore differita al rimpiazzo del blocco di cache corrisp.
+	\item ridotto numero di modifiche nella memoria principale
 	\item occore ricordare operazioni di scrittura nel blocco
-	\item ottimizazione del traffico tra livelli
+	\item ottimizazione del traffico tra livelli, riduzione
+		congestione bus
 	\item periodi di incoerenza
 \end{enumerate}
 \end{defn}
