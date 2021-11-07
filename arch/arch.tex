@@ -1,5 +1,8 @@
 \documentclass[12pt, a4paper]{article}
-\usepackage{appunti}
+\usepackage{appunti, smartdiagram}
+
+
+
 
 \title{Appunti di Architettura degli Elaboratori}
 \author{Andreas Araya Osorio}
@@ -192,7 +195,13 @@ Le componenti principali di un elaboratore sono:
 	\item Interconnessioni
 \end{itemize}
 
-\begin{defn}[Architettura di Von Neumann]
+\begin{center}
+\begin{smartdiagram}[constellation diagram]
+	{System Bus, Cpu, Memoria, Sistemi di I/O}
+\end{smartdiagram}
+\end{center}
+
+\begin{defn}[Architettura di Von Neumann] 
 Secondo questo tipo di architettura, un elaboratore è composto di questi
 principali componenti:
 \begin{itemize}
@@ -286,6 +295,11 @@ il buffer dell'I/O, mantiene in memoria i dati inviati dalla più veloce CPU
 	\item \bt{Fetch}: reperimento, prelievo dell'istruzione dalla memoria
 	\item \bt{Execute}: esecuzione dell'istruzione prelevata dalla memoria
 \end{itemize}
+
+\begin{center}
+\begin{smartdiagram}[flow diagram:horizontal]{Start, Fetch, Execute}
+\end{smartdiagram}
+\end{center}
 Il registro \bt{PC} contiene l'indirizzo di memoria della
 cella di Memoria contenente l'istruzione da eseguire.
 Quando si ha un prelievo di istruzioni dalla memoria, si ha un incremento del PC.\\
@@ -318,7 +332,7 @@ Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
 \subsection{Ciclo di esecuzione}
 
 \begin{enumerate}
-	\item Instruction Adress Calculation
+	\item Instruction Address Calculation
 	\item Instruction Fetch
 	\item Instruction operation decoding
 	\item Operand address calculation
@@ -327,6 +341,10 @@ Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
 	\item Operand address calculation 
 	\item Operand Store
 \end{enumerate}
+\begin{smartdiagram}[circular diagram:clockwise]{Instruction Address Calculation,
+		Instruction Fetch, Instruction operation decoding, Operand address calculation,
+		Operand Fetch, Data operation, Operand address calculation, Operand store}
+\end{smartdiagram}
 Per l'esecuzione di una singola operazione, bisogna prima eseguire una serie
 di altri sottocompiti, che devono essere ben eseguiti. \\
 Per questo è essenziale \bt{l'unità di controllo}, per accertarsi che
@@ -648,43 +666,108 @@ In ordine decrescente per velocità, costo e crescente per ampiezza:
 	\item CD - DVD-ROM
 	\item Nastro (vari PB)
 \end{itemize}
+L'aumento di prestazioni delle CPU si deve a migliorie tecnologiche e architetturali, mentre
+quello delle memorie \bt{solo} ad avanzamenti tecnologici.\\
+Proprieta' dei programmi: 
+
+\begin{itemize}
+	\item Statiche, dal file sorgente
+	\item Dinamiche, dall'esecuzione
+		\begin{itemize}
+			\item Linearita' dei riferimenti, spesso consecutivi
+			\item Localita' dei riferimenti, indirizzi contigui sono piu' probabili
+		\end{itemize}
+\end{itemize}
+
+\begin{defn}[Congettura 90/10]
+Un programma impiega di solito il 90\% del suo tempo di esecuzione alle prese 
+con un numero di istruzioni pari a circa il 10\% di tutte quelle che le compongono.
+\end{defn}
+
+\subsubsection{GERARCHIA DI MEMORIA}
 Tutte le locazioni di memoria sono suddivise in blocchi. \newline
-La memoria è suddivisia in 2 tipi differenti:
+
+Conviene organizzare la memoria in vari livelli gerarchici:
+
 \begin{itemize}
 	\item Cache la più veloce e suddivisa in diversi livelli
 		\begin{itemize}
-			\item L1 cache
-			\item L2 cache
-			\item L3 cache
+			\item L1 cache:\\
+				molto veloce e molto costosa, per i dati ad accesso probabile\\
+				es. 10\% di cui parlavamo prima
+			\item L2 cache, più capiente ma meno veloce della L1.
+			\item L3 cache, più capiente ma meno veloce della L2
 		\end{itemize}
-	\item Ram più lenta della cache ma più capiente
+	\item Ram, più lenta della cache ma più capiente ed economica
 \end{itemize}
-
 La memoria Ram è composta da:
 \begin{enumerate}
 	\item indirizzo di memoria
 	\item blocco di memoria 
 \end{enumerate}
+Memoria a livelli:
+\begin{enumerate}
+	\item Livello inferiore, supporti con capacità più alti, piu' lenti, meno costosi
+	\item A livelli piu' alti diventano progressivamente piu' veloci, piu' costosi
+		e meno capienti.
+\end{enumerate}
+La CPU usa il livello piu' alto. Ogni livello inferiore contiene tutti i dati presenti ai 
+livelli superiori.\\
+
+\subsubsection{SCAMBIO DATI}
+I dati vengono scambiati sotto forma di WORD/PAROLE:
+
+\begin{itemize}
+	\item CPU - Cache: scambio di PAROLE
+	\item CACHE - MEMORIA P. scambio di BLOCCHI (multiplo di PAROLE)
+\end{itemize}
+La memoria lavora efficientemente se la CPU trova il dato cercato nella CACHE. Avendo 
+piu' livelli di cache si ha una maggiore probabilità di trovare questo dato.\\
+
 Il numero di parole in un blocco è una potenza di 2. \newline
 Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come "indirizo" del bit, mentre i restanti 2 come identificativi del bit.
 
 \subsubsection{Gerarchia di memoria}
+Un indirizzo di linea di cache e' costituito generalmente da:
+\begin{enumerate}
+	\item Etichetta (tag), indirizzo del blocco nella memoria principale.
+	\item Blocco di $K$ parole
+\end{enumerate}
+
 Un blocco di memoria richiesto dalla CPU può essere presente \textbf{hit} o non presente \textbf{miss} in memoria. (generalmente è presente). \newline
+Per guadagnare efficienza prestazionale un \bt{hit} deve essere molto probabile ($>$ 90\%), 
+se fosse minore di questa percentuale non avrebbe senso utilizzare quella struttura di memoria.\\
+Un \bt{miss} avvia una procedura di scambio di dati con un livello inferiore.\\ 
+Una linea di cache può memorizzare diversi blocchi diversi, si usano i bit piu' a destra
+per identificare la parola all'interno della linea e i bit piu' a sinistra qual'e' 
+la linea di cache per identificare il blocco.
+
+\begin{defn}[Organizzazione]
+La memoria principale e' suddivisa in blocchi logici\\
+La cache e' suddivisa in un multiplo di blocchi.
+\end{defn}
+
+\begin{defn}[Tempo medio di Accesso]
 $T_a$: Tempo medio di accesso ad un dato in memoria cache 
 \begin{equation} T_a\ =\ T_h \times P_h + T_m(1-P_h) \end{equation}
 $T_h$: tempo di accesso ad un dato presnte in cache
 $T_m$: tempo medio di accesso ad un dato \textbf{non} in cache (dimensione blocco)
 $P_h$: probabilità di hit \newline
+\end{defn}
 \textit{Tecnica generale} \newline
+
+
 \begin{enumerate}
 	\item Suddivisione della memoria centrale in blocchi logici
 	\item dimensionamento della cache in multiplo di blocchi
 	\item ogni indirizzo emesso dalla cpu
 		\begin{itemize}
-			\item hit $\iff$ il dato viene fornito immediatamente alla cpu
-			\item miss
+			\item hit $\iff$ il dato viene fornito immediatamente alla cpu,
+				(sotto forma di parola)
+			\item miss, il dato viene fornito sotto forma di blocco
 				\begin{enumerate}
-					\item la cache richiede il dato al livello inferiore 
+					\item la cache richiede il dato al livello inferiore
+						(memoria principale RAM)
 					\item viene posto in cache 
 					\item viene fornito alla cpu 
 				\end{enumerate}
@@ -696,7 +779,7 @@ Ogni blocco del livello ineriore può essere allocato solo in una specifica posi
 \begin{enumerate}
 	\item \textbf{ILS} = indirizzo di livello superiore
 	\item \textbf{ILI} = indirizzo di livello inferiore 
-	\item $ILS = ILI\ mod\ N$
+	\item $ILS = ILI\ mod\ N$, divisione con resto intero
 \end{enumerate}	
 
 \begin{enumerate}
@@ -708,7 +791,10 @@ Ogni blocco del livello ineriore può essere allocato solo in una specifica posi
 	\item svantaggi
 		\begin{itemize}
 			\item necessità di contraddistinguere blocco in ILS
-			\item swap frequenti per accesso a dati di blocchi adiacenti		    \end{itemize}
+			\item swap frequenti per accesso a dati di blocchi adiacenti,\\
+				il primo blocco di ogni insieme avrà la stessa linea di cache,
+				quindi solo uno di questi puo' essere in cache 
+		\end{itemize}
 \end{enumerate}
 \end{defn}
 
@@ -718,6 +804,8 @@ Ad una cache di N blocchi viene associata una tabella di N posizioni contenenti 
 \begin{itemize}
 	\item vantaggi: massima efficienza di allocazione
 	\item molto tempo per la corrispondenza ILS-ILI e della verifica hit/miss
+	\item molto costoso dal punto di vista hardware e scarsa possibilità di hit 
+	\item difficile identificazione di hit o miss
 \end{itemize}
 \end{defn}
 
@@ -725,40 +813,75 @@ Ad una cache di N blocchi viene associata una tabella di N posizioni contenenti 
 Ogni blocco di un certo insieme di blocchi del livello inferiore può essere allocato liberamente in uno specifico gruppo di blocchi del livello superiore
 
 \begin{esem}
-Per una cache di 32 linee con un $N$ equivalente a 2, ogni gruppo avrà 16 linee.
+Per una cache di 32 linee con un $N$ equivalente a 2, ogni gruppo avrà 16 linee.\\
+Ci sono 16 gruppi da 2 linee e per ogni coppia avremo un blocco di una determinata posizione di
+qualunque insieme.
 \end{esem}
 Questo tipo di associazione è una via di mezzo fra gli altri due tipi. 
-La cache composta da $R$ gruppi di $N$ posizioni di blocco, si affiancano $R$ tabelle di $N$ elementi contenenti i tag.
-Ha una buona efficienza di allocazione, nonstante abbia una certa complessità
+La cache composta da $R$ gruppi di $N$ posizioni di blocco, si affiancano $R$
+tabelle di $N$ elementi contenenti i tag.\\
+Per ottenere facilmente il numero di linee basta semplicemente fare la moltiplicazione
+
+\begin{equation}
+	\mbox{Numero di linee della cache} = N \times R 
+\end{equation}
+Ha una buona efficienza di allocazione, nonstante abbia una certa complessità, e prende 
+i due punti di forza degli altri due tipi:
+
+\begin{itemize}
+	\item uso efficiente delle linee di cache
+	\item facile determinazione di hit o miss
+\end{itemize}
+Non e' necessario avere un grande numero di N per raggiungere il massimo dell'efficienza1
+
 \end{defn}
 
 \begin{defn}[Politiche di rimpiazzo dei blocchi]
-Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?
-Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della cache corrisponde un blocco della memoria centrale.
+Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?\\
+Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della 
+cache corrisponde un blocco della memoria centrale.\\
 
 \begin{enumerate}
 	\item \textit{casuale}, viene occupato lo spazio omogeneamente, facile implementazione
-	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a lungo in cache, complicata implementazione
-	\item \textit{Least Frequently Used(LFU)}, il blocco con meno accessi, complicata implementazione hardware
-	\item \textit{Least Recently Used(LRU)}, il blocco con l'accesso più distante, per preservare quelli accessi più recentemente, implementazione difficile.
+	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a lungo in cache,
+		complicata implementazione
+	\item \textit{Least Frequently Used(LFU)}, il blocco con meno accessi, 
+		complicata implementazione hardware
+	\item \textit{Least Recently Used(LRU)}, il blocco con l'accesso più distante,
+		per preservare quelli accessi più recentemente, implementazione difficile.
 \end{enumerate}
-A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU. Ad aumentare il livello di cache è sempre meno significativo il miglioramento offerto da queste tecnologie.
-\end{defn}
+A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU.\\
+Questo e' il metodo piu' gettonato, e ad aumentare il livello di cache 
+è sempre meno significativo il miglioramento offerto da queste tecnologie.
 
+\end{defn}
 La scrittura dati determina incoerenza tra il blocco in cache e quello nei livelli inferiori
-\begin{defn}[write through]
+
+
+\begin{defn}
+write through:
+
 \begin{enumerate}
 	\item scrittura contemporanea in cache e livello inferiore
-	\item aumento traffico per frequenti scritture nel medesimo blocco, dati coerenti fra blocchi
-	\item si ricorre a buffere asincroni verso la memoria
+	\item aumento traffico per frequenti scritture nel medesimo blocco,
+		dati coerenti fra blocchi
+	\item si ricorre a buffer asincroni verso la memoria, a
+		causa di momenti di congestione del bus.
 \end{enumerate}
 \end{defn}
+La memoria contiene \bt{istruzioni} e \bt{dati} e solo il 50\% delle operazioni
+sui dati sono scritture.
 
-\begin{defn}[write back]
+
+\begin{defn}
+write back:
+
 \begin{enumerate}
 	\item scrittura in memoria inferiore differita al rimpiazzo del blocco di cache corrisp.
+	\item ridotto numero di modifiche nella memoria principale
 	\item occore ricordare operazioni di scrittura nel blocco
-	\item ottimizazione del traffico tra livelli
+	\item ottimizazione del traffico tra livelli, riduzione
+		congestione bus
 	\item periodi di incoerenza
 \end{enumerate}
 \end{defn}
@@ -776,46 +899,130 @@ Nessun tipo di "write" (through, back) può assicurare coerenza.
 Possibili soluzioni
 
 
-
 \begin{itemize}
-	\item \textbf{monitoraggio del bus con write through}, controllori intercettano modifiche locazioni condivise
+	\item \textbf{monitoraggio del bus con write through}, controllori
+		intercettano modifiche locazioni condivise
 	\item \textbf{trasparenza hardware}, hardware aggiuntivo: modifica a RAM = modifica a cache
 	\item \textbf{memoria non cacheable}, solo una porzione è condivisa e non cacheable
 \end{itemize}
-Si può estendere il discorso fatto a livelli più alti prendendo in considerazione come memorie la ram e la memoria di tipo swap, basata sui dischi di archiviazione. 
+Cosa comporta la modifica di dati in una cache?\\
+
+\begin{itemize}
+	\item invalida quella parola corrispondente nella memoria centrale
+	\item invalida la parola nelle altre cache che la contengono\\
+		per esempio in un sistema con CPU multi-core
+\end{itemize}
+Estendiamo il discorso alla memoria swap e RAM:\\
+Quello che cambia e' che al livello cache-RAM e' tutto basato su un livello logico,
+mentre nell'altro caso si parla di un livello fisico fra RAM e memoria
+swap dei dispositivi di archiviazione eseterna.\\
+Le problematiche che si incontreranno saranno le stesse: capienza RAM
+piena, politiche di rimpiazzo, modalita' di scrittura.\\
+I blocchi diventano pagine di un programma.
+
+\subsubsection{Cache logica e fisica}
+Possiamo avere due tipi di Cache: 
+
+\begin{itemize}
+	\item Logica, riceve un indirizzo logico ma ad ogni cambiamento di contesto 
+		deve essere svuotata,
+		conveniente se si prevede un utilizzo in un contesto 
+		con poche interruzioni
+	\item Fisica, riceve un indirizzo fisico deve attendere la traduzione dell'indirizzo
+		da logico a fisico, non deve essere svuotata ad ogni cambiamento di 
+		contesto, conveniente in un contesto con molte interruzioni
+\end{itemize}
+
+La cache deve essere svuotata ad ogni cambiamento di contesto, altrimenti
+non puo' funzionare bene.
+
+\subsubsection{Il problema dei miss}
+Esistono vari tipi di miss:
+
+\begin{itemize}
+	\item di primo accesso, inevitabile non riducibile
+	\item per capacità insufficiente, quando la cache non può contenere altri blocchi
+	\item per conflitto, dipende dal tipo di associazione, quando vari blocchi possono
+		corrispondere allo stesso gruppo
+\end{itemize}
+Soluzioni classiche:
+
+\begin{itemize}
+	\item Maggior dimensione di blocco, aumento di miss, aumento linee utilizzo 
+		piu' efficiente dello spazio
+	\item Maggiore associativita', incremento del tempo di localizzazione di un gruppo,
+		soggetto alla regoal 2:1
+\end{itemize}
+Altre soluzioni:
+
+\begin{itemize}
+	\item multilivello cache, fino a 3 livelli
+	\item separazione cache dati / cache istruzioni
+	\item ottimizazione degli accessi mediante compilatori (C)
+\end{itemize}
+
+\subsubsection{tipi di memorie a semiconduttore}
+\input{sub/mem_tab}
+Si dice di una memoria che e' volatile o no quando: se si toglie l'alimentazione
+si cancella l'intero contenuto della memoria. 
+
+\begin{defn}[DRAM]
+Dynamic RAM =
+
+\begin{itemize}
+	\item bit memorizzati in condensatori
+	\item decadimento cariche con tempo
+	\item refresh cariche, durante alimentazione
+	\item semplice costruzione
+	\item 1 condensatore = 1 bit
+	\item meno costose
+	\item circuito per refresh
+	\item meno veloci della SRAM
+	\item usate nella RAM
+	\item operazione analogica, la carica determina il valore (0 o 1)
+\end{itemize}
+\end{defn}
+
+\begin{defn}[SRAM]
+Static RAM =
+
+\begin{itemize}
+	\item bit memorizzati tramite porte logiche
+	\item non perde la carica
+	\item no refresh
+	\item piu' complesso, piu' elementi per bit (6 transistor)
+	\item piu' costosa
+	\item no refresh
+	\item piu' veloce, utilizzata nella cache
+	\item digitale
+\end{itemize}
+\end{defn}
+
+\subsubsection{ROM}
+Una ROM: 
+
+\begin{itemize}
+	\item memorizzazione permanente ( non volatile )
+	\item memorizzano:
+		\begin{itemize}
+			\item microprogrammi
+			\item subroutine di libreria
+			\item programmi di sistema
+			\item funzioni tabulate (logaritmi, esponenziali, etc)
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Codice correzione errore}
+Tipi di errori: 
+
+\begin{itemize}
+	\item Guasto hardware, non risolvibile
+	\item errore software, possono accadere casualmente, a causa del decadimento
+		della materia, i danni non sono permanenti
+\end{itemize}
+Quando un errore viene rilevato, puo' essere corretto attraverso
+i codici di Hamming (quelli che vedremo)\\
+Quando un dato viene creato assieme ad esso si crea una sua 'impronta digitale' che verra'
+utilizzata per comparare la validita' del dato.
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

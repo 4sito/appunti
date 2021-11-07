@@ -1,0 +1,62 @@
+
+
+\begin{center}
+\begin{tabular}{||c | c | c | c | c||}
+\hline
+Tipo & Categoria & Cancellamento & Mecc. scrittura & Volatile\\
+\hline
+RAM
+& read-write 
+& elettric.\\
+
+&& byte-level
+
+& elettric. 
+& si\\
+
+\hline
+
+ROM
+
+& read-only 
+
+& non possibile 
+
+& maschere 
+
+& no\\
+\hline
+PROM
+& read-only 
+& non possibile 
+& elettric.
+& no\\
+\hline 
+EPROM
+& read-mostly
+& luce UV,\\
+&&chip-level
+& elettric. 
+& no \\
+
+\hline
+EEPROM
+& read-mostly
+& elettric.\\
+&&byte-level
+
+& elettric.
+& no\\
+
+\hline 
+
+Memoria\\
+Flash 
+& read-mostly
+& elettric.\\
+&& block-level
+& elettric. 
+& no\\
+\hline 
+\end{tabular}
+\end{center}
