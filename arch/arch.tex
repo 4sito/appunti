@@ -1,8 +1,15 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{appunti, smartdiagram}
+\usesmartdiagramlibrary{additions}
 
-
-
+ \hypersetup{
+     citecolor=black,
+     filecolor=black,
+     linkcolor=black,
+     linktoc=all,
+     urlcolor=black
+  }
+\setcounter{tocdepth}{2}
 
 \title{Appunti di Architettura degli Elaboratori}
 \author{Andreas Araya Osorio}
@@ -11,6 +18,7 @@
 \begin{document}
 \maketitle
 
+\tableofcontents
 
 
 \section{Rappresentazione dei numeri}
@@ -44,6 +52,34 @@ In una qualsiasi base $N$ il numero di cifre equivale a:
 	\mbox{cifre} = N - 1, N - 2, \dots, 1, 0.
 \end{equation}
 \end{defn}
+
+\subsection{Notazione}
+\begin{defn}[BIT]
+\bt{Bit} = binary digit, uno dei due simboli (0, 1) del sistema numerico binario.
+Esso è l'unità elementare dell'informazione trattata da un elaboratore.\\
+Numeri di 8, 16, 32 bit equivale in base 10 
+a parlare di numeri a 3, 4, 5, ... cifre \\
+\end{defn}
+
+\begin{defn}[BYTE]
+\bt{Byte} = 8 bit, è una sequenza di bit, convenzionalmente l'unità di misura
+delle capacità di una memoria.\\
+Può assumere $2^8 = 256 (0\ -\ 255)$ possibili valori
+\end{defn}
+
+\begin{defn}[Parola]
+\bt{Word/Parola} = corrisponde a 16, 32 o 64 bit in base al tipo di IS
+(Instruction Set), essa è l'unità più piccola di informazione su cui un elaboratore
+può intervenire.
+\end{defn}
+
+\input{sub/byte_tab}
+Convenzionalmente si utlizzano come unità di misura: 
+\begin{itemize}
+	\item il B(yte) per la capacità di una memoria
+	\item il b(it)/s per la velocità di trasmissione di dati.
+\end{itemize}
+
 \subsection{Binario}
 Con la base 2 abbiamo le cifre dallo 0 allo 1.\\
 Per la definizione precedente la rappresentazione sarà:
@@ -74,32 +110,6 @@ Il valore minmo e massimo di un numero di $n$ cifre è:
 \end{equation}
 \end{esem}
 
-\subsection{Notazione}
-\begin{defn}[BIT]
-\bt{Bit} = binary digit, uno dei due simboli (0, 1) del sistema numerico binario.
-Esso è l'unità elementare dell'informazione trattata da un elaboratore.\\
-Numeri di 8, 16, 32 bit equivale in base 10 
-a parlare di numeri a 3, 4, 5, ... cifre \\
-\end{defn}
-
-\begin{defn}[BYTE]
-\bt{Byte} = 8 bit, è una sequenza di bit, convenzionalmente l'unità di misura
-delle capacità di una memoria.\\
-Può assumere $2^8 = 256 (0\ -\ 255)$ possibili valori
-\end{defn}
-
-\begin{defn}[Parola]
-\bt{Word/Parola} = corrisponde a 16, 32 o 64 bit in base al tipo di IS
-(Instruction Set), essa è l'unità più piccola di informazione su cui un elaboratore
-può intervenire.
-\end{defn}
-
-\input{sub/byte_tab}
-Convenzionalmente si utlizzano come unità di misura: 
-\begin{itemize}
-	\item il B(yte) per la capacità di una memoria
-	\item il b(it)/s per la velocità di trasmissione di dati.
-\end{itemize}
 \subsection{Decimale}
 Nella rappresentazione decimale abbiamo le cifre dallo 0 al 9.\\
 Un qualsiasi numero in base decimale si può rappresentare come:
@@ -192,7 +202,7 @@ Le componenti principali di un elaboratore sono:
 	\item CPU
 	\item Memoria
 	\item Sistemi di I/O
-	\item Interconnessioni
+	\item Interconnessioni (system bus)
 \end{itemize}
 
 \begin{center}
@@ -258,7 +268,7 @@ Inoltre essa ha il compito di immaggazzinare dati e istruzioni
 Somma con 2 numeri in locazione di memoria diverse
 \end{esem}
 
-\subsection{CPU}
+\section{CPU}
 Essa non deve solo eseguire istruzioni ma anche gestire dei segnali di controllo e 
 getstire delle risorse.\\
 Composta da Vari componenti principali:
@@ -290,7 +300,7 @@ Inoltre è presente un buffer nel modulo I/O: è una memoria interna al sistema 
 input output, esso serve perchè la CPU invia dati troppo velocemente rispetto 
 ed esso non può riceverli alla stessa velocità, per questo 
 il buffer dell'I/O, mantiene in memoria i dati inviati dalla più veloce CPU 
-\subsection{Ciclo CPU esecuzione}
+\subsection{Funzionamento CPU}
 \begin{itemize}
 	\item \bt{Fetch}: reperimento, prelievo dell'istruzione dalla memoria
 	\item \bt{Execute}: esecuzione dell'istruzione prelevata dalla memoria
@@ -341,10 +351,49 @@ Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
 	\item Operand address calculation 
 	\item Operand Store
 \end{enumerate}
-\begin{smartdiagram}[circular diagram:clockwise]{Instruction Address Calculation,
-		Instruction Fetch, Instruction operation decoding, Operand address calculation,
-		Operand Fetch, Data operation, Operand address calculation, Operand store}
-\end{smartdiagram}
+
+\newpage
+
+\begin{center}
+    \smartdiagramset{
+        uniform color list=white!60!black for 6 items,
+        back arrow disabled=true,
+        module minimum width=2cm,
+        module minimum height=2cm,
+        module x sep=4cm,
+        text width=3cm,
+        additions={
+            additional item offset=20mm,
+            additional item width=2cm,
+            additional item height=2cm,
+            additional item text width=3cm,
+            additional item shadow=drop shadow,
+            additional item bottom color=white!60!black,
+            additional item border color=gray,
+            additional arrow color=gray,
+        }}
+        \smartdiagramadd[flow diagram:horizontal]{
+            Instruction Address\\ Calculation, Instruction Fetch, 
+	    Instruction operation decoding, Operand address\\ calculation}
+	    {
+        below of module1/Operand Fetch,
+	below of module2/Data Operation,
+	below of module3/Operand Address Calculation,
+	below of module4/Operand Store}
+    \smartdiagramconnect{->}{additional-module1/additional-module2,
+    additional-module3/additional-module4}
+    \begin{tikzpicture}[remember picture,overlay]% modified from p. 47 of manual
+    \draw[additional item arrow type] (module4) |- ([yshift=-10mm]module1.south) -- (additional-module1);
+    \end{tikzpicture}
+    \vspace{40mm}\par
+
+\end{center}
+
+
+
+
+
+
 Per l'esecuzione di una singola operazione, bisogna prima eseguire una serie
 di altri sottocompiti, che devono essere ben eseguiti. \\
 Per questo è essenziale \bt{l'unità di controllo}, per accertarsi che
@@ -426,7 +475,7 @@ che hanno per il funzionamento del sistema.\\
 		\end{itemize}
 \end{itemize}
 
-\subsection{Connessioni}
+\section{Interconnessioni}
 Tutti i componenti \textbf{devono} essere connessi \newline
 Esistono vari tipi di connessioni per vari tipi di componenti, il bus collega:
 \begin{itemize}
@@ -447,9 +496,12 @@ Il bus:
 	\item varie linee trasmettono in parallelo numeri binari. 
 		Un bus da 8 bit trasmette un dato di 8 bit
 \end{enumerate}
-Solitamente l'ampiezza del bus corrisponde ad un multiplo della parola.
+Solitamente l'ampiezza del bus corrisponde ad un multiplo della parola.\\
+Tipi di bus:
 
-\subsubsection{Bus di sistema:}
+\begin{enumerate}
+
+\item Bus di sistema:
 \begin{itemize}
 	\item connette cpu, i/o, M
 	\item da 50 a qualche centinaio di linee
@@ -461,7 +513,7 @@ Solitamente l'ampiezza del bus corrisponde ad un multiplo della parola.
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{Bus dati:}
+\item Bus dati:
 \begin{itemize}
 	\item trasporta dati o istruzioni
 	\item ampiezza --$ > $ efficienza  del sistema
@@ -470,20 +522,18 @@ Solitamente l'ampiezza del bus corrisponde ad un multiplo della parola.
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{Bus indirizzi}
+\item Bus indirizzi:
 \begin{itemize}
 	\item indica sorgente o destinazione dati
 	\item l'ampiezza determina la massima quantità di M indirizzabile
+	\begin{esem}
+	Architettura a 64 bit = $ 2^{64} - 1 $ indirizzi\\
+	Il bus deve essere di almeno 64 bit.
+	\end{esem}
+	\item deve essere di almeno 1 parola
 \end{itemize}
-Deve essere di almeno 1 parola.
 
-\begin{esem}
-Architettura a 64 bit = $ 2^{64} - 1 $ indirizzi\\
-Il bus deve essere di almeno 64 bit.
-\end{esem}
-
-
-\subsubsection{Bus controllo}
+\item Bus controllo:\\
 Per controllare accesso e uso di:
 
 \begin{itemize}
@@ -499,7 +549,9 @@ Per controllare accesso e uso di:
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{Uso del bus}
+\end{enumerate}
+
+\subsection{Uso del bus}
 Con modulo intendiamo una generica componente del computer.\\
 se un modulo vuole inviare dati ad un altro:
 \begin{itemize}
@@ -514,7 +566,7 @@ se un module vuole ricevere dati da un altro:
 \end{itemize}
 
 
-\subsubsection{Bus singoli e multipli}
+\subsection{Bus singoli e multipli}
 \begin{itemize}
 	\item singolo bus = ritardo e congestione
 	\item vari bus = risoluzione problema
@@ -607,7 +659,7 @@ Livelli di QPI:
 \end{itemize}
 
 
-\subsection{Memoria}
+\section{Memorie}
 Caratteristiche principali della memoria:
 
 \begin{itemize}
@@ -684,7 +736,7 @@ Un programma impiega di solito il 90\% del suo tempo di esecuzione alle prese
 con un numero di istruzioni pari a circa il 10\% di tutte quelle che le compongono.
 \end{defn}
 
-\subsubsection{GERARCHIA DI MEMORIA}
+\subsection{Gerarchia di memoria}
 Tutte le locazioni di memoria sono suddivise in blocchi. \newline
 
 Conviene organizzare la memoria in vari livelli gerarchici:
@@ -714,7 +766,7 @@ Memoria a livelli:
 La CPU usa il livello piu' alto. Ogni livello inferiore contiene tutti i dati presenti ai 
 livelli superiori.\\
 
-\subsubsection{SCAMBIO DATI}
+\subsubsection{trasferimento dati}
 I dati vengono scambiati sotto forma di WORD/PAROLE:
 
 \begin{itemize}
@@ -725,9 +777,10 @@ La memoria lavora efficientemente se la CPU trova il dato cercato nella CACHE. A
 piu' livelli di cache si ha una maggiore probabilità di trovare questo dato.\\
 
 Il numero di parole in un blocco è una potenza di 2. \newline
-Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come "indirizo" del bit, mentre i restanti 2 come identificativi del bit.
+Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come 
+"indirizo" del bit, mentre i restanti 2 come identificativi del bit.\\
 
-\subsubsection{Gerarchia di memoria}
+\subsection{Cache}
 Un indirizzo di linea di cache e' costituito generalmente da:
 \begin{enumerate}
 	\item Etichetta (tag), indirizzo del blocco nella memoria principale.
@@ -836,7 +889,7 @@ Non e' necessario avere un grande numero di N per raggiungere il massimo dell'ef
 
 \end{defn}
 
-\begin{defn}[Politiche di rimpiazzo dei blocchi]
+\subsection{Politiche di rimpiazzo dei blocchi}
 Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?\\
 Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della 
 cache corrisponde un blocco della memoria centrale.\\
@@ -852,10 +905,9 @@ cache corrisponde un blocco della memoria centrale.\\
 \end{enumerate}
 A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU.\\
 Questo e' il metodo piu' gettonato, e ad aumentare il livello di cache 
-è sempre meno significativo il miglioramento offerto da queste tecnologie.
-
-\end{defn}
-La scrittura dati determina incoerenza tra il blocco in cache e quello nei livelli inferiori
+è sempre meno significativo il miglioramento offerto da queste tecnologie.\\
+La scrittura dati determina incoerenza tra il blocco in cache e quello nei 
+livelli inferiori
 
 
 \begin{defn}
@@ -963,8 +1015,8 @@ Altre soluzioni:
 
 \subsubsection{tipi di memorie a semiconduttore}
 \input{sub/mem_tab}
-Si dice di una memoria che e' volatile o no quando: se si toglie l'alimentazione
-si cancella l'intero contenuto della memoria. 
+Si dice di una memoria che e' volatile o no quando: se manca l'alimentazione
+l'intero contenuto della memoria si cancella. 
 
 \begin{defn}[DRAM]
 Dynamic RAM =
@@ -998,7 +1050,7 @@ Static RAM =
 \end{itemize}
 \end{defn}
 
-\subsubsection{ROM}
+\subsection{ROM}
 Una ROM: 
 
 \begin{itemize}
@@ -1012,7 +1064,7 @@ Una ROM:
 		\end{itemize}
 \end{itemize}
 
-\subsubsection{Codice correzione errore}
+\subsection{Codice correzione errore}
 Tipi di errori: 
 
 \begin{itemize}
@@ -1022,7 +1074,391 @@ Tipi di errori:
 \end{itemize}
 Quando un errore viene rilevato, puo' essere corretto attraverso
 i codici di Hamming (quelli che vedremo)\\
-Quando un dato viene creato assieme ad esso si crea una sua 'impronta digitale' che verra'
-utilizzata per comparare la validita' del dato.
+Quando un dato viene creato assieme ad esso si crea una sua 'impronta digitale'
+che verra' utilizzata per comparare la validita' del dato.\\
+Si trasmettono gli 'M' bit di dati assieme a dei 'k' bit generati da una 
+certa funzione che creano una sorta d'impronta digitale.\\	
+Attraverso la funzione che converte gli 'M' bit nei 'k' bit si utilizza per 
+ricostruire il dato originale e confrontarlo con l'originale o lo si utilizza per 
+correggerlo.\\
+Questo tipo di codice di correzione è valido quando c'è un solo errore.\\
+La formula per determinare la quantità di bit di correzione necessari:
+
+\begin{equation}
+	2^{k-1} \geq M + K
+\end{equation}
+Questa quantità diminuisce drasticamente all'aumentare degli 'M' bit:
+
+\input{sub/cod_tab}
+
+Quando ci sono 2 errori si riesce a corregerne uno solo e si comunica che 
+è stato rilevato un errore ma non è correggibile.\\
+
+\subsection{Memorie esterne}
+Le memorie esterne si suddividono in 4 macro-categorie:
+
+\begin{itemize}
+	\item dischi magnetici
+		\begin{itemize}
+			\item RAID
+			\item rimovibili
+		\end{itemize}
+	\item dischi SSD
+	\item ottica
+		\begin{itemize}
+			\item CD-ROM
+			\item CD-Recordable (CD-R)
+			\item CD-R/W
+			\item DVD
+		\end{itemize}
+	\item nastri magnetici
+\end{itemize}
+
+\subsubsection{Dischi magnetici}
+I dischi sono ricoperti di materiali magnetici, e le informazioni è
+memorizzata in un campo \bt{magnetico}.\\
+Venivano costruiti in alluminio, mentre ora si utilizza il vetro perchè
+
+\begin{itemize}
+	\item la sua superficie è più uniforme,
+		(lo rende più affidabile), 
+	\item ci sono meno difetti di superficie 
+		(e ne riduce gli errori), 
+	\item è più rigido
+	\item la testina può essere posta più vicino al disco
+	\item è più resistente.
+\end{itemize}
+Il disco è organizzato in \bt{cerchi concentrici} di informazione
+(chiamati tracce), il disco ruota e la \bt{testina} viene spostata in 
+senso radiale verso l'interno o l'esterno del disco.\\ 
+Può leggere o scrivere rilevando \bt{campi magnetici} o inducendoli. 
+L'orientamento di un campo magnetico si determina in base al 
+verso con cui la corrente scorre e determina il tipo di informazione che
+viene passata. Dato che i campi magnetici rimangono impressi nel 
+materiale ferroso (ossido di ferro) è un dispositivo \bt{non-volatile}.\\
+L'interferenza fra campi magnetici è divisa fra le tracce da dei gap.\\
+I dati vengono memorizzati tramite una bobina conduttiva di 
+scrittura detta \bt{testina}.\\
+I dati sono memorizzati in anelli o \bt{tracce concentriche}. I dischi ruotano ad 
+una \bt{velocità angolare costante}, ciò vuol dire che le tracce più
+interne a parità di rotazione perccoronon meno 
+strada rispetto alle tracce più esterne.\\
+Una conseguenza di questo fenomeno e del fatto che le informazioni
+contenute in ogni traccia devono essere della stessa quantità di byte,
+implica che i campi magnetici delle tracce più
+interne sarannno necessariamente più compatti. La densità delle tracce 
+non è consistente.\\
+Le tracce si dividono in:
+
+\begin{itemize}
+	\item Settori, la dimensione minima di un blocco coincide 
+		con un settore
+	\item Più di un settore per blocco
+	\item Con più dischi, le tracce nella stessa posizione costituiscono
+		un cilindro
+\end{itemize}
+Per \bt{ricercare un settore} bisogna riconoscere l'inizio della traccia e 
+del settore. Testina sulla traccia e attendere che il settore d'interesse passi
+attraverso la testina. (es. treno: quando prendiamo un treno ci sono 3 scenari:
+il treno sta per partire, dobbiamo aspettare un po', oppure il treno
+è già partito e dobbiamo aspettare il prossimo. Si può fare un'analogia
+con la testina (noi) settore (treno)).
+Il \bt{formato di un disco} è:
+
+\begin{itemize}
+	\item Informazioni aggiuntive non disponibili all'end user
+	\item demarca tracce e settori
+\end{itemize}
+
+\begin{esem}[Disco Winchester]
+In esso si possono ottimizzare la distanza fra traccia e testina.\\
+In particolare un settore di questo formato è composto da 600B:
+
+\begin{itemize}
+	\item GAP 1 = 17B
+	\item Campo ID = 7B
+		\begin{itemize}
+			\item Byte di sincronizzazione = 1B
+			\item N° traccia = 2B
+			\item N° testina = 1B
+			\item N° settore = 1B
+			\item Codice correzione errore = 2B
+		\end{itemize}
+	\item GAP 2 = 41B
+	\item Campo dati = 515B
+		\begin{itemize}
+			\item Byte sincronizzazione = 1B
+			\item Dati = 512B
+			\item Codice correzione errore = 2B
+		\end{itemize}
+	\item GAP 3 = 20B
+\end{itemize}
+
+\end{esem}
+Caratteristiche di un dispositivo di memorizzazione esterna:
+
+\begin{itemize}
+	\item Testina
+	\begin{itemize}
+		\item Fissa (raro)
+		\item mobile
+	\end{itemize}
+	\item Disco
+	\begin{itemize}
+		\item Rimovibile
+		\item Fisso
+	\end{itemize}
+	\item Fascia
+	\begin{itemize}
+		\item singola
+		\item doppia
+	\end{itemize}
+	\item Piatto
+	\begin{itemize}
+		\item singolo
+		\item doppio
+	\end{itemize}
+	\item Meccanismo della testina:
+		\begin{itemize}
+			\item contatto (floppy)
+			\item distanza fissa
+			\item seprazione aerodinamica
+			\begin{itemize}
+				\item Testine foil planano sulla superificie 
+					dei dischi sfruttando la portanza 
+					del profilo
+				\item Testine vicinissime alla superficie 
+					dei dischi
+			\end{itemize}
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Prestazioni}
+Le prestazioni di un disco eseterno sono determinate da:
+
+\begin{itemize}
+	\item Tempo di posizionamento ($T_P$) (seek time), 
+		spostamento della testina nella traccia giusta, 
+		all'incirca dai 5 ai 20ms, non molto
+		ottimizzabile essendo uno spostamento meccanico
+	\item Latenza rotazionale ($T_L$) (latency), attendere 
+		che il settore d'interesse sia sotto la testina, 
+		dipende dalla velocità di rotazione (RPM)
+		\begin{equation} 
+			RPM=3600\ \implies\ RPS=60\ \implies\ rotazione
+			= 16.7ms\ \implies\ T_L = 8.35ms
+		\end{equation}
+	\item Tempo di accesso, ($T_P + T_L$)  determinato 
+		dal tempo di posizionamento e dalla latenza (seek + latency)
+	\item Tempo di trasferimento: 
+		\begin{equation}
+			T = \frac{b}{r \times N}
+		\end{equation}
+		dove \bt{b} = byte da trasferire, \bt{N} = numero di byte per
+		traccia e \bt{r} = velocità rotazione in secondi.
+\end{itemize}
+
+\subsubsection{RAID}
+Redundant Array of Independent(/Inexpensive) Disks, esistono 7 livelli
+(da 0 a 6) non gerarchici di dischi, si tratta di un insieme di dischi
+fisici visti dal sistema operativo come un singolo dispositivo logico.
+In questo tipo di configurazione i dati sono distribuiti sui dispositivi.
+
+
+\begin{enumerate}[start=0, label={\bfseries RAID \arabic*:}]
+	\item nessuna ridondanza, tutti i dati sono distribuiti
+		nei dischi in \tit{strisce} (strip), si utilizza il metodo
+		'round robin striping' e si ottiene una maggiore velocità sia 
+		in scrittura che in lettura.\\
+		Le strip vengono memorizzate in parallelo nei vari dischi. Una
+		strip è un multiplo di blocchi.\\
+		C'è un'alta probabilità che i dati siano distribuiti in vari 
+		dischi e quindi che non ci sia un conflitto di risorse.
+	\item Mirrored, il contenuto viene replicato su più dischi, ogni dato 
+		viene copiato in un altro disco. Ogni dato viene letto e scritto
+		in più dischi. Il vantaggio è il recupero dei dischi immediato, è
+		necessario solamente sositituire il disco rotto con quello 
+		che ha gli stessi dati. Si ha una copia esatta di ogni disco.
+	\item (non commercializzato), dischi sincronizzati, in modo tale che 
+		la testina di ogni disco sia nella stessa posizione in ogni disco,
+		si usano unità di informazione molte piccole.\\
+		Si hanno codici di correzione calcolati tra bit corrispondenti
+		nei vari dischi. Si ha una grande ridondanza, ciò fa 
+		aumentare di molto il costo.
+
+	\item simile al raid 2, ma ha solo un disco ridondante indipendentemente
+		dal numero di dischi nell'array. Non è necessario sapere
+		quale dato viene a mancare ma semplicemente quale disco non
+		è più funzionante, quindi con questo sistema si sostituisce 
+		il disco guasto direttamente. Usa un semplice bit di parità
+		per ogni insieme corrispondente di bit, attraverso questi si
+		ricostruisce l'informazione e ai dati presenti negli altri dischi.
+		Si ha un'alta velocità di trasferimento. La sincronizzazione
+		dei dischi è causa di complessità,
+		il disco di parità diventa il 'collo di bottiglia' per le
+		operazioni in parallelo ed è quello più facile a subire un guasto
+	\item Ogni disco opera indipendentemente, ottimo per alti ritmi di 
+		richieste I/O, l'informazione di parità viene memorizzata su 
+		un disco ad hoc (disco di parità). Il problema di questa 
+		configurazione è il disco di parità che diventa un 
+		'collo di bottiglia', essendo frequentemente utilizzato è
+		quello più probabile a subire dei problemi di malfunzionamento
+	\item la parità viene distribuita in dischi diversi, non si ha più il
+		collo di bottiglia dei RAID 3\&4. L'allocazione viene
+		distribuita con il metodo 'round robin', esattamente come i
+		dati nel RAID 0, viene utilizzato nei server di rete, uguale
+		al RAID 4 fuorchè per il disco di parità, robustezza fino ad un
+		disco. Per avere 'N' dischi occorre averne 'N+1'
+	\item Si calcola la parità tramite due metodi distinti che sono memorizzati
+		in blocchi separati in dischi differenti. Per avere 'N' dischi 
+		occorre averne 'N+2', si ha una robustezza fino a 2 dischi, 
+		equivale al RAID 5 con il doppio della parità.
+\end{enumerate}
+
+\subsubsection{Dischi SSD}
+Solid State Drive, Solid perchè si basa su circuiti integrati ovvero 
+\bt{memorie flash} di tipo NAND\\
+Il \bt{floating gate} 
+
+\begin{itemize}
+	\item non attivo, non interferisce con il control gate 
+		e rappresenta bit a 1, di default è in questo stato.
+	\item se attivo, tramite alto voltaggio intrappola
+		elettroni che rimangono anche in assenza di alimentazione e 
+		rappresnetano bit a 0 e rende il transistor
+		come se fosse inutilizzabile
+\end{itemize}
+La struttura di una memoria flash di tipo NAND è organizzata in arraya da 
+16 o 32 transistor collegati in serie. La bit line va a 0 solo
+se tutti i transistor delle corrispondenti linee della parola sono a 1 (attivi),
+deriva dalla funzione booleana NAND. Le letture e le scritture coinvologono l'intera parola.\\
+I vantaggi di questi dischi sono:
+
+\begin{itemize}
+	\item velocità, non sono coinvolte operazioni meccaniche.
+	\item alte prestazioni di I/O e aumenta le prestazioni dei sottoinsiemi
+		di I/O 
+	\item durata, meno suscettibile a urti e vibrazioni
+		rispetto ai dischi magnetici
+	\item maggiore durata, non soggetti a usura meccanica
+	\item consumo energetico inferiore, meno energia non essendo coinvolte
+		parti meccaniche.
+	\item funzionalità più silenziose e fredde, minori costi
+		energetici
+	\item tempo di accesso e latenza inferiori oltre 10 volte rispetto
+		a quelli degli HDD
+\end{itemize}
+Organizzazione di un disco SSD:
+
+\begin{itemize}
+	\item Sistema host:
+\begin{enumerate}
+	\item per accedere ai dati, il sistema operativo richiama
+		il software del file system, che richiama a sua volta
+		il software del driver di I/O che fornisce l'accesso
+		all'SSD
+	\item il componente di interfaccia si riferisce all'interfaccia fisica
+		ed elettricatra il processore host e l'SSD
+\end{enumerate}
+	\item SSD:
+\begin{enumerate}
+	\item Controller: fornisce l'interfacciamento a livello del
+		dispositivo SSD e l'esecuzione del firmware
+	\item Indirizzamento: logica che esegue la funzione di selezione
+		tra i componenti della memoria flash
+	\item Buffer/cache dati: RAM ad alta velocità per compensare 
+		velocità e aumentare il throughput dei dati
+	\item correzione degli errori: logica per il rilevamento 
+		e la correzione degli errori
+	\item Componenti della memoria flash: singoli chip flash NAND
+\end{enumerate}
+\end{itemize}
+Gli svantaggi degli SSD:
+
+\begin{itemize}
+	\item Le performance decadono con l'uso, la dimensione di un blocco 
+		delle memorie flash all'interno degli SSD è di solito di 
+		512kb, per poter scrivere anche solo un B bisogna portare
+		il blocco in cache e modificare l'intero blocco riscrivendolo 
+		da capo.\\
+		I file sono di solito salvati in pagine da
+		4kB quindi 128 pagine per blocco.
+		con l'utilizzo dei file essi si frammnetano, le pagine vengono 
+		memorizztei in blocchi diversi e le prestazioni decadono.\\
+		soluzioni: over-provisioning, vengonon tenuti certi blocchi
+		solamente per le scritture; cancellazione delle pagine inattive;
+		comando TRIM (avverte il dispositivo quali pagine sono state
+		memorizzate logicamente).
+	\item si ha un numero limitato di scritture, intorno alle 100.000,
+		per risolvere questa limitazione, cache front-ending
+		(ospita blocchi più riferiti, politica LRU), distribuzione
+		scritture, getsione blocchi esauriti, RAID.
+\end{itemize}
+
+\subsubsection{Memorizzazione Ottica}
+Inizialmente furono concepiti per organizzare dati audio: 650MB memorizzano
+più di 70 minuti audio.\\
+Sono principalmente dischi di policarbonato rivestiti con un materiale altamente
+riflettente.\\
+I dati sono memorizzati come microscopici pozzetti: 
+
+\begin{itemize}
+	\item Land
+	\item Pit
+\end{itemize}
+i dati 0 e 1 vengono memorizzati come transizione da land e pit o viceversa
+e vengono letti tramite laser.\\
+Si ha una densità di memorizzazione costante, infatti si ha una singola traccia
+organizzata a spirale e gira a velocità costante, la velocità del disco dipende
+dalla posizione in cui si trova.
+
+\subsubsection{CD-ROM}
+Caratteristiche: 
+
+\begin{itemize}
+	\item Audio: singola velocità
+	\begin{itemize}
+		\item velocità lineare costante
+		\item 1.2 ms$^{-1}$
+		\item traccia a spirale lunga 5.27km
+		\item memorizza 4391 secondi = 73.2 minuti
+	\end{itemize}
+	\item la velocità dichiarata è la massima raggiungibile che il lettore può
+		raggiungere.
+	\item formato dati:
+		\begin{itemize}
+			\item modo 0 = campo dati vuoto
+			\item modo 1 = 2048 byte dati+correzione
+			\item modo 2 = 2336 byte dati
+		\end{itemize}
+\end{itemize}
+Accesso casuale su CD-ROM:
+
+\begin{itemize}
+	\item difficile causa della velocità lineare costante
+	\item spostare la testina in posizione approssimata
+	\item configurare la giusta velocità di rotazione 
+	\item legere l'indirizzo
+	\item altri aggiustamenti per spostarsi sul settore richiesto
+\end{itemize}
+Non è però efficiente come in una memoria RAM\\
+Pro:
+
+\begin{itemize}
+	\item Capacità, si utilizzavano come sistemi di bakcup,
+		erano più economici degli HDD
+	\item facili da produrre su grande scala
+	\item rimovibile
+	\item robusto
+\end{itemize}
+
+Contro:		
+\begin{itemize}
+	\item Costoso per piccole quantità
+	\item lento per accedere ai dati
+	\item essendo un CD-ROM è di solo lettura
+\end{itemize}
+	
 \end{document}
+
 
