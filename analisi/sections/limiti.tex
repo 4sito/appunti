@@ -42,6 +42,10 @@ Un limite $\lambda$ può essere:
 
 \begin{defn}
 Siano $\acr,\ x_0 \in D(A),\ \lambda \in \ol{R}.\ f: A \to \R$.\\
+$A$ un insieme contenuto fra i numeri reali, 
+$x_0$ si trovi in un punto di accumulazione di $A$, 
+$\lambda$ contenuto nella retta reale \tit{estesa} e $f$ una funzione che ad ogni 
+elemento di $A$ corrisponde un elemento di $R$.\\
 Diremo che $f(x)$ tende a $\lambda$ per $x$ che tende a $x_0$.
 
 
@@ -49,27 +53,85 @@ Diremo che $f(x)$ tende a $\lambda$ per $x$ che tende a $x_0$.
 	\forall V \in \mathcal{U}_\lambda\ \exists W \in \mathcal{U}_{x_0}\ :\
 	f(x) \in V\ \forall x \in A \setminus \{ x_0 \}\cap W
 \end{equation}
+Qualunque intorno $V$ all'interno della famiglia degl intorni $\mathcal{U}_\lambda$
+di $\lambda$ (ricordando che $\lambda \in \ol{R}$ quindi può assumere o
+un valore reale o è uguale a  $ \pm \infty$), esiste un intorno $W$ all'interno
+della famiglia degli insiemi di $\mathcal{U}_{x_0}$ di $x_0$ (un punto di 
+accumulazione) 
+
+\begin{equation}
+	x_0 \in \R \qquad ] x_0 - \delta, x_0 + \delta [
+\end{equation}
+ tale che l'immagine $x$  sia in $V$ tutte le volte che $x$ in $A \setminus
+ {x_0}$ intersecato con l'intorno $W$, $W_{x_0}$ è per definzione un punto
+ di accumulazione quindi l'interesezione \bt{è non vuota}\\
 La scrittura semplificata:
 
 
 \begin{equation}
 	\limxo f(x) = \lambda
 \end{equation}
+se \bt{per ogni} $ \epsilon > 0 $ esiste un numero $\delta > 0$ tale che per ogni
+$ x \in A, \ 0 < | x - x_0 | < \delta$.
+
+\begin{equation}
+	| f(x) - \lambda | < \epsilon 
+\end{equation}
 \end{defn}
 
+\begin{esem}
+Abbiamo $x_0 \in \R$ e $ \lambda = - \infty$ avremo che:
+
+\begin{equation}
+	\begin{aligned}
+	\mathcal{U}_{x_0} &= \{ ] x_0 - \delta, x_0 + \delta[ : \delta > 0\}\\
+	\mathcal{U}_{\lambda} &= \mathcal{U}_{- \infty} = \{
+	] -\infty, k [: k \in \R \}	
+	\end{aligned}
+\end{equation}
+Quindi avremo che:
+
+\begin{equation}
+	\limxo f(x) = - \infty
+\end{equation}
+se e solo se:
+
+\begin{equation}
+	\forall k \in \R\ \exists \delta > 0 :\ \forall x \in A \setminus \{
+	x_0 \} \ \{ | x - x_0 | < \delta\ \implies\ f(x) < k\}
+\end{equation}
+Vale a dire che: qualunque valore noi diamo a $k$ che è un numero appartenente 
+ai numeri reali (quindi ha un valore finito), esiste un  numero $\delta$ maggiore di
+0 tale che, quale che sia $x$ contenuta in $A$ meno $x_0$, il \bt{modulo} della
+differenza di $x$ e $x_0$ ($| x - x_0 |$) è \bt{minore} di $\delta$, questo vuol
+dire che l'immagine di $f(x)$ è sempre \bt{strettamente minore} di k.\\
+Ovvero $f(x)$ avrà sempre un valore piccolissimo inferiore a qualsiasi numero reale
+
+\end{esem}
+
+Anche se $f(x)$ è definita nel punto $x_0$ non è necessario
+che  soddisfare $\limxo f(x) = \lambda$, quindi nel punto in cui 
+$x = x_0$. Affermiamo che il valore del limite $\lambda$ è indipendente 
+dal valore della funzione nel punto $x_0$.
 %TODO stuff i didnt understand at page 86/87
 
 \begin{defn}[Unicità del limite]
-Sia $\acr$ e siano $x_0 \in D(A),\ x_0 \in \ol{R},\ f: A \to \R$.
+Sia $\acr$ e siano $x_0 \in D(A),\ x_0 \in \ol{R},\ f: A \to \R$. \\
 Se esistono $ \lambda, \mu \in \ol{\R}$ t.c.:
 
 
 \begin{equation}
-	\limxo f(x) = \lambda\ \&\ \limxo f(x) = \mu \quad 
+	\limxo f(x) = \lambda \quad \land \quad  \limxo f(x) = \mu \quad 
 	\iff \quad \lambda = \mu
 \end{equation}
 \end{defn}
+Prendiamo un sottoinsieme $A$ di $\R$, che è il dominio di una funzione $f(x): A 
+\to \R$, e prendiamo $x_0$ un punto di accumulazione dell'insieme $A$, contenuto 
+in $\R$. Supponiamo che ci siano \bt{due} limiti  (per assurdo), ma allora questi 
+due limiti \bt{SONO UGUALI}.
 
+\begin{dimo}
+Partiamo dalla nozione che: \bt{punti distinti} ammettono \bt{intorni disgiunti}
 \begin{dimo}
 
 \end{dimo}
