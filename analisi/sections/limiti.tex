@@ -550,8 +550,74 @@ Si dice che una funzione è limitata se essa è minore del modulo di una costant
 \end{defn}
 
 
+\subsection{Notazione}%
+\label{sub:notazione}
+Poniamo:
+
+\begin{equation}
+	\underset{A}{sup} f = sup (f(A)), \quad \& \quad
+	\underset{A}{inf} f = inf (f(A))
+\end{equation}
+Allora sono vere le seguenti affermazioni:
 
 
+\begin{equation}
+	\underset{A}{sup} f = \lambda \iff\
+	\begin{cases}
+		f(x) \leq \lambda, & \forall x \in A,\\
+		\forall \epsilon > 0,\ \exists \ol{x} \in A: &
+		 \lambda - \epsilon
+		< f(\ol{x})
+	\end{cases}
+\end{equation}
+La spiegazione segue che:\\
+(1): se $\lambda$ è il superiore della funzione $f(x), A \to \R$, allora \bt{
+ogni} immagine di essa sarà inferiore o uguale a $\lambda$ e questo 
+e' valido per ogni elemento del dominio.\\
+(2): Vale a dire che il sup é il minimo maggiorante, prendendo un qualsiasi 
+	numero positivo ($\epsilon$) se sottraiamo
+	questo numero dal $sup$ questa differenza sarà minore di una certa immagine
+	della funzione, se fosse vero il contrario \Lightning, il $sup$ non sarebbe
+	il minimo maggiorante.\\
+Delle derivazioni di queste affermazioni sono che:
 
+\begin{itemize}
+	\item $\underset{A}{sup} f = + \infty$,\\
+		implica che comunque noi scegliamo una costante $M$, esiste un
+		elemento di x tale che la sua immagine sia maggiore di questa 
+		costante.
+
+		\begin{equation}
+			\forall M \in \R,\ \exists x \in A: f(x) > M
+		\end{equation}
+		si ha un discorso analogo se l'$inf$ e' $- \infty$
+\end{itemize}
+Il $sup$ di una funzione puó appartenere alla funzione o no, mentre
+il $max$ di una funzione 
+
+\begin{equation}
+	\underset{A}{max} f = max (f(A))
+\end{equation}
+appartiene alla funzione stessa perchè è un'elemento del dominio.
+
+\begin{defn}[Monotonia di una funzione]
+Siano $\acr, f: A \to \R$ si dice che questa funzione è monotona crescente se
+
+\begin{equation}
+	f(x) \leq f(y)\ \forall x,y \in A,\ x \leq y
+\end{equation}
+È \bt{strettamente} crescente se le disuguaglianze sono \bt{strette}. ($<$)
+
+\begin{equation}
+	f(x) < f(y)\ \forall x,y \in A,\ x < y
+\end{equation}
+Mentre una funzione è strettamente decrescente se la definzione precedente è valida
+con le disuguaglianze invertite.
+\end{defn}
+
+\begin{equation}
+	f \nearrow \equiv f\text{ crescente}
+\end{equation}
+Con $x_0$ di solito ci si riferisce al punto di massimo della funzione.
 
 \end{document}
