@@ -115,6 +115,11 @@ $x = x_0$. Affermiamo che il valore del limite $\lambda$ è indipendente
 dal valore della funzione nel punto $x_0$.
 %TODO stuff i didnt understand at page 86/87
 
+
+\subsection{Teoremi Fondamentali}%
+\label{sub:teoremi_fondamentali}
+
+
 \begin{defn}[Unicità del limite]
 Sia $\acr$ e siano $x_0 \in D(A),\ x_0 \in \ol{R},\ f: A \to \R$. \\
 Se esistono $ \lambda, \mu \in \ol{\R}$ t.c.:
@@ -131,9 +136,422 @@ in $\R$. Supponiamo che ci siano \bt{due} limiti  (per assurdo), ma allora quest
 due limiti \bt{SONO UGUALI}.
 
 \begin{dimo}
-Partiamo dalla nozione che: \bt{punti distinti} ammettono \bt{intorni disgiunti}
-\begin{dimo}
+Partiamo dalla nozione che: \bt{punti distinti} ammettono \bt{intorni disgiunti}:
+
+
+\begin{equation}
+	\lambda, \mu \in \ol{\R} \qquad \implies \qquad
+	\exists V \in \mcl{U}_{\lambda}, W \in \mcl{U}_{\mu}:\ V \cap W \neq
+	\varnothing
+\end{equation}
+Supponendo per assurdo che i due numeri siano diversi fra loro, allora 
+ci basterà prendere un numero $\epsilon > 0$ minore della \bt{metà} della distanza
+fra questi due numeri e noteremo che i due numeri hanno intorni distinti.\\
+Questo è assurdo in quanto avevamo affermato che l'interesezione dei loro 
+intorni era \bt{non vuota}. Questo quando i due numeri $\lambda,\ \mu$ sono 
+numeri reali, quando uno di questi due invece é $\pm \infty$ allora per
+l'assioma di completezza c'è sempre un numero reale che si trova fra questi due per
+seprararli.\\
+\linebreak
+Per assurdo \Lightning, poniamo $\lambda \neq \mu$, per quanto abbaimo dimostrato
+prima abbiamo che \bt{punti disgiunti} hanno \bt{intorni disgiunti}. Ovvero:
+
+\begin{equation}
+	\exists V \in \mcl{U}_{\lambda}, \exists W \in \mcl{U}_{\mu}\ :\
+	V \cap W = \varnothing.
+\end{equation}
+Stiamo affermando che l'interesezione dei due intorni è un'insieme vuoto.\\
+Notiamo anche che:
+
+\begin{equation}
+	\limxo f(x) = \lambda \ \iff\ \exists U_1 \in \mcl{U}_{x_0} :
+	f(x) \in V\ \quad \forall x \in (A \setminus \{x_0\} ) \cap U_1
+\end{equation}
+e che
+
+\begin{equation}
+	\limxo f(x) = \mu \ \iff\ \exists U_2 \in \mcl{U}_{x_0} :
+	f(x) \in W\ \quad \forall x \in (A \setminus \{x_0\} ) \cap U_2
+\end{equation}
+Quindi avremo che:
+
+\begin{equation}
+	f(x) \in V \cap W\ \forall x \in ( A \setminus \{ x_0 \}) \cap (U_1 \cap
+	U_2)
+\end{equation}
+Questo é assurdo perchè $U_1 \cap U_2 \in \mcl{U}_{x_0}$ e 
+
+\begin{equation}
+	x_0 \in D(A) \iff (A \setminus \{ x_0 \} ) \cap ( U_1 \cap U_2 ) \neq
+	\varnothing
+\end{equation}
+e questo dimostra che $V \cap W \neq \varnothing$ che contraddice il fatto che
+$V \cap W = \varnothing$
 
 \end{dimo}
+
+
+\begin{defn}[Località del limite]
+Siano $ \acr, x_0 \in D(A)$ intendendo che $x_0 \in \ol{\R}$ e $f,g: A \to \R$
+e siano $f, g$ due funzioni con dominio l'insieme $A$.\\
+Se esiste $\tilde{W} \in \mcl{U}_{x_0}$:
+
+\begin{equation}
+	f(x) = g(x)\ \forall x \in \tilde{W} \cap (A \setminus \{ x_0 \})
+\end{equation}
+se esiste il $\limxo f(x)$, quindi esiste $\limxo g(x)$ e i due limiti coincidiono.
+\end{defn}
+
+
+\begin{esem}
+Prendiamo due funzioni $f, g: \R \to \R$ con:
+
+
+\begin{equation}
+	g(x) =
+	\begin{cases}
+		1 &\mbox{se} x \neq 0\\
+		0 &\mbox{se} x = 0
+	\end{cases}
+\end{equation}
+e 
+
+\begin{equation}
+	f(x) = 1
+\end{equation}
+Possiamo subito osservare che $f(x) \neq g(x)$ se e solo se $x = 0$ \\
+Inoltre il limite di:
+
+\begin{equation}
+	\lim \limits_{x \to 0} g(x) = 1 \qquad g(x) = 1 \ \forall x \in \R
+	\setminus \{0\}
+\end{equation}
+Infatti non è importante il valore della funzione in quello specifico punto ma
+il valore che assume \bt{nell'intorno} di quel punto.\\
+Abbiamo dimostrato quindi che $\limxo f(x) = \limxo g(x)$.
+\end{esem}
+\bt{il limite è unico e dipende solo da un intorno del punto in cui lo calcoliamo
+e non dal valore assoluto della funzione nel punto}.
+
+Il vaolre assoluto avrà un valore importante nella nozione di continuità.
+
+
+\begin{defn}[Restrizione di limiti]
+Sia $f: A \to \R$ e $B \subseteq A$ diremo che la sua restrizione per $B$ è:
+
+
+\begin{equation}
+	f_{|_B}: B \to \R \qquad f_{|_B}(x) = f(x)^{\forall x \in B}
+\end{equation}
+I punti della funzione ristretta in $B$ sono tutti i punti della funzione di
+di partenza restrigendo il Dominio da $A$ a $B$.\\
+Se esiste il limite di $\limxo f(x)$ allora esite anche il limite
+di $\limxo f_{|_B} (x)$ e questi due limiti coincidono:
+
+	\begin{equation}
+		\limxo f(x) = \limxo f_{|_B} (x)
+	\end{equation}
+\end{defn}
+
+
+\begin{defn}
+Se $A = \R \setminus \{ x_0 \}, \ B = ] x_0, +\infty [ $ oppure $B = ] -\infty
+, x_0[$ \bt{limite destro} e \bt{limite sinistro} di $f$ in $x_0$ si definiscono:
+
+
+\begin{equation}
+	\lim \limits_{x \to x_0^+} f(x) = \limxo f_{|_{]x_0, +\infty[}}(x) \qquad
+	\land \qquad
+	\lim \limits_{x \to x_0^-} f(x) = \limxo f_{|_{]-\infty, x_0[}}(x)
+\end{equation}
+\end{defn}
+Con $x_0^+$ intendiamo un numero poco più grande di $x_0$
+
+
+\begin{defn}
+La definizione di limite destro è:
+
+\begin{equation}
+	\forall \epsilon > 0\ \exists \delta > 0: ( x_0 < x < x_0 + \delta\
+	\Longrightarrow\ |f(x) - \lambda| < \epsilon)
+\end{equation}
+per il limite sinistro serve una sostituzione ovvero:
+
+\begin{equation}
+	x_0 - \delta < x < x_0
+\end{equation}
+\end{defn}
+Da quest'ultima definizione otteniamo che se $f(x)$ ha limite per $ \xtx$ allora 
+esiste il limite per $\xtx^+$ e per $\xtx^-$\\
+Serve a precisare anche che se i limiti destro e sinistro di una 
+funzione sono diversi fra loro in uno specifico punto $x_0$ allora
+il limite di $f(x)$ in $x_0$ non esiste
+
+
+\begin{defn}[Teorema del collegamento]
+Siano $\acr, x_0 \in D(A), \lambda, x_0 \in \ol{\R}, f: A \to \R$
+Abbiamo che:
+
+\begin{equation}
+	\limxo f(x) = \lambda \ \iff \lim \limits_{\nti} f(x_n) = \lambda\
+	\forall \{ x_n \}_{n \in \N} \subseteq A \setminus \{ x_0 \},\
+	x_n \underset{\nti}{\to} x_0
+\end{equation}
+Vuol dire che se abbiamo una funzione $f(x)$ con \bt{limite}, possiamo 
+"collegare" \bt{ogni} successione contenuta nel dominio e se usiamo 
+come immagine della funzione un qualsiasi valore della successione, avremo come
+limite di questa nuova funzione il limite iniziale.\\
+Questo teorema è fondamentale in quanto riconduce il limite di una funzione a 
+quello di una successione.
+\end{defn}
+
+\begin{Large}
+	\bt{IMPORTANTE:} il simbolo di $ \infty $ non preceduto da nessun segno non
+	ha nessun valore e non dobbiamo utilizzarlo nella risoluzione degli 
+	esercizi in quanto è un simbolo troppo \bt{impreciso e fuorviante}.
+\end{Large}
+
+
+\begin{defn}
+Il limite della somma di due limiti è la somma dei due limiti.\\
+Il limite del prodotto di due funzioni è il prodotto dei due limiti.\\
+Abbiamo vari casi a seconda del valore dei limiti:\\
+Poniamo $ \acr, f,g: A \to \R, x_0 \in D(A) \cap \ol{\R} $, allora:
+
+\begin{enumerate}[label*=\arabic*.]
+
+	\item	 
+	\begin{enumerate}[label=\Alph*.]
+	\item i limiti sono dei numeri reali:\\
+		
+		\begin{equation}
+		\begin{aligned}
+		f(x) \txtx &\lambda \in \R\\
+		g(x) \txtx &\mu \in \R\\
+			   &\Downarrow\\
+		\mbox{SOMMA:}\ f(x)+g(x) \txtx& \lambda+\mu\\
+		\mbox{PRODOTTO:}\ f(x)\cdot g(x) \txtx& \lambda \cdot \mu\\
+		\mbox{QUOZIENTE:}\ \frac{f(x)}{g(x)} \txtx& 
+		\frac{\lambda}{\mu} \qquad (\mu \neq 0; g(x) \neq 0)
+		\end{aligned}
+		\end{equation}
+	\item i limiti sono $ \pm \infty $\\
+		Se le due funzioni $f,g$ hanno segni concordi per $\xtx$, allora:\\ 
+		il limite della somma è $ \pm \infty $\\
+		il limite del prodotto è il prodotto dei limiti e il segno è 
+		definito dal prodotto dei segni.
+	\end{enumerate}
+
+\item Se $f(x) \txtx \pm \infty, f(x) \neq 0 $ in $A\setminus\{x_0\}$:
+		
+	\begin{equation}
+		\limxo \frac{1}{f(x)} = 0
+	\end{equation}
+	e viceversa:\\
+	Se $f(x) \txtx 0, f(x) > 0 $ in $A\setminus\{x_0\}$:
+
+	\begin{equation}
+		\limxo \frac{1}{f(x)} = \pm\infty
+	\end{equation}
+
+\item 
+	\begin{enumerate}[label=\Alph*.]
+	\item
+	Se $f(x) \leq g(x),\ \forall x \in A \setminus \{x_0\},\ 
+	\limxo f(x) = +\infty
+	$ allora questo implica che $\limxo g(x) = +\infty$
+	
+	\item
+	Se $f(x) \leq g(x),\ \forall x \in A \setminus \{x_0\},\ 
+	\limxo f(x) = -\infty
+	$ allora questo implica che $\limxo g(x) = -\infty$
+	\end{enumerate}
+
+\item $f(x) \txtx \lambda\ \implies |f(x)| \txtx |\lambda|$
+
+	\end{enumerate}
+
+
+\end{defn}
+
+
+\begin{defn}[2 carabinieri]
+	Poniamo $\acr, x_0 \in D(A)\cap\ol{\R};\ f,g,h: A \to \R.$
+	A è un sottoinsieme di $\R$, $x_0$ è un punto di accumulazione di A, e
+	$f,g,h$ sono delle funzioni con dominio A.\\
+	Se esiste un intorno $W \in \mathcal{U}_{x_0} $ tale che:
+
+	\begin{equation}
+		f(x) \leq h(x) \leq g(x)\ \forall x \in (A \setminus \{ x_0 \}\cap W
+	\end{equation}
+	allora è vero che:
+	\begin{equation}
+		\limxo f(x) = \limxo g(x) = \lambda \in \ol{\R} \ \implies
+		\ \limxo h(x) = \lambda
+	\end{equation}
+\end{defn}
+
+\begin{dimo}
+Per dimostrare questo teorema ci sono due casi differenti:
+
+\begin{enumerate}
+	\item $\lambda = \pm\infty$, la dimostrazione è banale in quanto basta 
+		rivedere i lemmi derivati dai prodotti e le somme dei limiti.
+	\item $\lambda \in \R$.\\
+		Definiamo una successione $\{x_n\}_{n \in \N} \subseteq A
+		\setminus \{x_0\},\ x_n \underset{\nti}{\to} x_0$ 
+		convergente in $x_0$.\\
+		Dal teorema del "collegamento" sappiamo che 
+
+		\begin{equation}
+			f(x_n) \underset{\nti}{\to} \lambda\ \&\
+			g(x_n) \underset{\nti}{\to} \lambda
+		\end{equation}
+		Sappiamo inoltre che esiste un indice $\ol{n}$ per il quale
+		$x_n \in (A \setminus \{ x_0 \}) \cap W;\ \forall n > \ol{n}$\\
+		Quindi è vero che:
+
+		\begin{equation}
+			f(x_n) \leq h(x_n) \leq g(x_n)\ \forall n > \ol{n}
+		\end{equation}
+		Dal Teorema dei 2 Carabinieri (per successioni) otteniamo che
+		$\lim \limits_{\nti} h(x_n) = \lambda$
+\end{enumerate}
+	
+\end{dimo}
+\begin{defn}[Cauchy]
+Poniamo $\acr, x_0 \in D(A) \cap \ol{\R}, f: A \to \R.$\\
+Allora sono equivalenti le seguenti:
+
+\begin{enumerate}
+	\item 
+	\begin{equation}
+		\exists \lambda \in \R: \limxo f(x) = \lambda
+	\end{equation}
+	\item 
+	\begin{equation}
+		\forall \epsilon > 0 \exists W \in \mathcal{U}_{x_0}:\
+		\forall x,y \in A \setminus \{ x_0 \}\
+		(x,y \in W \implies | f(x) - f(y)| < \epsilon
+	\end{equation}
+\end{enumerate}
+\end{defn}
+Questo teorema afferma che quando una funzione converge al proprio limite, esiste
+un numero positivo ($\epsilon$) tale per cui esiste un intorno ($W$) per cui 
+la differenza del modulo di due termini arbitrari ($x,y$) sono minori
+di qualsiasi numero positivo ($\epsilon$) noi scegliamo.
+\begin{dimo}
+
+\begin{enumerate}
+	\item $1 \implies 2$\\
+	\begin{equation}
+		\forall \epsilon > 0 \exists W \in \mathcal{U}_{x_0}:
+		| f(x) - \lambda | < \frac{\epsilon}{2}\
+		\forall x \in W \cap (A \setminus \{ x_0 \}
+	\end{equation}
+	Allora utilizzando un'applicazione della disuguaglianza triangolare:
+
+	\begin{equation}
+		| f(x) - f(y) | \leq | f(x) - \lambda + \lambda | \leq
+		| f(x) - \lambda | + | \lambda - f(y) < \cancel{2} 
+		\frac{\epsilon}{\cancel{2}} = \epsilon 
+	\end{equation}
+	
+	\item $ 2 \implies 1 $\\
+	Sia $ \{ x_n \} $ una successione convergente (e quindi di Cauchy)
+	$ x_n \underset{\nti}{\to}
+	x_0$, dalle nostre ipotesi sappiamo che:
+	\begin{equation}
+		\forall \epsilon > 0 \exists W \in \mathcal{U}_{x_0}:\
+		\forall x,y \in A \setminus \{ x_0 \}\
+		(x,y \in W \implies | f(x) - f(y)| < \epsilon
+	\end{equation}
+	Dato che la successione è convergente dai teoremi sulle successioni
+	possiamo dedurre che esiste un indice $\ol{n}$ per il quale 
+	$n,m > \ol{n}$ il che implica che:
+
+	\begin{equation}
+		| f(x_n) - f(x_m) | < \epsilon\ \forall n,m > \ol{n}
+	\end{equation}
+	Quindi la successione $ \{ f(x_n) \}_{n \in \N} $ è di Cauchy e 
+	dall'assioma di completezza sappiamo anche che:
+
+	\begin{equation}
+		\exists \lambda \in \R :
+		\lim \limits_{\nti} f(x_n) = \lambda
+	\end{equation}
+	Ovvero che esiste un numero reale che è il limite di questa successione.\\
+	Per dimostrare che questa condizione è valida \bt{per ogni} successione
+	convergente a $x_0$.\\
+	Consideriamo un'altra successione $ \{ y_n \} \subseteq A \setminus 
+	\{ x_0 \},\ y_n \underset{\nti}{\to} x_0 $. Allora 
+	deve esistere un indice $\ol{\ol{n}} \in \N$ per cui ogni indice 
+	maggiore di esso "cade" nell'intervallo $W$, ovvero:
+
+	\begin{equation}
+		n > \ol{\ol{n}}\ \implies y_n \in W \cap (A \setminus \{x_0\})
+	\end{equation}
+	Se allora consideriamo un indice $n$ tale che esso sia maggiore del
+	massimo dei due altri indici implica che le due successioni si trovano
+	all'interno dell'intervallo $W$:
+
+	\begin{equation}
+		n > max\{ \ol{n}, \ol{\ol{n}} \} \implies
+		x_n, y_n \in (A \setminus \{ x_0 \} ) \cap W
+	\end{equation}
+	Dalla prima dimostrazione sappiamo che la differenza del modulo delle 
+	due funzioni è più piccola di un numero arbitrariamente piccolo ($\epsilon$)
+
+	Perciò:
+
+	\begin{equation}
+		\lim \limits_{\nti} ( f (x_n) - f(y_n) ) = 0
+	\end{equation}
+	Ma dato che il limite di $f(x_n)$ è $\lambda$ allora esso sarà
+	il limite anche della funzione dell'altra successione:
+
+	\begin{equation}
+		\lim \limits_{\nti} f(y_n) = \lambda
+	\end{equation}
+	Questo è valido per qualsiasi arbitraria funzione $\{y_n\}$
+\end{enumerate}
+\end{dimo}
+
+
+\subsection{Limiti di funzioni monotone}%
+\label{sub:limiti_di_funzioni_monotone}
+
+
+
+\begin{defn}
+Poniamo $A \neq \varnothing, f: A \to \R$\\.
+Si dice una funzione \bt{superiormente limitata} se è superiormente
+limitato l'insieme $f(A)$.\\
+Si dice una funzione \bt{inferiormente limitata} se è inferiormente
+limitato l'insieme $f(A)$.\\
+Più semplicemente diremo che esiste una costante ($M$) sempre maggiore (o minore)
+dei valori della funzione nel suo dominio:
+
+\begin{equation}
+	\exists M \in \R: f(x) \geq M,\ \forall x \in A
+\end{equation}
+
+\begin{equation}
+	\exists M \in \R: f(x) \leq M,\ \forall x \in A
+\end{equation}
+Si dice che una funzione è limitata se essa è minore del modulo di una costante
+(M):
+
+\begin{equation}
+	\exists M \in \R: f(x) \leq |M|,\ \forall x \in A
+\end{equation}
+
+
+\end{defn}
+
+
+
+
+
 
 \end{document}
