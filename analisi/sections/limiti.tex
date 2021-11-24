@@ -620,4 +620,379 @@ con le disuguaglianze invertite.
 \end{equation}
 Con $x_0$ di solito ci si riferisce al punto di massimo della funzione.
 
+\begin{defn}
+Poniamo $\acr, f: A \to \R, f \nearrow$, allora è vero che:
+
+\begin{enumerate}
+	\item $x_0 \in D(A \cap ] x_0, +\infty[)\ \implies\
+		\lim \limits_{\xtx^+} f(x)$\\
+		se $x_0$ è un punto di accumulazione dell'insieme formato dal suo
+		dominio intersecato con $]x_0,+\infty[$, esiste
+		il limite destro di questo punto.
+	\item $x_0 \in D(A \cap ] -\infty, x_0[)\ \implies\
+		\lim \limits_{\xtx^-} f(x)$\\
+		se $x_0$ è un punto di accumulazione dell'insieme formato dal suo
+		dominio intersecato con $]-\infty, x_0[$, esiste
+		il limite sinistro di questo punto.
+
+\end{enumerate}
+\end{defn}
+
+\subsection{Funzioni Continue}%
+\label{sub:funzioni_continue}
+
+
+\begin{defn}[Continuità]
+Un modo pratico per definire la continuità di una funzione è quello di pensare di
+dover disegnare il grafico della funzione, se non si è mai staccata la penna 
+dal foglio, allora la funzione sarà continua.\\
+Definiamo $\acr, f: A \to \R, x_0 \in A$.\\
+Una funzione si definisce \bt{continua} in $x_0$ se:
+
+\begin{equation}
+	\forall V \in \mathcal{U}_{f(x_0)} \exists W \in \mathcal{U}_{x_0}:\
+	\forall x \in A ( x \in W \Longrightarrow f(x) \in V)
+\end{equation}
+Questa definizione è molto simile alla definzione di limite, in questa circostanza
+però il punto $x_0$ è incluso.
+\end{defn}
+
+
+La notazione di continuità:
+\begin{equation}
+	f \in C(A,\R) = \{ f: A \to \R: f \text{continua} \}
+\end{equation}
+Inoltre una funzione continua è composta da due punti diversi:
+
+\begin{enumerate}
+	\item Se $x_0$ è un punto isolato:\\
+		$x_0 \notin D(A)$, implica che la funzione è continua in $x_0$
+		quale che sia la funzione.\\
+
+		\begin{equation}
+			x_0 \notin D(A) \Longrightarrow \exists W \in
+			\mathcal{U}_{x_0} : A \cap W = \{ x_0 \}
+		\end{equation}
+		Se $x_0$ è un punto isolato (quindi non un punto di accumulazione)
+		esiste un intorno nella famiglia degli intorni di $x_0$. Se 
+		interesechiamo l'intorno scelto con il dominio, otterremo 
+		esattamente $x_0$.\\
+		\begin{equation}
+			\begin{aligned}
+			\forall V \in \mathcal{U}_{f(x_0}) &\Longrightarrow
+			f(x) \in V,\ \in A \cap W\\
+			x \in A \cap W &\iff x = x_0
+			\end{aligned}
+		\end{equation}
+		Ogni intorno dell'immagine di $x_0$, ogni immagine di $x$ si 
+		trova in questo intorno: se $x \in A\cap W$
+	\item Se $x_0$ è un punto di accumulazione:\\
+		Allora $f$ è continua in $x_0$ se e solo se
+		$\limxo f(x) = f(x_0)$
+\end{enumerate}
+Dei teoremi che derivano da questa definzione:
+Se $\acr,\ f,g \in C(A)$:
+\begin{itemize}
+	\item $f+g \in C(A)$;
+	\item $f \cdot g \in C(A)$;
+	\item se $g \neq 0$ in $A$, allora $\frac{f}{g} \in C(A)$ 
+	\item $ | f | \in C (A)$
+\end{itemize}
+
+\begin{defn}[Continuità e successioni]
+Siano $\acr, x_0 \in A, f: A \to \R$.
+
+\begin{equation}
+	f \in C(A)\ \iff\ \forall \{ x_n \}_{n \in \N} \subseteq
+	A, x_n \underset{\nti}{x_0};\ \lim \limits_{\nti} f(x_n) = f(x_0)
+\end{equation}
+Se abbiamo una funzione continua in un certo dominio, questo è valido se 
+e solo se per ogni \bt{successione} contenuta in questo dominio converge a
+$x_0$ e il limite dell'immagine di questa successione è l'immagine del punto
+di convergenza.
+\end{defn}
+
+\begin{dimo}
+Per dimostrare partendo dalla definzione di continuità:
+\begin{equation}
+	\forall V \in \mathcal{U}_{f(x_0)} \exists W \in \mathcal{U}_{x_0}:\
+	\forall x \in A ( x \in W \Longrightarrow f(x) \in V)
+\end{equation}
+Sappiamo anche che per una successione convergente esiste un indice $\ol{n} \in \N$
+tale che $x_n \in W, n > \ol{n}\ \Longrightarrow x_n \in A \implies x_n \in W 
+\cap A\ (n > \ol{n}$
+
+
+\begin{equation}
+	\forall V \in \mathcal{U}_{f(x_0)} \exists \ol{n} \in \N:\
+	\forall n( n > \ol{n} \Longrightarrow f(x) \in V)
+\end{equation}
+Ma questo vuol dire che il limite dell'immagine della successione è l'immagine del
+punto di convergenza.
+
+\begin{equation}
+	\lim \limits_{\nti} f(x_n) = f(x_0)
+\end{equation}
+\end{dimo}
+
+
+\begin{dimo}
+Dimostriamo la continuità partendo dalla nozione per cui ogni successione
+convergente in un punto $x_0$ di $A$ il limite dell'immagine della successione
+è l'immagine del punto di convergenza:\\
+Per assurdo \Lightning pensiamo che la funzione sia \bt{non} continua:\\
+(Neghiamo la definizione di continuità)
+
+\begin{equation}
+	\exists V \in \mathcal{U}_{fx_0)}: \forall W \in \mathcal{U}_{x_0}
+	\ \exists x \in A \cap W\ \&\ f(x) \notin V
+\end{equation}
+Si può riscrivere come:
+
+\begin{equation}
+	\forall n \in \N,\ \exists x_n \in A \cap \left] x_0 - \frac{1}{n},
+	x_0 + \frac{1}{n} \right[\ \& f(x_n) \notin V
+\end{equation}
+La successione allora è contenuta in $A, x_n \to x_0$, dato che per ogni 
+$n \in \N$:
+
+\begin{equation}
+	x_0 - \frac{1}{n} < x_n < x_0 + \frac{1}{n}  
+\end{equation}
+Per ipotesi abbiamo posto che l'immagine della successione non si trova nell'intorno
+$V$ ma allo stesso tempo è nell'intorno il che è assurdo.
+
+\begin{equation}
+	f(x_n) \notin V ; f(x_n) \in V \text{\Lightning}
+\end{equation}
+\end{dimo}
+
+
+
+\begin{defn}[Teorema di Weierstrass]
+Sia $\acr$ un insieme compatto, ovvero un insieme chiuso e limitato, se $f \in C(A)$
+Allora la funzione ha \bt{massimo} e \bt{minimo}
+\end{defn}
+
+\begin{dimo}
+Sia $A \neq \varnothing, f: A \to \R$:
+
+\begin{itemize}
+	\item $\exists \{a_n\}_{n \in \N} \subseteq A: \lim
+		\limits_{\nti} f(a_n) = \underset{A}{sup} f $
+	\item $\exists \{b_n\}_{n \in \N} \subseteq A: \lim
+		\limits_{\nti} f(b_n) = \underset{A}{inf} f $
+
+\end{itemize}
+Dimostriamo l'esistenza del massimo $max_A f$.\\
+Sappiamo che esiste una successione che tende al $sup$ della funzione.
+
+\begin{equation}
+	\exists \{x_n\}_{n \in \N} \subseteq A\ :\ \lim \limits_{\nti} f(x) =
+	sup_A f
+\end{equation}
+Dato che l'insieme in cui la successione è contenuta possiamo estrarre una 
+sottosuccessione $ \{ x_{k_n} \}$ che converge in un certo punto $x_0$.\\
+Allo stesso tempo per la continuità della funzione che l'immagine della 
+sottosuccessione converge all'immagine del punto in cui converge 
+
+\begin{equation}
+	\lim \limits_{\nti} f (x_{k_n}) = f (x_0)
+\end{equation}
+Dai teoremi sulle successioni sappiamo che se una successione converge
+in un certo punto anche \bt{ogni} sua sottosuccessione convergerà a 
+quel punto. Quindi:
+
+\begin{equation}
+	\lim \limits_{\nti} f(x_{k_n}) = \underset{A}{sup} f
+\end{equation}
+Per il teorema dell'unicità del limite allora 
+
+\begin{equation}
+	f(x_0) = \underset{A}{sup} f\ \implies\ 
+	f(x_0) = \underset{A}{max} f
+\end{equation}
+\end{dimo}
+
+\begin{defn}[Teorema di Bolzano]
+Presupponiamo come ipotesi che:\\
+$a,b \in \R, a < b$ e $f$ sia continua in questo intervallo, $f \in C([a,b])$, 
+tale che $f(a) \cdot f(b) \leq 0$.\\
+Ipotizziamo che esista $ x_0 \in [a,b]: f(x_0) = 0$
+\end{defn}
+
+\begin{dimo}
+La dimostrazione di questo teorema si basa sul dividere la funzione a metà 
+(trovandone il punto medio $ \frac{a+b}{2} = c$ ).\\
+In questo punto ci sono 3 scenari possibili:
+
+\begin{enumerate}
+	\item $c = 0$, il punto medio è = 0, non abbiamo bisogno di procedere
+	\item la prima metà è = 0, quindi iteriamo il procedimento con questa
+		parte della funzione.
+	\item la seconda metà della funzione è = 0, iteriamo il procedimento.
+\end{enumerate}
+Iterando questo procedimento, per un certo indice $n \in \N$ otterremo che:
+
+\begin{enumerate}
+	\item  $f(c_n) = 0$, troviamo un certo punto medio uguale a 0;
+	\item otteniamo 2 successioni, $\{ a_n \}, \{ b_n \} \subseteq
+		[a,b]$ :
+
+		\begin{equation}
+			a_n \leq a_{n+1} \leq b_{n+1} \leq b_n, \quad
+			f(a_n) \cdot f(b_n) \leq 0
+		\end{equation}
+
+		\begin{equation}
+			b_n - a_n = \frac{b - a}{2^n}, \forall n \in \N 
+		\end{equation}
+		e il limite di queste due successioni è lo stesso
+
+		\begin{equation}
+			\lim \limits_{\nti} b_n = 
+			\lim \limits_{\nti} a_n = x_0 \in [a,b]
+		\end{equation}
+		Per la continuità della funzione, presupposta nell'ipotesi,
+	
+		\begin{equation}
+			\begin{aligned}
+			\lim \limits_{\nti} f (a_n) \cdot f(b_n) &= (f(x_0)^2)\\
+			f^2 (x_0) \leq 0 \Longleftarrow
+			&f(a_n) \cdot f(b_n) \leq 0\ \forall n \in \N\\
+			f(x_0) &=0
+			\end{aligned}
+		\end{equation}
+\end{enumerate}
+\end{dimo}
+
+\begin{defn}[Teorema dei valori intermedi]
+Una conseguenza del teorema di Blzano è il teorema dei valori intermedi:\\
+Se $f: I \to \R, f \in C(I)$, allora $f(I)$ è un intervallo. Vale a dire che 
+se abbiamo una funzione continua in un certo intervallo, l'immagine di questo
+intervallo è un intervallo.\\
+Sia $ I \subseteq R, f\in C(I), f$ non costante (altrimenti sarebbe banale).
+
+\begin{equation}
+	\begin{aligned}
+		\forall x_1, x_2 \in I &: f(x_1) < f(x_2)\\
+		\forall y \in ]f(x_1), f(x_2)[\ &\exists x \in I : f(x) = y
+	\end{aligned}
+\end{equation}
+\end{defn}
+
+\begin{dimo}
+	Sappiamo che $ x_1 \neq x_2 $, allora poniamo $ x_1 < x_2 $, (ciò potrebbe
+	essere invertito senza nessun problema).\\
+	Definiamo una funzione $g$ che ha come dominio l'intervallo chiuso
+	definito dalle due variabili prima definite:
+
+	\begin{equation}
+		g: [ x_1, x_2 ] \to \R, g(x) = f(x) - y\ 
+		\implies\ g \in C([x_1, x_2])
+	\end{equation}
+	Definiamo la funzione $g$ nell'intervallo chiuso $ [x_1, x_2] $, questa
+	funzione sarà uguale alla funzione di partenza $f$ se gli sottraiamo
+	una costante $y$, che è un punto intermedio fra i due punti di partenza.
+
+	\begin{equation}
+		f(x_1) < f(x_0) = y < f(x_2)
+	\end{equation}
+	Come conseguenza del teorema di Bolzano, esiste un punto della funzione 
+	$x_0 \in [x_1, x_2]$ tale che la funzione si annulli. $g(x_0) = 0 $ 
+
+\end{dimo}
+Se $f: I \to \R, f \in C(I) \implies f(I)$ è un intervallo e: 
+
+\begin{enumerate}
+	\item $f(I) = ]inf_I f,\ sup_I f[$ se $f$ non ha nè $max$ nè $min$
+	\item $f(I) = ]inf_I f,\ max_I f[$ se $f$ ha $max$ e non ha $min$
+	\item $f(I) = ]min_I f,\ sup_I f[$ se $f$ non ha $max$ ma ha $min$
+	\item $f(I) = ]min_I f,\ max_I f[$ se $f$ ha $max$ e $min$
+\end{enumerate}
+Possiamo osservare che se abbiamo un intervallo $I \subseteq \R$:
+
+\begin{itemize}
+	\item Se $f \in C(I)$ e iniettiva, allora la funzione è \bt{monotona}
+	\item Se $f$ è monotonae $f(I)$ è un intervallo allora la funzione è
+		continua $ f \in C(I) $
+\end{itemize}
+Un teorema che ne deriva è:\\
+Se abbiamo una funzione continua in un certo intervallo $f \in C(I), I \subseteq \R$
+e la funzione è iniettiva, poniamo $J = f(I)$:
+
+\begin{itemize}
+	\item $J$ è un intervallo e $ f: I \to J $ è sia suriettiva che iniettiva
+	\item L'inversa della funzione è continua nell'intervallo $J$:\\
+		$ f^{-1} \in C(J)$
+\end{itemize}
+
+
+\subsection{Uniforme Continuità}%
+\label{sub:uniforme_continuita}
+Siano: $\acr, f: A \to \R$, si dice che una funzione è \bt{uniformemente continua}
+su $A$, se:
+
+\begin{equation}
+	\forall \epsilon > 0,\ \exists \delta > 0: \forall x,y \in A
+	(|x - y | ) < \delta \Longrightarrow | f(x) - f(y) | < \epsilon
+\end{equation}
+Si può leggere come: qualsiasi numero reale positivo noi scegliamo ($\epsilon$), 
+per quantopiccolo esso sia, esiste un altro numero reale positivo ($\delta$), tale 
+per cui, qualsiasi due elementi di una fuznione ($x,y$), la loro differenza sarà
+\bt{sempre} minore di $\delta$, e ciò implica che la differenza delle immagini
+di questi di punti sia minore di $\epsilon$, questa è la condizione di \bt{
+uniforme continuità}\\
+{\Large Notiamo che la continuità non implica l'uniforme continuità, invece
+l'uniforme continuità implica la continuità.}
+
+
+\begin{defn}[Heine-Cantor]
+Sia $\acr$ un insieme compatto, poniamo una funzione $f \in C(A)$ continua, allora 
+questo implica che è anche uniformemente continua.\\
+Più semplicemente, una funzione continua in un insieme compatto è uniformemente 
+continua.
+\end{defn}
+
+\begin{dimo}[Facoltativa]
+Ipotizziamo per assurdo \Lightning che la funzione non sia uniformemente continua:
+
+
+\begin{equation}
+	\exists \epsilon > 0:\ \forall \delta > 0\ \exists x,y \in A:\
+	| x - y | < \delta\ \& | f(x) - f(y) | \geq \epsilon
+\end{equation}
+Traducendo in termini di successioni (in particolare in una successione convergente
+per $x_0$) sostituiamo $\delta$ con un certo indice $n$ della successione.
+
+\begin{equation}
+	\forall n,\ \exists x_n, y_n \in A: | x_n - y_n | < \frac{1}{n}\ \&\
+	| f (x_n) - f(y_n) \geq \epsilon
+\end{equation}
+Sapendo che il dominio della funzione è un insieme compatto (ovvero chiuso e
+limitato), possiamo estrarre una sotto-successione $\{x_{k_n} \}$ che converge
+ad un punto $x_0 \in A $
+
+\begin{equation}
+	| x_{k_n} - y_{k_n} | < \frac{1}{k_n}\ \forall n \in \N
+\end{equation}
+Questo implica che anche $y_{k_n}$ converge a $x_0$\\
+Inoltre possiamo dedurre dalla nozione di continuità che:
+
+\begin{equation}
+	\lim \limits_{\nti} ( f(x_{k_n} ) - f(y_{k_n}) ) = f(x_0) - f(x_0) = 0
+\end{equation}
+Questo fatto è assurdo poichè per ipotesi avevamo posto che: 
+
+\begin{equation}
+	| f(x_{k_n} - f(y_{k_n}) | \geq \epsilon > 0\ \forall n \in \N 
+\end{equation}
+
+
+\end{dimo}
+
+\begin{center}
+	\LARGE FINE PARTE DI TEORIA
+\end{center}
 \end{document}
+
