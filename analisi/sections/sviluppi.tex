@@ -1,0 +1,30 @@
+\documentclass[../analisi.tex]{subfiles}
+
+\begin{document}
+
+\section{Sviluppi Asintotici}%
+\label{sec:sviluppi_asintotici}
+Questi sviluppi saranno utili per la risoluzione di alcuni problemi, 
+approssimando delle funzioni a dei polinomi più o meno precisi.\\
+
+\begin{center}
+	\begin{TAB}(r,1cm,2cm)[5pt]{|c|c|c|}{|c|c|c|c|c|c|c|c|c|c|}
+		$f(x)$ & sviluppo $ ( x \to 0 ) $ & formula generale\\
+	$ e^x $ 	& $ 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + o(x^3)$ &
+	$ \frac{x^n}{n!}\ n \geq 0, \forall n \in \N$ \\ 
+	$ \log (1 + x) $ & $x - \frac{x^2}{2} + \frac{x^3}{3} + o(x^3)$ &
+	$ \frac{x^n}{n}\ n>0, \forall n \in \N$ \\
+	$ \sin (x) $ & $ x - \frac{x^3}{6} + o(x^3)$ & \\
+	$ \sinh (x) $ & $ x + \frac{x^3}{6} + o(x^3)$ & \\
+	$ \cos (x) $ & $ 1 - \frac{x^2}{2} + \frac{x^4}{24} + o(x^4) $ & \\
+	$ \cosh (x) $ & $ 1 + \frac{x^2}{2} + \frac{x^4}{24} + o(x^4) $ & \\
+	$ \tan (x) $ & $ x + \frac{x^3}{3} + o(x^3) $ & \\
+	$ \arctan (x) $ & $ x - \frac{x^3}{3} + o(x^3) $ & \\
+	$ ( 1 + x )^a $ & $ 1 + ax + \frac{a \cdot (a - 1)}{2} \cdot x^2 + o(x^2)
+	$ & \\
+\end{TAB}
+\end{center}
+
+
+
+\end{document}
