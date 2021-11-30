@@ -1,12 +1,180 @@
 \documentclass[../analisi.tex]{subfiles}
 
 \begin{document}
+
+
+\section{Derivate}%
+\label{sec:derivate}
+
+\subsection{Rapporto incrementale e derivate}%
+\label{sub:rapporto_incrementale_e_derivate}
 Per poter  comprendere le derivate è essenziale comprendere il concetto di 
 \bt{rapporto incrementale}\\
 
 \begin{defn}[Rapporto Incrementale]
-Premettiamo: $ \acr,\ f: A \to \R,\ x_0 \in A \cap D(A)$
-	
+Premettiamo: $ \acr,\ f: A \to \R,\ x_0 \in A \cap D(A)$\\
+$ x_0$ è un punto di accumulazione, non isolato e $f$ una funzione con dominio
+$A$ e codominio $\R$.\\
+
+\begin{equation}
+	R_f ( x_0 ): A \setminus \{ x_0 \} \to \R, \quad 
+	R_f ( x_0 ) (x) = \frac{f(x) - f(x_0) }{x - x_0} 
+\end{equation}
+Una funzione si dice \bt{derivabile} in $x_0$ se esiste il limite, ed è finito:
+
+\begin{equation}
+	\limxo R_f ( x_0 ): A \setminus \{ x_0 \} \to \R, =
+	\limxo R_f ( x_0 ) (x) = \frac{f(x) - f(x_0) }{x - x_0} 
+\end{equation}
+Il limito che abbiamo appena definito si chiama \bt{derivata} di $f$ in $x_0$
+\begin{equation}
+	f'( x_0 ) =
+	\limxo R_f ( x_0 ) (x) = \frac{f(x) - f(x_0) }{x - x_0},\
+	f'(x_0) \in \R
+\end{equation}
+\end{defn} 
+Se il limite, del rapporto incrementale, non appartiene ai numeri reali ed è 
+$\pm \infty$, allora la funzione è derivabile in senso esteso.\\
+Il limite del rapporto incrementale si può riscrivere come:
+
+\begin{equation}
+	\lim_{h \to 0} \frac{f(x_0 + h ) - f(x_0) }{h} \qquad (h = x - x_0)
+\end{equation}
+
+\begin{defn}
+	Se una funzione $f$ è derivabile in un punmto $x_0$ allora:
+
+	\begin{equation}
+		\exists \lambda \in \R, \exists \omega : A \to \R\
+		\omega (x) \to \omega (x_0)  = 0 | \xtx
+	\end{equation}
+	Allora:
+
+	\begin{equation}
+		\begin{aligned}
+		f(x) =& f(x_0) + \lambda \cdot ( x - x_0 ) + \omega (x) (x-x_0)\ 
+		\forall x \in A\\
+		\lambda = &\frac{f(x) - f(x_0)}{x - x_0} \qquad w(x) 
+		\text{è infinitesima (=0)}\\
+		\lambda = & f'( x_0 )
+		\end{aligned}
+	\end{equation}
 \end{defn}
+
+
+\begin{defn}
+Premettiamo: $ \acr,\ f: A \to \R,\ x_0 \in A \cap D(A)$\\
+$ x_0$ è un punto di accumulazione, non isolato e $f$ una funzione con dominio
+$A$ e codominio $\R$.\\
+Se $f$ è derivabile in $x_0$ allora $f$ è continua in $x_0$.\\
+Questa nozione è dimostrabile sapendo che: $\limxo f(x) = f(x_0) $, e la tesi 
+viene provata dal fatto che $x_0$ è un punto di accumulazione del suo dominio $A$.
+\end{defn}
+
+\begin{esem}
+Non è vero l'opposto di quanto abbiamo appena affermato: esistono infatti funzioni
+continue non derivabili, come per esempio la funzione \bt{modulo}:
+
+\begin{equation}
+	f(x) = | x |
+\end{equation}
+\end{esem}
+
+\begin{dimo}
+	Lo si può facilmente dimostrare per il limite destro e sinistro in 0:
+
+	\begin{equation}
+		\nexists \limxo | x | :
+		\begin{cases}
+			\lim_{\xtx^+} |x|, & 1\\
+			\lim_{\xtx^-} |x|, & -1
+		\end{cases}
+	\end{equation}
+	Dato che i due limiti non coincidiono il limite, nel punto $x_0$ non esiste.
+\end{dimo}
+
+\begin{esem}
+	La derivata di $ f'(e^x) = e^x$
+\end{esem}
+Alcune proprietà delle derivate:
+
+\begin{itemize}
+	\item La somma delle derivate è la derivata della somma, ed è derivabile
+		in $x_0$:
+	
+		\begin{equation}
+			(f+g)'(x_0) = f'(x_0) + g'(x_0)
+		\end{equation}
+	\item La regola di Leibniz: ($f\cdot g$ è derivabile in $x_0$)
+
+		\begin{equation}
+			(f \cdot g)'(x_0)= f'(x_0)g(x_0) +
+					   f(x_0)g'(x_0)
+		\end{equation}
+	\item La derivata del quoziente (ponendo $g(x_0) \neq 0$),
+		$\frac{f}{g}$ è derivabile in $x_0$;
+
+		\begin{equation}
+			\left( \frac{f}{g} \right)' (x_0) =
+			\frac{f' (x_0) g(x_0) - f(x_0) g' (x_0)}{g^2 (x_0)} 
+		\end{equation}
+	\item La derivata della composta è:\\
+		Prendiamo due funzioni tali che:\\
+		$A,B \subseteq \R, f: A \to \R, g: B \to \R, f(A) \subseteq B;\
+		x_0 \in A \cap D(A), f$ derivabile in $x_0,\ f(x_0) \in D(B), g$
+		derivabile in $f(x_0)$:
+
+		\begin{equation}
+			(g \circ f)' (x_0) = g' (f(x_0)) \cdot f' (x_0)
+		\end{equation}
+	\item L'inversa della derivata è la complementare della derivata:
+
+		\begin{equation}
+			\left( f^{-1} \right)' (y_0) = \frac{1}{f'(x_0)} 
+		\end{equation}
+\end{itemize}
+
+\begin{defn}[Estremanti massimo, minimi e relativi]
+	Sia $\acr, f: A \to \R$ derivabile, sia $x_0 \in \dot{A}$ ( che vuol dire 
+	che esiste un intorno di $x_0$ tutto dentro a ad $A$).\\
+	Se $x_0$ è un punto \bt{estremante relativo} (min o max realtivo) allora 
+	$f'(x_0) = 0$
+\end{defn}
+
+\begin{dimo}
+	Prendiamo come esempio $x_0$ max relativo, allora sarà vero:
+
+	\begin{equation}
+		\exists \rho > 0: f(x)- f(x_0) \leq 0\ \forall x \in ] 
+			x_0 - \rho, x_0 + \rho [
+	\end{equation}
+	Sapendo che $x_0$ è tutto interno, supponiamo che sia tutto incluso
+	in $A$:
+
+	\begin{equation*}
+		\frac{f(x)-f(x_0)}{x - x_0} \leq 0\ \forall x \in 
+		] x_0, x_0 + h [
+	\end{equation*}
+
+	\begin{equation*}
+		\frac{f(x)-f(x_0)}{x - x_0} \geq 0\ \forall x \in 
+		] x_0 - h, x_0 [
+	\end{equation*}
+	Dalla derivabilità della funzione possiamo capire che:
+
+	\begin{equation}
+		\begin{cases}
+			f'(x_0)= \lim_{x \to x_0^+} \frac{f(x) - f(x_0)}{x - x_0}
+				\leq 0\\
+			f'(x_0)= \lim_{x \to x_0^-} \frac{f(x) - f(x_0)}{x - x_0}
+				\geq 0\\
+		\end{cases}
+	\end{equation}
+	Quindi $f'(x_0)$ deve essere uguale a $0$   
+\end{dimo}
+
+\input{dertab.tex}
+
+
 \end{document}
 
