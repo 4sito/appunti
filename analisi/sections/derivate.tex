@@ -173,8 +173,187 @@ Alcune proprietà delle derivate:
 	Quindi $f'(x_0)$ deve essere uguale a $0$   
 \end{dimo}
 
+\subsection{Teoremi Fondamentali delle derivate}%
+\label{sub:teoremi_fondamentali_delle_derivate}
+
+\begin{defn}[Rolle]
+Prendiamo due numeri naturali, di cui uno strettamente maggiore dell'altro: 
+$ a,b \in \R; a < b $ e una funzione continua nell'intervallo formato da questi 
+due numeri: $ f \in C ( [a,b] )  $, e questa funzione è derivabile nell'insieme
+formato dai due numeri, estremi esclusi: $ ] a,b [ $ Se l'immagine del primo 
+elemento è uguale a quella dell'altro $ f ( a ) = f ( b )  $ allora 
+è vero che:
+
+\begin{equation}
+	\exists c \in ]a,b[: f'( c ) = 0	
+\end{equation}
+Esiste un elemento all'interno dell'intervallo formato dai due punti, la cui
+derivata è uguale a 0.
+\end{defn}
+
+\begin{dimo}
+	La dimostrazione di questo teorema deriva dal fatto che:\\
+	essendo la funzione limitata, applicando il teorema di Weierstrass
+	sappiamo che esistono due punti della funzione $ x_1, x_2 \in [ a,b ] $
+	che sono punti di $ min, max $ assoluti nell'intervallo.\\
+	Quindi, o le due immagini sono uguali, se e solo se
+	sono i due estremi $ x_1, x_2 \in { a,b } $:
+
+	\begin{equation}
+		f ( x_1 ) = min f,\ f ( x_2 ) = max f \Longrightarrow
+		f ( x_1 ) = f ( x_2 ) 
+	\end{equation}
+	La funzione è costante e quindi la derivata di un qualsiasi punto:
+
+	\begin{equation}
+		f'(c) = 0 \forall c \in ]a,b[
+	\end{equation}
+	Se invece uno dei punti è all'interno dell'intervallo
+	$ x_1 \in ]a,b[ $, abbiamo prima dimostrato che se un elemento 
+	ha un intorno tutto all'interno di un intervallo ed esso
+	è $ min,max $ relativo la sua derivata è 0
+
+\end{dimo}
+
+\begin{defn}[Valor medio o Lagrange]
+Siano $ a,b \in \R, a < b, f: [ a,b ]  \to \R, f \in C ( [ a,b ]  ), f  $ derivabile
+all'interno dell'intervallo dei due punti $ ]a,b[ $, allora:
+
+\begin{equation}
+	\exists c \in ]a,b[ : \frac{f ( b ) - f ( a ) }{b-a} = f' ( c )  
+\end{equation}
+
+\end{defn}
+
+%Lagrange dimostrazione da capire
+\begin{dimo}
+	Consideriamo una funzione $ g (x): [a,b] \to \R,\ g(x) = f ( x ) -
+	\frac{f ( b ) - f ( a ) }{b - a} \cdot ( x - a )  $.\\
+	Sostituendo la variabile $ x $ con $ a \lor b $, otteniamo 
+
+	\begin{equation}
+		g(a) = f ( a ) = f(a) - \frac{f ( b ) - f ( a ) }{b - a} \cdot 
+		( \underset{0}{\cancel{a - a}} ) 
+	\end{equation}
+	Inoltre:
+
+	\begin{equation}
+		g(b) = f(b) - \frac{f ( b ) - f ( a ) }{ \cancel{b - a}} 
+		\cdot  ( \cancel{b - a} )
+		= \cancel{ f ( b ) - f ( b )} + f ( a ) = f ( a )  
+	\end{equation}
+	Quindi logicamente
+
+	\begin{equation}
+		g (a) = f(a),\ g(b) = f ( a )\quad \implies g(a) = g(b)
+	\end{equation}
+	Un'altra nozione che abbiamo premesso è che la funzione è continua in 
+	$ [ a,b ]  $ e derivabile in $ ]a,b[ $, dalle conclusioni del 
+	teorema di Rolle:
+
+	\begin{equation}
+		\exists c \in ]a,b[: g'(c) = 0		
+	\end{equation}
+	Che non vuol dire niente di meno di quanto abbia affermato nella
+	nostra tesi:
+
+	\begin{equation}
+		f' ( c ) = \frac{f ( b ) - f ( a )}{b-a}
+	\end{equation}
+\end{dimo}
+
+
+\begin{defn}[Cauchy]
+Siano $ a,b \in \R, a<b,\ f,g \in C ( [ a,b ]  )  $ e derivabili 
+in $ ]a,b[,\ g' \neq  0 $, allora:
+
+\begin{equation}
+	\exists c \in ]a,b[ : \frac{f ( b ) - f ( a ) }{ b - a } = 
+	\frac{f' ( c ) }{g' (c) } 
+\end{equation}
+Questo si può facilemente dimostrare applicando il teorema di 
+Rolle
+\end{defn}
+Delle brevi osservazioni:\\
+Se abbiamo un intervallo non vuoto $ I \subseteq \R $ e una funzione $ f: I \to \R $
+derivabile su questo intervallo, se: 
+
+\begin{equation}
+	f' ( x ) = 0, \ \forall x \in I 
+\end{equation}
+Allora la funzione è costante in tutto l'intervallo.\\
+Se invece:
+
+\begin{equation}
+	f' ( x ) \geq 0 \ \forall x \in I	
+\end{equation}
+La funzione è monotona crescente nell'intervallo. Viceversa se è monotona
+crescente allora sarà sempre minore uguale a 0 la derivata della funzione.
+
+
+\begin{defn}[Darboux]
+Sia $ I \subseteq \R  \neq \varnothing $ un intervallo non vuoto e sia 
+$ f: I \to \R $ una funzione derivabile nell'intervallo, alllora:
+
+\begin{equation}
+	f' ( I ) = { f' ( x ) : x\in I } 
+\end{equation}
+È un intervallo di $ \R $.\\
+% dimostrazione facoltativa
+\end{defn}
+
+\begin{defn}[Primitive]
+Sia $ I \subseteq \R $ un intervallo e sia una funzione $ f: I \to \R $,
+diremo che la primitva di questa funzione è una qualsiasi funzione derivabile
+$ \phi : I \to \R $ tale che:
+
+\begin{equation}
+	\phi' (x) = f ( x )\ \forall x \in I
+\end{equation}
+In parole povere la primitiva è come se fosse "l'operazione inversa"
+alla derivata, ovvero la primitiva di una funzione è l'immagine di partenza
+$f ( x ) $.\\
+Il teorema di Darboux dice inoltre che se esiste una primitiva di una funzione 
+$ f $ su $ I $ allora $ f ( I ) = \phi ' (I) $ è un intervallo, questa 
+è una condizione necessaria affinchè la funzione abbia una primitiva.
+\end{defn}
+
+\begin{defn}[]
+\end{defn}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Tablle Utili}%
+\label{sub:tablle_utili}
+
 \input{dertab.tex}
+\clearpage
 
 
+
+%appunti lezione
+Integrali per parti
 \end{document}
 
