@@ -318,27 +318,81 @@ $ f $ su $ I $ allora $ f ( I ) = \phi ' (I) $ è un intervallo, questa
 è una condizione necessaria affinchè la funzione abbia una primitiva.
 \end{defn}
 
-\begin{defn}[]
+\begin{defn}[Hôpital]
+Consideriamo un intervallo aperto $ I \subseteq  \R $ e sia un numero
+$ a \in D(I) $, allora siano due funzioni $ f,g: I \to \R $ derivabili in ogni
+punto di $ I \setminus { a }, g' ( x ) \neq 0 $ 
+
+\begin{equation}
+	\begin{cases}
+		\lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0 \\
+		\lim_{x \to a} | f(x) | = \lim_{ x \to a} | g ( x ) = +\infty\\ 
+	\end{cases}
+\end{equation}
+Se esiste:
+
+\begin{equation}
+	\lim_{x \to a} \frac{f' ( x ) }{g ( x )}\ \implies\
+	\exists \lim_{x \to a} \frac{f(x)}{g ( x ) } 
+\end{equation}
+e possiamo concludere che:
+
+\begin{equation}
+	\lim_{x\to a} \frac{f(x)}{g ( x ) } = \lim_{x \to a} 
+	\frac{f' ( x ) }{g' ( x ) }
+\end{equation}
+
 \end{defn}
+ 
+\begin{defn}[Derivate successive]
+Possiamo generalizzare induttivamente il concetto di derivata.\\
+Premettiamo che sia: $ A \subseteq \R, ( A \neq \varnothing ); f: A \to \R,
+A \subseteq D ( A ), x_0 \in A$, la derivata seconda di 
+$ f $ in $ x_0 $ è:
+
+\begin{equation}
+	( f' )' ( x_0 ) = \lim_{x \to x_0 } \frac{( f' )( x ) - ( f' )( x_0 )  }
+	{x-x_0} 
+\end{equation}
+\end{defn}
+Per indicare le derivate seconde utilizziamo i seguenti simboli:
+
+\begin{equation}
+	f''( x_0 ), D^2 f(x_0), f^{( 2 ) }( x_0 ) 
+\end{equation}
+La derivata n-esima si indica come:
+
+\begin{equation}
+	f^{( n ) } ( x_0 ), D^n f(x_0), \dots
+\end{equation}
+La derivata n-esima è la derivata della funzione $ f^{( n-1 ) }( x )  $\\
+La seguente notazione:
+
+\begin{equation}
+	C^n ( A ) = f: A \to \R, f^n ( x ) = C(A), f \text{derivabile n-volte in }A
+\end{equation}
+Per esempio $ C^0 ( A ) = C ( A )  $ è l'insieme delle funzioni continue in
+$ f: A \to \R $\\
+Osserviamo che $ C^n ( A )  $ è uno spazio vettoriale su $ \R $.\\
+Se usiamo il simbolo $ C^{\infty} ( A )  $ si indica lo spazio vettoriale delle
+funzioni che sono infinitamente derivabili in $ A $.\\
+
+\begin{equation}
+	C^\infty ( A ) = \underset{k \in \N}{\cap} C^k ( A ) 
+\end{equation}
 
 
+\begin{defn}[Polinomi di Taylor]
+	Sia $ n \in \N \cup \{ 0 \} $.
+	Un \bt{polinomio} è una funzione $ p: \R \to \R $ di grado
+	$ \leq n $, se esistono $ a_0, a_1,\dots, a_n \in \R $ tali che
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	\begin{equation}
+		p ( x ) = \sum^{n}_{k=0} a_k x^k \forall x \in \R
+	\end{equation}
+	Per indicare la famiglia delle funzioni polinomiali
+	$\mathcal{P}_n$, essa è uno spazio vettoriale su $\R$
+\end{defn}
 
 
 
@@ -350,10 +404,101 @@ $ f $ su $ I $ allora $ f ( I ) = \phi ' (I) $ è un intervallo, questa
 
 \input{dertab.tex}
 \clearpage
+\input{sviluppi.tex}
+\clearpage
 
 
+\subsection{Studi di Funzioni}%
+\label{sub:studi_di_funzioni} 
+Di seguito i passi da svolgere per eseguire lo studio di una funzione:
+\subsubsection{Dominio della funzione}
+Come primo passo dobbiamo determinare il dominio della funzione,
+ovvero dove questa è definita.
 
-%appunti lezione
-Integrali per parti
+\begin{esem}
+Se la funzione è il quoziente di una frazione dobbiamo premettere che il divisore
+\bt{deve} essere diverso da 0
+
+\begin{equation}
+	\begin{aligned}
+		f ( x ) &= \frac{g(x)}{h(x)}\ \implies\ h(x) \neq 0\\
+		f ( x ) &= \frac{x^2 + 4}{2x}\ \implies\ 2x \neq 0 \iff x \neq 0\\ 
+		Dom\ f 	&= \R \setminus\{0\}
+	\end{aligned}
+\end{equation}
+L'argomento di un logaritmo deve essere diverso da 0, la base di un esponenziale 
+deve essere maggiore di 0
+
+\begin{itemize}
+	\item $ \log a\ \iff\ a \neq 0 $ 
+	\item $ a^x\ \iff\ a > 0$
+\end{itemize}
+\end{esem}
+
+\subsubsection{Limiti agli estremi del dominio}
+Si calcolano i limiti agli estremi del dominio della funzione e si verifica 
+la presenza di asintoti verticali e/o orizzontali.\\
+
+
+\begin{esem}
+	Se una funzione è definita su tutti i numeri reali $Dom\ f = \R $, allora
+	gli estremi del dominio sono $ \pm \infty $
+
+
+	\begin{equation}
+		\lim_{x \to \pm\infty} f(x) = \lambda
+	\end{equation}
+	
+	\begin{equation}
+		\begin{cases}
+			\lambda=\pm \infty,\ x = a,\ a \in \R & \implies
+			\text{asintoto verticale}\\
+			\lambda=\pm \infty,\ x \to \pm\infty & \implies
+			\text{asintoto orizzontale/obliquo}\\
+		\end{cases}
+	\end{equation}
+\end{esem}
+
+\subsubsection{Asintoti obliqui}
+Se sono presenti degli asintoti orizzontali, verifichiamo la presenza di 
+asintoti obliqui. Troveremo l'equazione di una retta, la quale 
+definisce l'asintoto obliquo:
+
+\begin{equation}
+	y = mx + q
+\end{equation}
+Per trovare $ m $ dividiamo il limite della funzione per x.
+
+\begin{equation}
+	m = \lim_{x \to \pm\infty} \frac{f(x)}{x}  
+\end{equation}
+Una volta trovato $ m $, (se esiste) cerchiamo il valore $ q $ ( quota, 
+il punto in cui la retta interseca l'asse delle ordinate)\\
+Per trovare $ q $:
+
+
+\begin{equation}
+	q = \lim_{x \to \pm\infty} ( f(x) - mx ) 
+\end{equation}
+	
+
+\subsubsection{Monotonia}
+Per poter studiare la monotonia della funzione ne studiamo la derivata
+
+\begin{equation}
+	f' ( x ) 
+\end{equation}
+Studiamo il comportamento della funzione, esaminando il segno della funzione
+derivata.
+
+
+\subsubsection{Derivabilità}
+Studiamo se la funzione è derivabile nei punti in cui si annulla (=0)
+
+
+\subsubsection{Derivata seconda e conseguenze}
+Studiamo la derivata seconda della funzione e verifichiamo la presenza
+di convessità, concavità, punti di flesso, attraverso lo 
+studio del segno della derivata seconda.
 \end{document}
 
