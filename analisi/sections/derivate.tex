@@ -383,17 +383,37 @@ funzioni che sono infinitamente derivabili in $ A $.\\
 
 
 \begin{defn}[Polinomi di Taylor]
+	Un'espressione matematica può essere riscritta sottoforma di 
+	polinomio di un certo grado arbitrario:\\
 	Sia $ n \in \N \cup \{ 0 \} $.
 	Un \bt{polinomio} è una funzione $ p: \R \to \R $ di grado
 	$ \leq n $, se esistono $ a_0, a_1,\dots, a_n \in \R $ tali che
 
 	\begin{equation}
-		p ( x ) = \sum^{n}_{k=0} a_k x^k \forall x \in \R
+		T_n ( x ) = \sum^{n}_{k=0} a_k x^k \forall x \in \R
 	\end{equation}
 	Per indicare la famiglia delle funzioni polinomiali
 	$\mathcal{P}_n$, essa è uno spazio vettoriale su $\R$
 \end{defn}
 
+\begin{defn}[Formula di Taylor con resto di Peano]
+	Con la formula di Taylor possiamo 'approssimare' \bt{localmente} tutte
+	le funzioni sufficiemente regolari con dei polinomi:
+	Deve essere la funzione $ f ( x ) $ definita in un certo intervallo $ 
+	( -\delta, \delta ), \delta > 0 $ e:
+	\begin{itemize}
+		\item $ f(x) $ derivabile $ n-1 $ volte nell'intervallo definito
+		\item esista la derivata $ n $-esima almeno in $ x_0 $
+	\end{itemize}
+
+	\begin{equation}
+		f(x) = T_n (x) + o (x^n)\ x \to x_0 
+	\end{equation}
+
+	\begin{equation}
+		T_n (x) = \sum^{n}_{k=0} \frac{f^{k} (0)}{k!} \cdot x^k
+	\end{equation}
+\end{defn}
 
 
 
