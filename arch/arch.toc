@@ -1,40 +1,52 @@
-\contentsline {section}{\numberline {1}Rappresentazione dei numeri}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Notazione}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Binario}{3}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Decimale}{4}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Ottale}{4}{subsection.1.4}%
-\contentsline {subsection}{\numberline {1.5}Esadecimale}{4}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Algebra di Boole}{5}{subsection.1.6}%
-\contentsline {section}{\numberline {2}APPROACH}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Structure and function}{6}{subsection.2.1}%
-\contentsline {section}{\numberline {3} Componenti principali}{7}{section.3}%
-\contentsline {section}{\numberline {4}CPU}{8}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Funzionamento CPU}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Tipi di Operazioni}{10}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Ciclo di esecuzione}{10}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Interruzioni}{11}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Interruzioni multiple}{12}{subsubsection.4.4.1}%
-\contentsline {section}{\numberline {5}Interconnessioni}{13}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Bus}{13}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Uso del bus}{14}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Bus singoli e multipli}{15}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Temporizzazione}{15}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}QPI}{16}{subsubsection.5.4.1}%
-\contentsline {section}{\numberline {6}Memorie}{17}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Gerarchia di memoria}{19}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}trasferimento dati}{20}{subsubsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.2}Cache}{20}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Politiche di rimpiazzo dei blocchi}{22}{subsection.6.3}%
-\contentsline {subsubsection}{\numberline {6.3.1}Cache logica e fisica}{24}{subsubsection.6.3.1}%
-\contentsline {subsubsection}{\numberline {6.3.2}Il problema dei miss}{25}{subsubsection.6.3.2}%
-\contentsline {subsubsection}{\numberline {6.3.3}tipi di memorie a semiconduttore}{26}{subsubsection.6.3.3}%
-\contentsline {subsection}{\numberline {6.4}ROM}{27}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Codice correzione errore}{27}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Memorie esterne}{28}{subsection.6.6}%
-\contentsline {subsubsection}{\numberline {6.6.1}Dischi magnetici}{29}{subsubsection.6.6.1}%
-\contentsline {subsubsection}{\numberline {6.6.2}Prestazioni}{31}{subsubsection.6.6.2}%
-\contentsline {subsubsection}{\numberline {6.6.3}RAID}{32}{subsubsection.6.6.3}%
-\contentsline {subsubsection}{\numberline {6.6.4}Dischi SSD}{33}{subsubsection.6.6.4}%
-\contentsline {subsubsection}{\numberline {6.6.5}Memorizzazione Ottica}{35}{subsubsection.6.6.5}%
-\contentsline {subsubsection}{\numberline {6.6.6}CD-ROM}{35}{subsubsection.6.6.6}%
-\contentsline {section}{\numberline {7}Formulario}{36}{section.7}%
+\contentsline {chapter}{\numberline {1}Prima Parte}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Rappresentazione dei numeri}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Notazione}{3}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Binario}{3}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Decimale}{4}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}Ottale}{4}{subsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.1.5}Esadecimale}{5}{subsection.1.1.5}%
+\contentsline {subsection}{\numberline {1.1.6}Algebra di Boole}{5}{subsection.1.1.6}%
+\contentsline {section}{\numberline {1.2}APPROACH}{6}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Structure and function}{7}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3} Componenti principali}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}CPU}{9}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Funzionamento CPU}{10}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Tipi di Operazioni}{10}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Ciclo di esecuzione}{11}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Interruzioni}{12}{subsection.1.4.4}%
+\contentsline {subsubsection}{Interruzioni multiple}{13}{section*.2}%
+\contentsline {section}{\numberline {1.5}Interconnessioni}{14}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Bus}{14}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Uso del bus}{15}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Bus singoli e multipli}{16}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Temporizzazione}{16}{subsection.1.5.4}%
+\contentsline {subsubsection}{QPI}{17}{section*.3}%
+\contentsline {section}{\numberline {1.6}Memorie}{18}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Gerarchia di memoria}{20}{subsection.1.6.1}%
+\contentsline {subsubsection}{trasferimento dati}{21}{section*.4}%
+\contentsline {subsection}{\numberline {1.6.2}Cache}{21}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}Politiche di rimpiazzo dei blocchi}{24}{subsection.1.6.3}%
+\contentsline {subsubsection}{Cache logica e fisica}{26}{section*.5}%
+\contentsline {subsubsection}{Il problema dei miss}{26}{section*.6}%
+\contentsline {subsubsection}{tipi di memorie a semiconduttore}{27}{section*.7}%
+\contentsline {subsection}{\numberline {1.6.4}ROM}{28}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Codice correzione errore}{28}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.6}Memorie esterne}{29}{subsection.1.6.6}%
+\contentsline {subsubsection}{Dischi magnetici}{30}{section*.8}%
+\contentsline {subsubsection}{Prestazioni}{32}{section*.9}%
+\contentsline {subsubsection}{RAID}{33}{section*.10}%
+\contentsline {subsubsection}{Dischi SSD}{34}{section*.11}%
+\contentsline {subsubsection}{Memorizzazione Ottica}{36}{section*.12}%
+\contentsline {subsubsection}{CD-ROM}{36}{section*.13}%
+\contentsline {section}{\numberline {1.7}Formulario}{37}{section.1.7}%
+\contentsline {subsubsection}{Altri tipi di memorizzazione ottica}{37}{section*.14}%
+\contentsline {subsection}{\numberline {1.7.1}Nastro magnetico}{38}{subsection.1.7.1}%
+\contentsline {chapter}{\numberline {2}Seconda Parte}{39}{chapter.2}%
+\contentsline {subsection}{\numberline {2.0.1}Input/Output}{39}{subsection.2.0.1}%
+\contentsline {subsection}{\numberline {2.0.2}Tecniche di gestione input/output}{40}{subsection.2.0.2}%
+\contentsline {subsubsection}{I/O da programma}{40}{section*.15}%
+\contentsline {subsubsection}{I/O guidato da interrupt}{40}{section*.16}%
+\contentsline {subsubsection}{Direct Memory Access}{40}{section*.17}%
+\contentsline {section}{\numberline {2.1}Rappresentazione binari numeri reali}{41}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Linguaggio Macchina}{41}{section.2.2}%
+\contentsline {subsubsection}{Tipi degli operandi}{43}{section*.18}%

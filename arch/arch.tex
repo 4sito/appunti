@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, a4paper]{report}
 \usepackage{appunti, smartdiagram}
 \usesmartdiagramlibrary{additions}
 
@@ -9,7 +9,7 @@
      linktoc=all,
      urlcolor=black
   }
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 
 \title{Appunti di Architettura degli Elaboratori}
 \author{Andreas Araya Osorio}
@@ -20,6 +20,8 @@
 
 \tableofcontents
 
+
+\chapter{Prima Parte}
 
 \section{Rappresentazione dei numeri}
 
@@ -1459,9 +1461,274 @@ Contro:
 	\item essendo un CD-ROM è di solo lettura
 \end{itemize}
 
-\Huge FINE PRIMA PARTE.
 \section{Formulario}
 
+
+
+\subsubsection{Altri tipi di memorizzazione ottica}%
+\label{subsub:altri_tipi_di_memorizzazione_ottica}
+
+\begin{itemize}
+	\item CD-R(ecordable)
+	\item CD-RW
+	\item Digital video Disk
+		usato per riprodurre film, \\
+		sono presenti molteplici strati,\\
+		ha un'alta capacità di memorizzazione\\
+		si usa tutto lo spessore del disco e inoltre si usano entrambi i
+		lati di esso,\\
+		il diametro del raggio laser è minore quindi si ha una maggiore 
+		densità di memoria 
+
+\end{itemize}
+
+\subsection{Nastro magnetico}%
+\label{sub:nastro_magnetico}
+
+\begin{itemize}
+	\item Accesso seriale
+	\item lento
+	\item molto economico 
+	\item utilizzato per backup e copia di riserva
+\end{itemize}
+Le informazioni possono essere memorizzate a serpentina, o possono essere scritte 
+a blocchi\\
+
+{\Huge FINE PRIMA PARTE.}
+
+\chapter{Seconda Parte}
+\subsection{Input/Output}%
+\label{sub:input_output}
+Un computer è collegato a innumerevoli apparecchi i quali
+
+\begin{itemize}
+	\item gestiscono quantità di dati differenti
+	\item velocità diverse
+	\item formati diverse
+\end{itemize}
+È certo che siano più lenti della CPU e della RAM, per ottenere il massimo delle
+prestazioni della propria CPU è necessario che le periferiche esterne siano 
+controllate da dei moduli comuni: \bt{moduli di input output}.\\
+
+Vari tipi di dispositivi esterni:
+\begin{itemize}
+	\item Comprensibili dall'uomo\\
+		Monitor, stampanti, ...
+	\item Comprensibili dalla macchina
+	\item Comunicazione\\
+		Modem, router
+\end{itemize}
+
+I componenti di un dipositivo esterno:
+
+\begin{itemize}
+	\item Logica di controllo\\
+		Comunica con il modulo di I/O
+	\item Buffer di memoria\\
+		immaggazzina memoria, esempio (logistica container)
+	\item Transducer\\
+		trasforma dati fisici (analogici) in bits o viceversa
+\end{itemize}
+
+Componenti di un modulo I/O:
+
+\begin{itemize}
+	\item 					
+\end{itemize}
+
+\subsection{Tecniche di gestione input/output}%
+\label{sub:tecniche_di_gestione_input_output}
+
+\subsubsection{I/O da programma}
+Attesa attiva della CPU e si occupa del trasferimento dei dati 
+I/O memory mapped o separato
+
+\subsubsection{I/O guidato da interrupt}
+Non c'è l'attesa della CPU, essa viene interrota quando il dispositivo è pronto
+
+\subsubsection{Direct Memory Access}
+Hardware aggiuntivo
+
+Modulo DMA:
+
+\begin{itemize}
+	\item Data Lines
+		\begin{itemize}
+			\item Data Count
+			\item Data Register
+			\item Address Register
+		\end{itemize}
+	\item Address Lines\\
+		Address Register
+	\item Control Logic
+\end{itemize}
+
+Operazioni DMA:
+
+\begin{itemize}
+	\item CPU comunica al controllore DMA:
+
+		\begin{itemize}
+			\item lettura scrittura
+			\item 
+		\end{itemize}
+	\item 
+	\item 
+\end{itemize}
+
+Il trasferimento dei dati DMA occupa il bus e lo sottrae alla CPU, si possono
+utilizzare due metodi differenti per accedere al canale:
+
+\begin{itemize}
+	\item Una parola alla volta, cycle stealing, sottrae di tanto in tanto
+		per un solo ciclo
+	\item Per blocchi, burst mode, è il metodo più efficace in quanto 
+		l'occupazione del bus è un'operazione molto onerosa.
+\end{itemize}
+a
+
+\section{Rappresentazione binari numeri reali}
+
+\section{Linguaggio Macchina}%
+\label{sub:linguaggio_macchina}
+
+Il linguaggio macchina è costituito da:
+\begin{itemize}
+	\item Insieme istruzioni eseguibili dalla CPU
+	\item Tipologia dei dati manipolabili
+	\item Tipi di operandi
+\end{itemize}
+Nessun linguaggio macchina è superiore ad un altro, ed esso dipende dall'ambito
+applicativo e dalle funzioni che si devono far svolgere ad esso.\\
+Gli elementi dell'istruzione della macchina:
+
+\begin{itemize}
+	\item Codice operativo, specifica l'operazione da eseguire
+	\item Riferimento all'operando sorgente, specifica l'operando che 
+		rappresenta l'input dell'operazione
+	\item Riferimento all'operando risultato, dove va messo
+		il risultato ottenuto
+	\item Riferimento all'istruzione successiva
+\end{itemize}
+
+Gli operandi si possono trovare:
+
+\begin{itemize}
+	\item Memoria centrale, o ( virtuale ) 
+	\item Registri della CPU, ognuno ha il proprio numero identificativo
+	\item Dato immediato con l'istruzione
+	\item Dipsositivi di I/O 
+\end{itemize}
+
+L'istruzione è una sequenza di bit divisa in campi, viene usata una 
+rappresentazione simbolica delle configurazioni di bit. Pure gli operandi
+hanno la propria rappresentazione simbolica
+
+Il formato di un'istruzione di 16 bit è:
+
+\begin{itemize}
+	\item 4 bits, Codice operativo ( opcode ) 
+	\item 6 bits, Indirizzo operando, ( operand reference )
+	\item 6 bits, Indirizzo operando, ( operand reference ) 
+\end{itemize}
+
+I vari tipi di istruzioni sono di:
+
+\begin{itemize}
+	\item elaborazione dati, istruzioni aritmetico logiche, nei registri della
+		CPU
+	\item Immagazinamento dei dati in Memoria o recupero dati dalla Memoria
+	\item Trasferimento dati ( I/O ) 
+	\item Controllo del flusso del programma		
+\end{itemize}
+Gli indirizzi necessari per un'istruzione possono essere:
+
+\begin{itemize}
+	\item un indirizzo per ogni operando ( 1 o 2 ) 
+	\item uno per il risultato
+	\item indirizzo dell'istruzione successiva
+\end{itemize}
+Quindi possono essere al massimo 4, ( cosa molto rara e dispendiosa), ma in genere
+sono 1, 2 o 3 per gli operandi/risultati\\
+Quando si riferisce ad un solo registro vuol dire che il secondo è implicito ed è 
+memorizzato in un registro, per esempio nell'accumulatore.\\
+Quando non si riferisce a nesssun indirizzo vuol dire che tutti gli indirizzi sono
+impliciti e si sta utilizzando una pila in cui si accumulano i vari indirizzi
+utilizzati.\\
+
+\begin{itemize}
+	\item Se si utilizzano \bt{meno indirizzi} di conseguenza si eseguiranno
+		delle istruzioni più elementari e corte, se si hanno 
+		più istruzioni per uni stesso programma porterà ad un tempo 
+		di esecuzione più lungo. L'archiettura RISC utilizza questa 
+		filosofia, significa infatti \bt{Reduced Instruction Set Computer}
+		e si basa sul velocizzare le istruzioni più frequenti.
+	\item se si utilizzano \bt{più indirizzi} le istruzioni diventeranno 
+		più complesse quindi impiegherà meno tempo per eseguire istruzioni
+		più complesse ma userà più potenza per istruzioni semplici.\\
+		L'architettura RISC si basa su questo principio 
+		\bt{Complex Instruction Set Computer}
+\end{itemize}
+
+Cosa comporta progettare un insieme di istruzioni:
+
+\begin{itemize}
+	\item Repertorio:\\
+		quante e quali operazioni
+	\item Tipo di dato:\\
+		su quali dati
+	\item Formato:\\
+		lunghezza, numero indirizzi, dimensione dei campi
+	\item Registri:\\
+		numero di registri della CPU indirizzabili dalle istruzioni
+	\item Indirizzamento:\\
+		modo di specificare gli indirizzi degli operandi
+\end{itemize}
+
+\subsubsection{Tipi degli operandi}
+
+\begin{itemize}
+	\item Indirizzi, rappresentati come interi senza segno\\
+	\item Numeri\\
+		limite al modulo\\
+		limite alla precisione\\
+	\item Caratteri ( stringhe ) 
+	\item Dati logici, variabili booleane per il controllo del flusso 
+		dell'esecuzione.
+\end{itemize}
+
+I numeri vengono rappresentati:
+
+\begin{itemize}
+	\item Interi ( con la virgola fissa ) 
+	\item Virgola Mobile ( Floating point, IEEE754 ) 
+	\item Decimali impaccati, nelle operazioni di I/O,
+		non efficienti in quanto per rappresentare una cifra decimale
+		si utilizzano 4 bit, che vuol dire solo 10 delle 16 configurazioni
+		disponibili vengono utilizzate, si utilizza per evitare la 
+		conversione.\\
+		es: 246 viene rappresentato come:
+
+		\begin{equation}
+			246 = \underset{200}{0010}\ \underset{ + 40	}{0100}\
+			\underset{ + 6}{0110}
+		\end{equation}
+\end{itemize}
+
+I caratteri vengono rappresentati in ASCII ( American Standard Code for
+Infromation Exchange ) da 7 bit, quindi si hanno in totale 128 configurazioni
+disponibili.\\
+Si ha di solito 1 bit per i caratteri di controllo.\\
+C'è inoltre una versione estesa da 8 bit in cui si possono rappresentare 256 
+configurazioni.\\
+Dati Logici:
+
+\begin{itemize}
+	\item n bit, invece che un singolo dato
+	\item manipolare bit separatamente
+\end{itemize}
+
+Tipi di dati x86
 \end{document}
 
 
