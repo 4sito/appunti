@@ -1728,7 +1728,74 @@ Dati Logici:
 	\item manipolare bit separatamente
 \end{itemize}
 
-Tipi di dati x86
+Tipi di dati Intel x86
+
+\begin{itemize}
+	\item 8 (byte), 16 (word), 32 (doppia parola), 64 (quadword), 128 (double quadword) bits
+	\item L'indirizzamento è per unità di 8 bit (1 byte)
+	\item Una double word da 32 bit inizia da un indirizzo divisibile per 4
+	\item Non si ha la necessità di allineare gli indirizzi per le strutture dati in memoria
+	\item Bisogna allineare i dati per i trasferimenti dati nel bus
+\end{itemize}
+
+Ci sono vari tipi di operazioni:
+
+\begin{itemize}
+	\item Trasferimento Dati,\\
+		comporta specificare: la sorgente (dove si trova il dato), la destinazione (dove andrà messo il d.),
+		la lunghezza del dato da trasferire
+	\item Aritmetiche,\\
+		somma, sottrazione, moltiplicazione, divisione.\\
+		I numeri interi hanno sempre il segno, viene utilizzata anche per numeri con la virgola mobile e inoltre
+		possono esserci le operazioni di:\\
+		incremento (+1), decremento(-1), negazione (inversione del segno, trovare il numero opposto), calcolo valore 
+		assoluto
+	\item Logiche,\\
+		sono operazioni dirette sugli specifici bit, operazioni di: AND, OR, NOT, XOR, EQUAL,
+		possono anche essere eseguite parallelamente su tutti i bit di un registro
+	\item Conversione
+	\item I/O
+	\item Sistema
+	\item Trasferimento del controllo,\\
+		Salto condizionato (branch), per esempio BRE R1, R2, X (salta a X se R1 equivale a R2),
+		si ha la necessità di saltare se si deve eseguire più volte una stessa operazione come in 
+		un 'for, while' loop, il che dà spazio alla programmazione modulare.\\
+		Salto incondizionato, salta alla prossima istruzione, non ha operandi in quanto non si devono verificare 
+		delle condizioni.\\
+		Chiamata di procedura: una proc. è un pezzo di programma a cui si può dare un nome il che permetto di eseguirlo
+		indicandolo con il nome. Questo permette di risparmiare di scrivere codice e di poter affidare a qualcun'altro 
+		la scrittura di questo. Dobbiamo avere due istruzioni: la chiamata e il ritorno.\\
+		Al fine di memorizzare l'indirizzo di ritorno ci sono 3 luoghi di memorizzazione differenti:
+
+		\begin{itemize}
+			\item Registro, non funzionale quando sono presenti dei cicli ricorsivi (ovvero che si 'richiamano')
+			\item All'inzio delle procedura chiamata, non funzionali sempre in presenza di cicli ricorsivi
+			\item Cima della pila, ovvero si utilizza una porzione di M dove le scritture e le letture
+				avvengono sempre in cima. In questo modo si richiamano gli indirizzi che sono stati per ultimi scritti
+				nella pila e che si trovano appunto in cima, evitando il problema dei loop ricorsivi.
+		\end{itemize}
+	\end{itemize}
+
+\subsection{Linguaggio Assembly}%
+\label{sub:linguaggio_assembly}
+Questo linguaggio è ad un livello più alto rispetto al linguaggio macchina ed è più comprensbile dall'uomo.\\
+Gli indirizzi numerici (binario) vengono interpretati come indirizzi simbolici (A, B, ...,Z),\\
+I codici operativi diventano simboli (SUB, ADD, BRE).\\
+L'assemblatore è un programma che traduce dal linguaggio assembly al linguaggio macchina.\\
+
+\subsubsection{Big / Little Endian}
+I bit nella memoria vengono memorizzati in maniera differente in base all'architettura del calcolatore, ovvero:
+
+\begin{itemize}
+	\item Big Endian,\\
+		I bit più significativi vengono memorizzati prima negli indirizzi, da sinistra a destra
+	\item Little Endian,\\
+		I bit meno significativi vengono memorizzati negli ultiimi indirizzi, da destra a sinistra.	
+\end{itemize}
+
+
+
+
 \end{document}
 
 
