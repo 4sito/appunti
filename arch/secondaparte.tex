@@ -1,0 +1,484 @@
+\documentclass[arch.tex]{subfiles} 
+
+\begin{document}
+
+\chapter{Seconda Parte}
+\subsection{Input/Output}%
+\label{sub:input_output}
+Un computer è collegato a innumerevoli apparecchi i quali
+
+\begin{itemize}
+	\item gestiscono quantità di dati differenti
+	\item velocità diverse
+	\item formati diverse
+\end{itemize}
+È certo che siano più lenti della CPU e della RAM, per ottenere il massimo delle
+prestazioni della propria CPU è necessario che le periferiche esterne siano 
+controllate da dei moduli comuni: \bt{moduli di input output}.\\
+
+Vari tipi di dispositivi esterni:
+\begin{itemize}
+	\item Comprensibili dall'uomo\\
+		Monitor, stampanti, ...
+	\item Comprensibili dalla macchina
+	\item Comunicazione\\
+		Modem, router
+\end{itemize}
+
+I componenti di un dipositivo esterno:
+
+\begin{itemize}
+	\item Logica di controllo\\
+		Comunica con il modulo di I/O
+	\item Buffer di memoria\\
+		immaggazzina memoria, esempio (logistica container)
+	\item Transducer\\
+		trasforma dati fisici (analogici) in bits o viceversa
+\end{itemize}
+
+Componenti di un modulo I/O:
+
+\begin{itemize}
+	\item 					
+\end{itemize}
+
+\subsection{Tecniche di gestione input/output}%
+\label{sub:tecniche_di_gestione_input_output}
+
+\subsubsection{I/O da programma}
+Attesa attiva della CPU e si occupa del trasferimento dei dati 
+I/O memory mapped o separato
+
+\subsubsection{I/O guidato da interrupt}
+Non c'è l'attesa della CPU, essa viene interrota quando il dispositivo è pronto
+
+\subsubsection{Direct Memory Access}
+Hardware aggiuntivo
+
+Modulo DMA:
+
+\begin{itemize}
+	\item Data Lines
+		\begin{itemize}
+			\item Data Count
+			\item Data Register
+			\item Address Register
+		\end{itemize}
+	\item Address Lines\\
+		Address Register
+	\item Control Logic
+\end{itemize}
+
+Operazioni DMA:
+
+\begin{itemize}
+	\item CPU comunica al controllore DMA:
+
+		\begin{itemize}
+			\item lettura scrittura
+			\item 
+		\end{itemize}
+	\item 
+	\item 
+\end{itemize}
+
+Il trasferimento dei dati DMA occupa il bus e lo sottrae alla CPU, si possono
+utilizzare due metodi differenti per accedere al canale:
+
+\begin{itemize}
+	\item Una parola alla volta, cycle stealing, sottrae di tanto in tanto
+		per un solo ciclo
+	\item Per blocchi, burst mode, è il metodo più efficace in quanto 
+		l'occupazione del bus è un'operazione molto onerosa.
+\end{itemize}
+a
+
+\section{Rappresentazione binari numeri reali}
+
+\section{Linguaggio Macchina}%
+\label{sub:linguaggio_macchina}
+
+Il linguaggio macchina è costituito da:
+\begin{itemize}
+	\item Insieme istruzioni eseguibili dalla CPU
+	\item Tipologia dei dati manipolabili
+	\item Tipi di operandi
+\end{itemize}
+Nessun linguaggio macchina è superiore ad un altro, ed esso dipende dall'ambito
+applicativo e dalle funzioni che si devono far svolgere ad esso.\\
+Gli elementi dell'istruzione della macchina:
+
+\begin{itemize}
+	\item Codice operativo, specifica l'operazione da eseguire
+	\item Riferimento all'operando sorgente, specifica l'operando che 
+		rappresenta l'input dell'operazione
+	\item Riferimento all'operando risultato, dove va messo
+		il risultato ottenuto
+	\item Riferimento all'istruzione successiva
+\end{itemize}
+
+Gli operandi si possono trovare:
+
+\begin{itemize}
+	\item Memoria centrale, o ( virtuale ) 
+	\item Registri della CPU, ognuno ha il proprio numero identificativo
+	\item Dato immediato con l'istruzione
+	\item Dipsositivi di I/O 
+\end{itemize}
+
+L'istruzione è una sequenza di bit divisa in campi, viene usata una 
+rappresentazione simbolica delle configurazioni di bit. Pure gli operandi
+hanno la propria rappresentazione simbolica
+
+Il formato di un'istruzione di 16 bit è:
+
+\begin{itemize}
+	\item 4 bits, Codice operativo ( opcode ) 
+	\item 6 bits, Indirizzo operando, ( operand reference )
+	\item 6 bits, Indirizzo operando, ( operand reference ) 
+\end{itemize}
+
+I vari tipi di istruzioni sono di:
+
+\begin{itemize}
+	\item elaborazione dati, istruzioni aritmetico logiche, nei registri della
+		CPU
+	\item Immagazinamento dei dati in Memoria o recupero dati dalla Memoria
+	\item Trasferimento dati ( I/O ) 
+	\item Controllo del flusso del programma		
+\end{itemize}
+Gli indirizzi necessari per un'istruzione possono essere:
+
+\begin{itemize}
+	\item un indirizzo per ogni operando ( 1 o 2 ) 
+	\item uno per il risultato
+	\item indirizzo dell'istruzione successiva
+\end{itemize}
+Quindi possono essere al massimo 4, ( cosa molto rara e dispendiosa), ma in genere
+sono 1, 2 o 3 per gli operandi/risultati\\
+Quando si riferisce ad un solo registro vuol dire che il secondo è implicito ed è 
+memorizzato in un registro, per esempio nell'accumulatore.\\
+Quando non si riferisce a nesssun indirizzo vuol dire che tutti gli indirizzi sono
+impliciti e si sta utilizzando una pila in cui si accumulano i vari indirizzi
+utilizzati.\\
+
+\begin{itemize}
+	\item Se si utilizzano \bt{meno indirizzi} di conseguenza si eseguiranno
+		delle istruzioni più elementari e corte, se si hanno 
+		più istruzioni per uni stesso programma porterà ad un tempo 
+		di esecuzione più lungo. L'archiettura RISC utilizza questa 
+		filosofia, significa infatti \bt{Reduced Instruction Set Computer}
+		e si basa sul velocizzare le istruzioni più frequenti.
+	\item se si utilizzano \bt{più indirizzi} le istruzioni diventeranno 
+		più complesse quindi impiegherà meno tempo per eseguire istruzioni
+		più complesse ma userà più potenza per istruzioni semplici.\\
+		L'architettura RISC si basa su questo principio 
+		\bt{Complex Instruction Set Computer}
+\end{itemize}
+
+Cosa comporta progettare un insieme di istruzioni:
+
+\begin{itemize}
+	\item Repertorio:\\
+		quante e quali operazioni
+	\item Tipo di dato:\\
+		su quali dati
+	\item Formato:\\
+		lunghezza, numero indirizzi, dimensione dei campi
+	\item Registri:\\
+		numero di registri della CPU indirizzabili dalle istruzioni
+	\item Indirizzamento:\\
+		modo di specificare gli indirizzi degli operandi
+\end{itemize}
+
+\subsubsection{Tipi degli operandi}
+
+\begin{itemize}
+	\item Indirizzi, rappresentati come interi senza segno\\
+	\item Numeri\\
+		limite al modulo\\
+		limite alla precisione\\
+	\item Caratteri ( stringhe ) 
+	\item Dati logici, variabili booleane per il controllo del flusso 
+		dell'esecuzione.
+\end{itemize}
+
+I numeri vengono rappresentati:
+
+\begin{itemize}
+	\item Interi ( con la virgola fissa ) 
+	\item Virgola Mobile ( Floating point, IEEE754 ) 
+	\item Decimali impaccati, nelle operazioni di I/O,
+		non efficienti in quanto per rappresentare una cifra decimale
+		si utilizzano 4 bit, che vuol dire solo 10 delle 16 configurazioni
+		disponibili vengono utilizzate, si utilizza per evitare la 
+		conversione.\\
+		es: 246 viene rappresentato come:
+
+		\begin{equation}
+			246 = \underset{200}{0010}\ \underset{ + 40	}{0100}\
+			\underset{ + 6}{0110}
+		\end{equation}
+\end{itemize}
+
+I caratteri vengono rappresentati in ASCII ( American Standard Code for
+Infromation Exchange ) da 7 bit, quindi si hanno in totale 128 configurazioni
+disponibili.\\
+Si ha di solito 1 bit per i caratteri di controllo.\\
+C'è inoltre una versione estesa da 8 bit in cui si possono rappresentare 256 
+configurazioni.\\
+Dati Logici:
+
+\begin{itemize}
+	\item n bit, invece che un singolo dato
+	\item manipolare bit separatamente
+\end{itemize}
+
+Tipi di dati Intel x86
+
+\begin{itemize}
+	\item 8 (byte), 16 (word), 32 (doppia parola), 64 (quadword), 128 (double quadword) bits
+	\item L'indirizzamento è per unità di 8 bit (1 byte)
+	\item Una double word da 32 bit inizia da un indirizzo divisibile per 4
+	\item Non si ha la necessità di allineare gli indirizzi per le strutture dati in memoria
+	\item Bisogna allineare i dati per i trasferimenti dati nel bus
+\end{itemize}
+
+Ci sono vari tipi di operazioni:
+
+\begin{itemize}
+	\item Trasferimento Dati,\\
+		comporta specificare: la sorgente (dove si trova il dato), la destinazione (dove andrà messo il d.),
+		la lunghezza del dato da trasferire
+	\item Aritmetiche,\\
+		somma, sottrazione, moltiplicazione, divisione.\\
+		I numeri interi hanno sempre il segno, viene utilizzata anche per numeri con la virgola mobile e inoltre
+		possono esserci le operazioni di:\\
+		incremento (+1), decremento(-1), negazione (inversione del segno, trovare il numero opposto), calcolo valore 
+		assoluto
+	\item Logiche,\\
+		sono operazioni dirette sugli specifici bit, operazioni di: AND, OR, NOT, XOR, EQUAL,
+		possono anche essere eseguite parallelamente su tutti i bit di un registro
+	\item Conversione
+	\item I/O
+	\item Sistema
+	\item Trasferimento del controllo,\\
+		Salto condizionato (branch), per esempio BRE R1, R2, X (salta a X se R1 equivale a R2),
+		si ha la necessità di saltare se si deve eseguire più volte una stessa operazione come in 
+		un 'for, while' loop, il che dà spazio alla programmazione modulare.\\
+		Salto incondizionato, salta alla prossima istruzione, non ha operandi in quanto non si devono verificare 
+		delle condizioni.\\
+		Chiamata di procedura: una proc. è un pezzo di programma a cui si può dare un nome il che permetto di eseguirlo
+		indicandolo con il nome. Questo permette di risparmiare di scrivere codice e di poter affidare a qualcun'altro 
+		la scrittura di questo. Dobbiamo avere due istruzioni: la chiamata e il ritorno.\\
+		Al fine di memorizzare l'indirizzo di ritorno ci sono 3 luoghi di memorizzazione differenti:
+
+		\begin{itemize}
+			\item Registro, non funzionale quando sono presenti dei cicli ricorsivi (ovvero che si 'richiamano')
+			\item All'inzio delle procedura chiamata, non funzionali sempre in presenza di cicli ricorsivi
+			\item Cima della pila, ovvero si utilizza una porzione di M dove le scritture e le letture
+				avvengono sempre in cima. In questo modo si richiamano gli indirizzi che sono stati per ultimi scritti
+				nella pila e che si trovano appunto in cima, evitando il problema dei loop ricorsivi.
+		\end{itemize}
+	\end{itemize}
+
+\subsection{Linguaggio Assembly}%
+\label{sub:linguaggio_assembly}
+Questo linguaggio è ad un livello più alto rispetto al linguaggio macchina ed è più comprensbile dall'uomo.\\
+Gli indirizzi numerici (binario) vengono interpretati come indirizzi simbolici (A, B, ...,Z),\\
+I codici operativi diventano simboli (SUB, ADD, BRE).\\
+L'assemblatore è un programma che traduce dal linguaggio assembly al linguaggio macchina.\\
+
+\subsubsection{Big / Little Endian}
+I bit nella memoria vengono memorizzati in maniera differente in base all'architettura del calcolatore, ovvero:
+
+\begin{itemize}
+	\item Big Endian,\\
+		I bit più significativi vengono memorizzati prima negli indirizzi, da sinistra a destra
+	\item Little Endian,\\
+		I bit meno significativi vengono memorizzati negli ultiimi indirizzi, da destra a sinistra.	
+\end{itemize}
+
+
+\subsection{Modi di indirizzamento}%
+\label{sub:modi_di_indirizzamento}
+
+Esistono diversi tipi per specificare l'indirizzo degli operandi:
+
+\begin{itemize}
+	\item Immediato
+	\item Diretto
+	\item Indiretto
+	\item Registro
+	\item Registro indiretto
+	\item Spiazzamento
+	\item Pila
+\end{itemize}
+
+
+\subsubsection{Immediato}
+L'operando è specificato nell'istruzione stessa, (nella parte del campo 
+indirizzo)\\
+\bt{VANTAGGIO}: non si esegue nessun accesso in Memoria
+(operazione molto onerosa, in quanto implica l'occupazione del bus)\\
+\bt{SVANTAGGIO}: limitato dalla dimensione del campo indirizzo.\\
+Se abbiamo per esempio 6 bit destinati al campo indirizzo, avremo  $ 2^6 $ 
+valori diversi.
+
+
+\subsubsection{Diretto}
+Il campo indirizzo contiene l'indirizzo dell'operando in Memoria.\\
+\bt{SVANTAGGIO}: un accesso in Memoria (operazione onerosa) e, spazio di indirizzamento 
+limitato legato alla grandezza della memoria.
+
+
+\subsubsection{Indiretto}
+Il campo indirizzo contiene l'indirizzo di una cella di Memoria che contiene 
+l'indirizzo dell'operando. \\
+\bt{VANTAGGIO}: Con parole di lungehzza N si possono indirizzare
+$ 2^n $ entità diverse, $ n $ deve essere comunque uguale o inferiore alla
+grandezza del campo indirizzo.\\
+\bt{SVANTAGGIO}: è che si avrà bisogno di 2 accessi alla memoria.
+
+
+\subsubsection{Registro}
+L'operando si trova in un registro indicato nel campo indirizzo\\
+\bt{VANTAGGIO}: pochi bit per l'indirizzamento.\\
+\bt{SVANTAGGIO}: limitato dal numero di registri disponibili dal 
+tipo di architettura.
+
+
+\subsubsection{Registro Indiretto}
+Si basa sullo stesso principio dell'indirizzamento a registro, l'operando 
+si trovan in una cellla di Memoria puntata dal contenuto del registro.
+\bt{VANTAGGIO}: si ha solo 1 accesso in memoria a differenza dell'indirizzamento indiretto,
+si ha anche un grande spazio di indirizzamento (che dipende dal numero di registri e dalla
+lunghezza del campo indirizzo )
+
+
+\subsubsection{Spiazzamento}
+È la combinazione dell'indirizzamento diretto e a registro indiretto. Il campo indirizzo
+è suddiviso in due parti:\\
+il valore di base ( A )\\
+il registro che contiene l'indirizzo di un valore da sommare ad A\\
+Una versione di questo tipo è l'indirizzamento \bt{relativo}, 
+in cui non si ha un registro casuale ma il Program Counter.\\
+L'indirizzamento \bt{registro-base}, in esso A contiene lo spiazzamento, R contiene il 
+puntatore all'indirizzo base.\\
+L'\bt{indicizzazione} ha in 'A' l'indirizzo base e nel campo registro lo 'spiazzamento',
+per indicare gli operandi da un certo punto della memoria in poi indicheremo con 'A' 
+questo punto di partenza e per accedere a tutti i dati successivi basta incrementare il contenuto
+del campo registro di 1.
+
+\subsection{Stack/Pila}
+La pila è una sequenza lineare di locazioni riservate della Memoria, c'è un puntatore (che si 
+trova nel registro SP, stack pointer, ha come indirizzo la cima della pila). L'operando
+si trova nella cima della pila, si può considerare come un'evoluzione dell'indirizzamento a
+registro indiretto.
+
+\subsection{Formato delle istruzioni}%
+\label{sub:formato_delle_istruzioni}
+Il formato delle istruzioni è come sono scritte le istruzioni date alla macchina, influsice
+la struttura dei campi dell'istruzione, include il codice operativo, include uno o più operandi
+e generalmente si ha più di un formato per linguaggio macchina.
+
+\subsubsection{Lunghezza delle istruzioni}
+È strettamente correlata al formato delle istruzioni, è influenzata e influenza:
+
+\begin{itemize}
+	\item La dimensione della Memoria
+	\item L'organizzazione della Memoria
+	\item Struttura del bus
+	\item La complessità della CPU
+	\item La velocità della CPU
+\end{itemize}
+Per sfruttare al meglio tutte le risorse di un calcolatore deve essere un giusto compromesso
+fra un repertorio delle istruzioni potente e la necessità di risparmiare spazio ( fisicamente
+nella parte hardware della macchina). \\
+
+
+Esiston due tipi di formati delle istruzioni:
+\begin{itemize}
+	\item Lungehzza fissa ( fixed length ),\\
+		esempio: PDP-8, PDP-10
+	\item Formati a lunghezza variabile o ibrida ( hybrid/variable length ),\\
+		esempio: PDP-11, VAX, Intel x86, questo tipo aggiunge complessità
+		al realizzazione della macchina, ma può renderla più potente per certi 
+		utilizzi specifici.
+\end{itemize}
+
+\subsubsection{Allocazione dei bit}
+Come i bit vengono allocati dipende dai diversi tipi di indrizzamnento usati da una determinata
+architettura, dal numero variabile degli operandi ( 0, 1, 2 ),
+il numero dei registri, dei banchi registri ( tipi di 'buffer' di memoria ).
+Dipende anche dall'intervallo degli indirizzi ( ogni quanto viene ripetuto un indirizzo ) e dalla
+loro granularità ( se sono a byte o parola ), l'indrizzamento a byte è più oneroso
+ma utile per la manipolazione dei caratteri.
+
+\subsection{Approfondimento sul funzionamento della CPU}%
+\label{sub:approfondimento_sul_funzionamento_della_cpu}
+
+La CPU, essendo il componente hardware più potente della macchina è la parte più importante,
+essa ha i compiti di:
+
+\begin{itemize}
+	\item Prelevare le istruzioni ( Instruction Fetch )
+	\item Interpretare le istruzioni ( Instruction Decode ) 
+	\item Prelevare Dati ( Operand Fetch ) 
+	\item Elaborare Dati ( Execute ) 
+	\item Scrivere Dati ( Write Back ) 
+\end{itemize}
+Le componenti principali della CPU sono:
+
+\begin{itemize}
+	\item ALU, l'unità aritmetico logica, il 'cervello' della CPU
+	\item Registri, la memoria della CPU
+	\item Unità di Controllo, le parti che verificano il corretto funzionamento del
+		processore
+\end{itemize}
+La CPU è inoltre collegata al bus di sistema per poter interagire con gli altri componenti 
+dell'elaboratore
+
+
+\subsubsection{Registri}
+I registri sono uno 'spazio' di lavoro in cui la CPU può memorizzare i dati che ha 
+elaborato senza dover interagire con la Memoria Principale, in quanto questa è un'operazione
+molto onerosa e che si deve cercare di limitare al più possibile.\\
+I registri sono al vertice della gerarchia di memoria. Essi possono avere funzioni diverse
+determinate dall'impianto progettuale della CPU.\\
+
+I tipi di Registri sono:
+
+\begin{itemize}
+	\item Utente, vengono utilizzati dal 'programmatore' per memorizzare internamente
+		i dati alla CPU e successivamente da elaborare.
+	\item di Controllo e di Stato, utilizzati dall'unità di controllo per monitorare
+		le operazioni svolte dalla CPU, sono anche utilizzati dai programmi del sistema
+		operativo per controllare l'esecuzione dei programmi.
+\end{itemize}
+Con 'programmatore' ci si riferisce a:
+
+\begin{itemize}
+	\item L'umano che programma in assembly, ( che poi viene trasformato in codice macchina
+		dall'assemblatore)
+	\item Il compilatore che produce un codice in assembly da un programma in HLL 
+		( Linguaggio ad Alto Livello ) 
+\end{itemize}
+I registri che sono visibili all'utente sono:
+
+\begin{itemize}
+	\item Uso generale ( general purpose ),\\
+		possono essere ad uso generale o dedicati a particolari funzioni, possono
+		memorizzare indirizi, dati
+	\item memorizzazione dei dati
+	\item memorizzazione di indirizzi
+	\item memorizzazione dei codici di condizione
+\end{itemize}
+Inoltre la memoria principale può essere organizzata logicamente come un insieme di
+'segmenti' ( spazi di indirizzamento multipli ).\\
+Un segmento al suo interno contiene locazioni di memoria indirizzabili, inoltre si può indicare
+all'interno della memoria fisica la 'base' del segmento ( dove comincia ) e la sua
+'lunghezza' ( quanto è lungo effettivamente ) 
+
+
+\end{document}
