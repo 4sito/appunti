@@ -480,5 +480,119 @@ Un segmento al suo interno contiene locazioni di memoria indirizzabili, inoltre 
 all'interno della memoria fisica la 'base' del segmento ( dove comincia ) e la sua
 'lunghezza' ( quanto è lungo effettivamente ) 
 
+\paragraph{Registri ad uso generale:}
+Questi registri si possono dividere in due sottocategorie:
 
+\begin{itemize}
+	\item Effettivamente ad uso generale,\\
+		aumentano la flessibilità e le opzioni disponibili al 'programmatore',\\
+		aumentano le dimensioni dell'istruzione e della sua complessità, in quanto necessitano
+		di uno spazio separato nel formato dell istruzioni che può variare la lunghezza 
+		in base al numero di registri.
+	\item Specializzati,\\
+		le loro istruzioni sono più piccole e veloci,\\
+		a discapito di un'inferiore flessibilità
+\end{itemize}
+In genere il numero dei registri generali varia da 8 a 32, se ce ne fossero meno di 8 si avrebbe un maggior
+numero di accessi in memoria principale ( operazione onerosa ), se fossero più di 32 non si limiterebbe
+l'accesso alla memoria e aggiungerebbe molta complessità alla struttura della CPU.\\
+Tuttavia l'architettura RISC arriva ad utilizzare fino a centinaia di registri.\\
+
+\paragraph{Lunghezza dei registri:}
+Generalmente un registro è lungo abbastanza da poter contenere un indirizzo della memoria principale e 
+da contenere una 'full word'
+
+\paragraph{Registri per memorizzazione di Codici di Condizione:}
+Si tratta dell'insieme di bit individuali che possono essere letti implicitamente da un programma
+non possono essere impostati da un programma
+
+\paragraph{Registri di Controllo e di Stato:}
+Sono registri che abbiamo già incontrato:
+
+\begin{itemize}
+	\item Progrma Counter ( PC ), il registro ceh tiene il 'conto' delle istruzioni da svolgere
+	\item Instruction Register ( IR ), il registro che contiene le istruzioni da eseguire
+	\item Memory address register ( MAR ), il registro degli indirizzi di memoria
+	\item Memory Buffer Register ( MBR ), un registro di buffer, ovvero una memoria temporanea interna al
+		processore
+\end{itemize}
+
+\paragraph{Program Status Word:}
+La PSW è un insieme di bit che include codici di condizione fra cui:\\
+il segno dell'ultimo risultato, zero, riporto, uguale, overflow, abilitazione/disabilitazione interrupt, supervisore
+
+\paragraph{Modo Supervisore:}
+Si tratta di una modalità che permette al Sistema Operativo di utilizzare le procedure del Kernel, che agiscono su componenti
+critiche del sistema, ovvero l'esecuzione di istruzioni privilegiate. Essa è disponibile SOLAMENTE al sistema operativo e non 
+all'utente o al programmatore in assembler.
+
+\subsubsection{Ciclo di esecuzione CPU con indirettezza:}
+Al ciclo di esecuzione della CPU nella fase di fetch e di execute hanno un sottociclo che è l'indirettezza.\\
+Al fine di recuperare gli operandi indicati in un'istruzione può essere necessario accedere più volte in memoria
+secondo la modalità di indirzzamento indiretto.
+
+\paragraph{Flusso dei dati}%
+\label{par:flusso_dei_dati}
+L'instruction Fetch generalmente si suddivide in queste operazioni:
+
+\begin{itemize}
+	\item L'indirizzo dell'istruzione successiva 'x' è contenuta nel PC;
+	\item L'indirizzo dell'istruzione 'x' viene spostato nel MAR;
+	\item L'indirizzo 'x' viene emesso nel bus indirizzi;
+	\item L'unità di controllo richiede una lettura nella memoria principale;
+	\item Viene letto l'indirizzo nella memoria principale;
+	\item L'indirizzo ottenuto viene inviato tramite il bus dati e viene 
+		ricevuto e copiato dal MBR;
+	\item L'indirizzo viene spostato nell'IR
+	\item Viene incrementato il PC con l'indirizzo dell'istruzione 'x+1'
+\end{itemize}
+
+
+\paragraph{Data Fetch}%
+\label{par:data_fetch}
+Il ciclo del data fetch comprende:
+
+\begin{itemize}
+	\item Viene esaminato l'IR;
+	\item Se il codice operativo ( opcode ) dell'istruzione richiede un indirizzamento indiretto
+		si esegue il ciclo di indirettezza:
+		\begin{itemize}
+			\item N bit più a destra del MBR vengono trasferiti nel MAR;
+			\item L'unità di controllo richiede la lettura dalla memoria principale;
+			\item Il risultato della lettura, l'indirizzo dell'operando, viene trasferito
+				nel MBR;
+		\end{itemize}
+\end{itemize}
+
+\paragraph{Execute}%
+\label{par:execute}
+Questa parte del ciclo può variare molto in base al tipo di architettura, dipende dal tipo 
+di istruzioni che bisogna eseguire e può includere le operazioni di:
+
+\begin{itemize}
+	\item Lettura/scrittura della Memoria;
+	\item Input/Output;
+	\item Trasferimento di dati fra registri e/o nei registri;
+	\item Operazioni della ALU;
+\end{itemize}
+
+\paragraph{Interrupt}%
+\label{par:interrupt}
+Esso è semplice e prevedibile si svolge come segue:
+
+\begin{itemize}
+	\item Viene salvato il contenuto del PC, al fine di recuperare il ripristino dell'esecuzione dopo
+		la gestione dell'interruzione;
+	\item Il PC viene caricato con l'indirizzo della prima istruzione della routine di gestione 
+		dell'interruzione;
+	\item Il fetch dell'istruzione viene puntato al PC;
+\end{itemize}
+
+\paragraph{Prefetch}%
+\label{par:prefetch}
+
+È la fase di prelievo dell'istruzione e accede alla memoria principale, quest'istruzione viene di solito
+eseguita durante la fase di esecuzione dell'istruzione corrente ( durante questa fase non si deve accedere in memoria ).\\
+Questa procedura può diventare inutile se sono in esecuzione delle istruzioni di 'jump' o 'branch' che vanno
+a modificare il contenuto delle istruzioni da eseguire.
 \end{document}
