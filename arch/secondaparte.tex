@@ -595,4 +595,207 @@ Esso è semplice e prevedibile si svolge come segue:
 eseguita durante la fase di esecuzione dell'istruzione corrente ( durante questa fase non si deve accedere in memoria ).\\
 Questa procedura può diventare inutile se sono in esecuzione delle istruzioni di 'jump' o 'branch' che vanno
 a modificare il contenuto delle istruzioni da eseguire.
+
+
+\section{Pipeline}%
+\label{sec:pipeline}
+Il concetto di \bt{pipeline} è quello di suddividere il lavoro e:
+
+\begin{itemize}
+	\item eseguire più attività contemporaneamente
+	\item eseguire il lavoro in un tempo minore
+\end{itemize}
+Tuttavia non si può raggiungere il parallelismo totale come conseguenza della \bt{
+dipendenza funzionale}, ovvero quando si necessità che l'attività precedente sia
+terminata per poter accedere ai dati che ha elaborato.\\
+Nella pipeline i lavori sono affidati a degli \bt{esecutori} che possono
+di diversi tipi:
+
+\begin{itemize}
+	\item generici, ogni esecutore può eseguire un lavoro completo,
+		ogni esecutore ha le stesse risore, ha lo stesso throughput del
+		parallelismo totale
+	\item specializzati, ogni esecutore svolge sempre la stessa fase,
+		ogni esecutore è limitato alla propria fase, ogni lavoro passa 
+		da un'esecutore all'altro, questo tipo utilizza meno risorse.
+\end{itemize}
+Il secondo metodo è quello più diffuso in quanto:
+
+\begin{itemize}
+	\item Ogni lavoro viene suddiviso in certo numero di fasi (i)
+	\item Ogni fase è svolta da operatori diversi
+	\item In ogni istante sono eseguite fasi diverse
+	\item In ogni fase successiva ogni operatore riesegue la stessa fase.
+\end{itemize}
+Le fasi del ciclo esecutivo di un'istruzione sono:
+
+\begin{itemize}
+	\item prelevare istruzione
+	\item interpretare istruzione
+	\item prelevare dati
+	\item elaborare dati
+	\item memorizzare dati
+\end{itemize}
+Ognuna di queste fasi è eseguita da una diversa unità funzionale della CPU,
+per esempio l'ALU esegui la fase di elaborazione dati.\\
+Al fine di non perdere nessuna informazione e senza dover utilizzare la memoria 
+principale si utilizzano dei buffer ( registri temporanei ), su cui si scrivono 
+i dati utili alla fase successiva. Ne viene posto uno fra ogni fase.\\
+Per aumentare le prestazioni bisogna:
+
+\begin{itemize}
+	\item decomporre maggiormente il lavoro
+	\item rendere le fasi più indipendenti fra loro e con
+		una durata simile
+\end{itemize}
+Tuttavia aggiungere più fasi alla pipeline può essere una fonte di criticità 
+perchè si creano più dipendenze e più possiblità di malfunzionamenti.
+
+\subsection{Pipeline hazards}%
+\label{sub:pipeline_hazards}
+
+Una situazione di criticità della pipeline in cui:\\
+l'istruzione successiva non può essere eseguita nel ciclo di clock 
+immediatamente successivo ( stallo ).
+
+\begin{enumerate}
+	\item sbilanciamento delle fasi
+	\item problemi strutturali
+	\item dipendenza dai dati
+	\item dipendenza dal controllo
+\end{enumerate}
+
+\paragraph{Sbilanciamento delle fasi}%
+\label{par:sbilanciamento_delle_fasi}
+Questa criticità si ha in quanto non tutte le fasi richiedono lo stesso tempo
+di esecuzione.\\
+per esempio: la lettura di un operando tramite registro o mediante indirizzamento
+indiretto.\\
+Per questo motivo la suddivisione in fasi va misurata in base alla durate 
+dell'istruzione più onerosa.\\
+Inoltre non tutte le istruzioni richiedono le stesse  fasi e le stesse risorse.\\
+Il rischio che si corre con questo tipo di problema è che se un esecutore ha svolto
+un lavoro e deve passare un dato al successivo esecutore finchè quest'altro
+sta ancora svolgendo la propria mansione rischia di sovrascrivere i dati 
+di quest'ultimo.\\
+Come soluzione a questo tipo di problema ci sono due possibli soluzioni:
+
+\begin{itemize}
+	\item decomporre le fasi più onerose in più sottofasi,\\
+		ha però un elevato costo e una scarsa utilizzazione.
+	\item duplicare gli esecutori delle fasi più onerose e farli operare in 
+		parallelo,\\
+		per esempio due ALU, una per l'aritmetica intera e una per
+		l'aritmetica a virgola mobile.
+\end{itemize}
+
+\paragraph{Problemi strutturali}%
+\label{par:problemi_strutturali}
+Accadono quando due o più istruzioni che sono già nella pipeline richiedono di 
+accedere ad una stessa risorsa nello stesso ciclo di clock. In questo caso 
+gli accessi devono essere sequenziali e non paralleli.\\
+Per risolvere questo tipo di problema si attuano queste strategie:
+
+\begin{itemize}
+	\item Introduzione fasi non operative ( nop ) 
+	\item suddivisione delle memorie in modo tale che permettano gli
+		accessi paralleli:\\
+		per esempio una cache per le istruzioni e una per i dati.
+\end{itemize}
+
+\paragraph{Dipendenza dai dati}%
+\label{par:dipendenza_dai_dati}
+Accade quando una fase non può essere eseguita in un certo ciclo di clock 
+perchè i dati di cui ha bisogno non sono ancora disponibili, ovvero deve attendere
+il termine dell'elaboraione di una fase precedente.\\
+Avendo due istruzioni: istruzione i, istruzione i+1, si possono 
+avere questi tipi di criticità:
+
+\begin{itemize}
+	\item \bt{read after write}: lettura dopo scrittura,\\
+		i+1 legge prima che i abbia scritto,\\
+		\begin{enumerate}
+		\item Si introducono fasi non operative (nop) quindi fasi di stallo
+		\item si propagano i dati appena sono stati calcolati, 
+			( dataforwarding ),\\
+		se l'operando viene calcolato alla fine della fase \tit{ EI } 
+		lo si comunica subito doppo questa fase ( e non nella fase successiva
+		 \tit{ WO } )  e si riduce di uno le fasi di stallo.
+		\item Si riordinano le istruzioni in maniera più efficiente dal compilatore.
+		\end{enumerate}
+	\item \bt{ Write After Write }: scrittura dopo scrittura,\\
+		i+1 scrive prima che i abbia scritto
+	\item \bt{ Write After Read }: scrittura dopo lettura,\\
+		i+1 scrive prima che i abbia letto ( caso raro in pipeline )  
+\end{itemize}
+
+\paragraph{Dipendenza dal controllo}%
+\label{par:dipendenza_dal_controllo}
+Accade quando entra nella pipeline un'istruzione di salto condizionato o incodizionato.\\
+Nel caso del salto condizionato:\\
+
+\begin{itemize}
+	\item Si mette in stallo la pipeline finchè non si conosce l'esito 
+		della condizione del salto
+	\item Si individuano le istruzioni critiche e si aggiunge un'apposita logica
+		di controllo, nel farlo si complica il compilatore e l'hardware specifico
+	\item Si aggiungono flussi multipli, ovvero si caricano le due possibili istruzioni
+		che sono specificate nell'istruzione di salto:\\
+		l'istruzione \tit{ n } o l'istruzione \tit{ i+1 }.
+	\item Si esegue il prefetch dell'istruzione target del salto.
+	\item Buffer circolare ( \tit{ loop buffer }  ),\\
+		ha una capienza di 256 bytes, viene indirizzato al byte, dato un indirizzo di 
+		target controllo se c'è nel buffer: 8 bit meno significativi ( come indice 
+		buffer ), gli altri bit più significativi si utilizzano per verificare se la 
+		destinazione del salto sta già nello sticker
+		\begin{itemize}
+			\item Piccola e veloce memoria che ricorda tutte le ultime n
+				instruzioni prelevate
+			\item In caso di salto si controlla se l'istruzione 
+				è già dentro il buffer
+			\item Utile in caso di loop, se il buffer contiene tutte le istruzioni
+				da eseguire nel loop esse devono essere caricate una sola 
+				volta nella memoria ( scenario molto frequente con i loop )
+			\item Accopiato al pre-fetch 
+		\end{itemize}
+	\item Predizione dei salti:\\
+		Si possono avere due tipi di approcci:
+		\begin{itemize}
+			\item \bt{ Statico },\\
+				prevedo di saltare \tit{ sempre },\\
+				prevedo di \tit{ non } saltare \tit{ mai },\\
+				prevedo di saltare in base al \tit{ codice operativo } 
+			\item \bt{ dinamico },\\
+				bit take/not taken,\\
+				tabella dell storia dei salti,\\
+				Questo approccio cerca di migliorare la qualità della 
+				predizione del salto memorizzando la \tit{ cronologia
+				delle istruzioni di salto condizionato} di un certo programma.\\
+				Per questo ad \bt{ ogni } istruzione di salto condizionato
+				associo \bt{ 1 o 2 bit } per ricordae l'andamento delle ultime
+				istruzioni. I bit vengono memorizzati in una locazione temporanea
+				ad accesso \bt{ molto veloce }.
+				\begin{itemize}
+					\item 1 bit,\\
+						ricorda come è andata l'ultima volta quindi
+						predice di comportarsi in maniera uguale:\\
+						se \bt{ 1 } predico di saltare,\\
+						se \bt{ 0 } predico di non saltare,\\
+						se \bt{ sbaglio } predizione inverto il bit.
+					\item 2 bit,\\
+						Ricorda come è andata la predizione degli ultimi
+						due salti, per invertire la predizione si 
+						ha bisogno di due errori consecutivi
+				\end{itemize}
+		\end{itemize}
+	\item Salto ritardato,\\
+		finchè non si è a conoscenza dell'esito dell'istruzione di salto, al posto di 
+		rimanere in stallo si esegue un'istruzione che non dipende dal salto,
+		il compilatore alloca un'istruzione 'opportuna' subito dopo l'istruzione di salto
+		quindi la CPU esegue sempre PRIMA l'istruzione presente nel 
+		\tit{ branch delay slot } e dopo altera l'ordine di esecuzione  delle istruzioni.
+
+\end{itemize}
+
+
 \end{document}
