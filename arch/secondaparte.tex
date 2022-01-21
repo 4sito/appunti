@@ -350,7 +350,7 @@ tipo di architettura.
 
 \subsubsection{Registro Indiretto}
 Si basa sullo stesso principio dell'indirizzamento a registro, l'operando 
-si trovan in una cellla di Memoria puntata dal contenuto del registro.
+si trovan in una cellla di Memoria puntata dal contenuto del registro.\\
 \bt{VANTAGGIO}: si ha solo 1 accesso in memoria a differenza dell'indirizzamento indiretto,
 si ha anche un grande spazio di indirizzamento (che dipende dal numero di registri e dalla
 lunghezza del campo indirizzo )
@@ -796,6 +796,232 @@ Nel caso del salto condizionato:\\
 		\tit{ branch delay slot } e dopo altera l'ordine di esecuzione  delle istruzioni.
 
 \end{itemize}
+
+\section{CISC e RISC}%
+\label{sec:cisc_e_risc}
+
+Nell'evoluzione dei calcolatori si investono molti più capitali nel reparto \bt{software} 
+piuttosto che in quello \bt{hardware}. Con l'avvenire dei \tit{linguaggi ad alto livello} ( HLL 
+è più semplice esprimere algoritmi complessi in maniera coincisa e delegano al compilatore il 
+compito di tradurre questi in \tit{ linguaggio macchina }. Questi HLL supportano costrutti
+di programmazione strutturata, ovvero i diversi paradigmi.\\
+Per poter ridurre il \tit{ gap semantico } ovvero ciò che sta fra le istruzioni in HLL a quelle
+in linguaggio macchina, una soluzione dei progettisti hardware è stata quella di:
+
+\begin{itemize}
+	\item Ampliare il set delle istruzioni
+	\item Aggiunta di diversi modi di indirizzamento
+	\item Implementazione hardware di costrutti di linguaggi ad alto livello
+\end{itemize}
+
+Così si semplifica il lavoro del compilatore, l'esecuzione diventa più efficiente, si possono
+supportare HLL più complessi.\\
+Un approccio diverso a questa soluzione può essere:
+
+\begin{itemize}
+	\item Individuazione delle caratteristiche e e dei pattern di esecuzione delle istruzioni
+		macchina generate dai programmi in HLL
+	\item Semplificazione dell'architettura di base piuttosto che la sua complicazione
+\end{itemize}
+
+\subsection{RISC}%
+\label{sub:risc}
+
+Il processo di semplificazione coinvolge:
+
+\begin{itemize}
+	\item Le operazioni eseguite,\\
+		semplificare le funzionalità del processore e la sua interazione con la memoria
+	\item operandi,\\
+		tipo e frequenza d'uso degli operandi sono alla base dell'organizzazione
+		della memoria e dei modi di indirizzamento
+	\item Flusso dell'esecuzione,\\
+		organizzazione della pipeline e del controllo
+\end{itemize}
+Per rendere possibile questa semplificazione è necessario analizzare le istruzioni macchina 
+generate dai programmi HLL, e analizzare le misure dinamiche che si raccolgono con l'esecuzione
+del programma e contano il numero di occorrenze di una certa proprietà o di una certa 
+caratteristica.\\
+Per esempio nei linguaggi ad alto livello si hanno molte occorenze delle istruzioni di 
+assegnamento e delle istruzioni condizionali. Oltre alla frequenza di un'istruzione
+è importante tenere in conto il tempo d'esecuzione di un'istruzione.\\
+
+\paragraph{Esito Ricerca}%
+\label{par:esito_ricerca}
+Il risultato della ricerca eseguita in particolare Hennessy e Patterson negli anni '80 porta 
+alla conclusione che la strategia migliore per supportare i linguaggi ad alto livello è di:
+
+\begin{itemize}
+	\item \bt{ NON } rendere le istruzioni macchina simili a quella di HLL
+	\item \bt{ OTTIMIZZAZIONE } delle performance e dei pattern più usati e 
+		più time-consuming
+	\item \bt{ ampio numero di registri } e il compilatore li utilizza in maniera 
+		ottimizzzata
+	\item \bt{ pipeline } accuratamente progettata
+	\item \bt{ set di istruzioni semplificato, RISC } ed efficientemente implementato
+\end{itemize}
+
+\paragraph{Uso dei regsitri}%
+\label{par:uso_dei_regsitri}
+Un registro è una memoria interna alla CPU ad accesso molto rapido ( + veloce della cache ), 
+quindi hanno indirizzi più brevi di quelli della cache e della memoria principale,
+è importante che gli \tit{ operandi } utilizzati siano conservati più a lungo nei registri
+cosicchè da ridurre i trasferimenti memoria-registro.
+
+\begin{itemize}
+	\item \bt{ Hardware },\\
+		aumenta il numero di registri,\\
+		più variabili sono mantenute per più tempo
+	\item \bt{ Software },\\
+		il compilatore massimizza l'uso dei regsitri,\\
+		le variabili più usate per ogni intervallo di tempo sono allocate nei registri,\\
+		richiede una sofisticata analisi dell'utilizzo dei programmi
+\end{itemize}
+Per poter utilizzare i molti registri general purpose un'idea è quella di suddividere i registri
+in molti piccoli gruppi ( finestre ) e per ogni procedura viene utilizzata un gruppo diverso.\\
+Ogni gruppo è composto da:
+\begin{itemize}
+	\item Registro parametri,\\
+		contiene i parametri che vengono passati quando la procedura viene chiamata
+		e contiene il valore da restituire al chiamante al termine della procedura
+	\item Registri locali,\\
+		memorizza il contenuto delle variabili locali
+	\item Registri temporanei,\\
+		Scambia parametri e il valore di ritorno con un'eventuale procedura chiamata,\\
+		molto spesso il registro temporaneo di una procedura \tit{ i } è il registro
+		dei parametri della procedura successiva \tit{ i + 1 } a livello fisico, quindi
+		non c'è nemmeno il bisogno di trasferire i dati
+\end{itemize}
+
+\paragraph{Buffer Circolare}%
+\label{par:buffer_circolare}
+
+I registri sono spesso organizzati in un regitro circolare, in esso è presente il \bt{ CWP }, 
+current window pointer, come suggerisce il nome esso indica la finestra corrente,\\
+mentre il \bt{ SWP }, saved window pointer salva l'indrizzo della finestra in cui si deve 
+ritornare al termine della procedura in corso.
+
+\paragraph{Variabili Globali}%
+\label{par:variabili_globali}
+
+esse sono variabili che sono accessibili da qualunque procedura e da più di esse. Il compilatore
+le allocca in memoria, questa cosa è però poco efficiente in quanto vengono usate spesso 
+e l'utilizzo della memoria è un'operazione molto onerosa. La \bt{ soluzione } a questo problema
+è quello di usare un \bt{ gruppo di registri ad hoc } che sono disponibili a tutte le procedure.
+
+\paragraph{Otimizzazione dei registri}%
+\label{par:otimizzazione_dei_registri}
+
+Lo scopo di quest'operazione è quella di trovare gli operandi il più possibile nei registri
+e minimizzare le operazioni di \tit{ load/store }. L'implementazione \tit{ software } avviene
+attraverso l'ottimizzazione del compilatore e mediante l'utilizzo di \bt{ registri simbolici }.\\
+Ogni variabile viene mappata ad un registro reale e \tit{ se } due variabili vengono utilizzate
+in momenti diversi possono essere mappate sullo \tit{ stesso registro }, il che può rendere il
+numero dei regsitri quasi infinito.\\ 
+Se il numero dei registri non è sufficiente per contenere \tit{ tutte  } le variabili esse
+vengono memorizzate nella \tit{ memoria principale }.\\
+Il numero di registri che vengono generalmente utilizzati nell'architettura \tit{ RISC } sono
+fra i 32 e i 64.
+
+\subsection{CISC}%
+\label{sub:cisc}
+Il tipo di architettura \bt{ CISC } \tit{ Complex Instruction Set Computer } a differenza 
+dell'architettura RISC ha un'\tit{ampio} insieme di istruzioni, e ha istruzioni 
+\bt{ più} complesse al fine di \tit{ semplificare } il lavoro del compilatore e migliorarne le
+performance.\\
+Tuttavia, non semplifica le istruzioni ma le rende più complesse e più simili ai linguaggi ad
+alto livello, inoltre con set di istruzioni più complesso è difficile \tit{ ottimizzare il 
+codice macchina} per ridurlo e riorganizzarlo.\\
+Le istruzioni più complesse possono essere eseguite più \tit{ velocemente } \bt{ ma } al costo di
+
+\begin{itemize}
+	\item unità di controllo più complessa
+	\item controllo microprogrammato necessita più spazio
+	\item rallentamento dell'esecuzione delle istruioni più semplici, che rimangono
+		\tit{ le più frequenti }
+\end{itemize}
+
+\subsection{Confronto fra CISC e RISC}%
+\label{sub:confronto_fra_cisc_e_risc}
+
+\paragraph{Istruzinoi per ciclo di clock} \mbox{} \\%
+\label{par:istruzinoi_per_ciclo_di_clock}
+
+\bt{ RISC }: il ciclo esecutivo di quest'architettura dura un solo machine cycle, 
+\tit{ se la pipeline è piena  } si termina un'istruione ad \bt{ ogni } ciclo di clock
+
+\bt{ CISC }: le istruzioni di questo tipo impiegano più di un ciclo di clock per essere 
+terminate.
+
+\paragraph{Memorie usate per le operazioni} \mbox{} \\%
+\label{par:memorie_usate_per_le_operazioni}
+
+\bt{ RISC }: sono tutte fra registri tranne che per la \bt{ load/store } che sono fra registri e 
+memoria.
+
+\bt{ CISC }: hanno anche operazioni \tit{ memory-memory } e \tit{ register-memory }. Dato che 
+vengono spesso utilizzati \tit{ scalari locali } aumentando e/o otttimizzando i registri
+si ha un incremento delle prestazioni.
+
+\paragraph{Modi di indirizzamento} \mbox{} \\%
+\label{par:modi_di_indirizzamento}
+
+\bt{ RISC }: si usano pochi e semplici modi di indirizzamento ( si semplifica l'istruzione ) 
+
+\bt{ CISC }: si utilizzano molti modi di indirizzamento e alcuni complessi
+
+\paragraph{Caratteristiche architetturali} \mbox{} \\%
+\label{par:caratteristiche_architetturali}
+
+\bt{ RISC: } pochi e semplici formati \tit{ fissi } per le istruzioni, decodifica opcode e 
+accesso ai registri può essere simultaneo
+
+\paragraph{Verdetto} \mbox{} \\%
+\label{par:verdetto}
+
+Tuttavia non si può notare quale architettura sia la \tit{ migliore } ma ciò dipende dai campi
+applicativi in cui queste vengnono utilizzate, è difficile capire quanta influenza viene
+data dal \tit{ compilatore }, ( per esempio un buon compilatore CISC può rendere quest'architettura
+migliore nel confronto se si ha uno scarso compilatore RISC). Inoltre, la maggior parte dei 
+confronti eseguiti sono stati fatti su prototipi semplificati e non su macchine ad uso 
+commerciale. Al giorno d'oggi alcune architetture utilizzano aspetti caratteristici delle
+altre, per esempio architetture RISC con elementi CISC o viceversa.\\
+Altre componenti cominciano a dover essere tenute in considerazione come:
+
+\begin{itemize}
+	\item GPU, graphic processing unit
+	\item TPU, tensore processing unit, reti neurali e processori per machine learning
+\end{itemize}
+
+\subsection{Banco registri vs Cache}%
+\label{sub:banco_registri_vs_cache}
+
+\begin{itemize}
+	\item Banco Registri,
+		\begin{itemize}
+			\item contiene \bt{ tutti } gli scalari locali
+			\item variabili individuabili
+			\item variabili globabli assegnate a registri specifici
+			\item save/restore basato sulla profondità di annidamento
+			\item indirizzamento a registro
+		\end{itemize}
+	\item Cache,
+		\begin{itemize}
+			\item \tit{ solo } gli scalari usati di recente
+			\item blocchi di memoria
+			\item \tit{ solo } le variabili globali usate di recente
+			\item save/restore basato sull'algoritmo di sostituzione della cache
+			\item indirizzamento a memoria
+		\end{itemize}
+\end{itemize}
+Per riferirsi agli scalari locali i registri sono più veloci della cache.
+
+
+\section{MIPS}%
+\label{sec:mips}
+
+\section{Processori Multi-Core}%
+\label{sec:processori_multi_core}
 
 
 \end{document}
