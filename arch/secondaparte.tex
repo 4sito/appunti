@@ -480,7 +480,7 @@ Un segmento al suo interno contiene locazioni di memoria indirizzabili, inoltre 
 all'interno della memoria fisica la 'base' del segmento ( dove comincia ) e la sua
 'lunghezza' ( quanto è lungo effettivamente ) 
 
-\paragraph{Registri ad uso generale:}
+\pparagraph{Registri ad uso generale:}
 Questi registri si possono dividere in due sottocategorie:
 
 \begin{itemize}
@@ -498,15 +498,15 @@ numero di accessi in memoria principale ( operazione onerosa ), se fossero più 
 l'accesso alla memoria e aggiungerebbe molta complessità alla struttura della CPU.\\
 Tuttavia l'architettura RISC arriva ad utilizzare fino a centinaia di registri.\\
 
-\paragraph{Lunghezza dei registri:}
+\pparagraph{Lunghezza dei registri:}
 Generalmente un registro è lungo abbastanza da poter contenere un indirizzo della memoria principale e 
 da contenere una 'full word'
 
-\paragraph{Registri per memorizzazione di Codici di Condizione:}
+\pparagraph{Registri per memorizzazione di Codici di Condizione:}
 Si tratta dell'insieme di bit individuali che possono essere letti implicitamente da un programma
 non possono essere impostati da un programma
 
-\paragraph{Registri di Controllo e di Stato:}
+\pparagraph{Registri di Controllo e di Stato:}
 Sono registri che abbiamo già incontrato:
 
 \begin{itemize}
@@ -517,11 +517,11 @@ Sono registri che abbiamo già incontrato:
 		processore
 \end{itemize}
 
-\paragraph{Program Status Word:}
+\pparagraph{Program Status Word:}
 La PSW è un insieme di bit che include codici di condizione fra cui:\\
 il segno dell'ultimo risultato, zero, riporto, uguale, overflow, abilitazione/disabilitazione interrupt, supervisore
 
-\paragraph{Modo Supervisore:}
+\pparagraph{Modo Supervisore:}
 Si tratta di una modalità che permette al Sistema Operativo di utilizzare le procedure del Kernel, che agiscono su componenti
 critiche del sistema, ovvero l'esecuzione di istruzioni privilegiate. Essa è disponibile SOLAMENTE al sistema operativo e non 
 all'utente o al programmatore in assembler.
@@ -531,7 +531,7 @@ Al ciclo di esecuzione della CPU nella fase di fetch e di execute hanno un sotto
 Al fine di recuperare gli operandi indicati in un'istruzione può essere necessario accedere più volte in memoria
 secondo la modalità di indirzzamento indiretto.
 
-\paragraph{Flusso dei dati}%
+\pparagraph{Flusso dei dati}%
 \label{par:flusso_dei_dati}
 L'instruction Fetch generalmente si suddivide in queste operazioni:
 
@@ -548,7 +548,7 @@ L'instruction Fetch generalmente si suddivide in queste operazioni:
 \end{itemize}
 
 
-\paragraph{Data Fetch}%
+\pparagraph{Data Fetch}%
 \label{par:data_fetch}
 Il ciclo del data fetch comprende:
 
@@ -564,7 +564,7 @@ Il ciclo del data fetch comprende:
 		\end{itemize}
 \end{itemize}
 
-\paragraph{Execute}%
+\pparagraph{Execute}%
 \label{par:execute}
 Questa parte del ciclo può variare molto in base al tipo di architettura, dipende dal tipo 
 di istruzioni che bisogna eseguire e può includere le operazioni di:
@@ -576,7 +576,7 @@ di istruzioni che bisogna eseguire e può includere le operazioni di:
 	\item Operazioni della ALU;
 \end{itemize}
 
-\paragraph{Interrupt}%
+\pparagraph{Interrupt}%
 \label{par:interrupt}
 Esso è semplice e prevedibile si svolge come segue:
 
@@ -588,7 +588,7 @@ Esso è semplice e prevedibile si svolge come segue:
 	\item Il fetch dell'istruzione viene puntato al PC;
 \end{itemize}
 
-\paragraph{Prefetch}%
+\pparagraph{Prefetch}%
 \label{par:prefetch}
 
 È la fase di prelievo dell'istruzione e accede alla memoria principale, quest'istruzione viene di solito
@@ -665,7 +665,7 @@ immediatamente successivo ( stallo ).
 	\item dipendenza dal controllo
 \end{enumerate}
 
-\paragraph{Sbilanciamento delle fasi}%
+\pparagraph{Sbilanciamento delle fasi}%
 \label{par:sbilanciamento_delle_fasi}
 Questa criticità si ha in quanto non tutte le fasi richiedono lo stesso tempo
 di esecuzione.\\
@@ -689,7 +689,7 @@ Come soluzione a questo tipo di problema ci sono due possibli soluzioni:
 		l'aritmetica a virgola mobile.
 \end{itemize}
 
-\paragraph{Problemi strutturali}%
+\pparagraph{Problemi strutturali}%
 \label{par:problemi_strutturali}
 Accadono quando due o più istruzioni che sono già nella pipeline richiedono di 
 accedere ad una stessa risorsa nello stesso ciclo di clock. In questo caso 
@@ -703,7 +703,7 @@ Per risolvere questo tipo di problema si attuano queste strategie:
 		per esempio una cache per le istruzioni e una per i dati.
 \end{itemize}
 
-\paragraph{Dipendenza dai dati}%
+\pparagraph{Dipendenza dai dati}%
 \label{par:dipendenza_dai_dati}
 Accade quando una fase non può essere eseguita in un certo ciclo di clock 
 perchè i dati di cui ha bisogno non sono ancora disponibili, ovvero deve attendere
@@ -729,7 +729,7 @@ avere questi tipi di criticità:
 		i+1 scrive prima che i abbia letto ( caso raro in pipeline )  
 \end{itemize}
 
-\paragraph{Dipendenza dal controllo}%
+\pparagraph{Dipendenza dal controllo}%
 \label{par:dipendenza_dal_controllo}
 Accade quando entra nella pipeline un'istruzione di salto condizionato o incodizionato.\\
 Nel caso del salto condizionato:\\
@@ -846,7 +846,7 @@ Per esempio nei linguaggi ad alto livello si hanno molte occorenze delle istruzi
 assegnamento e delle istruzioni condizionali. Oltre alla frequenza di un'istruzione
 è importante tenere in conto il tempo d'esecuzione di un'istruzione.\\
 
-\paragraph{Esito Ricerca}%
+\pparagraph{Esito Ricerca}%
 \label{par:esito_ricerca}
 Il risultato della ricerca eseguita in particolare Hennessy e Patterson negli anni '80 porta 
 alla conclusione che la strategia migliore per supportare i linguaggi ad alto livello è di:
@@ -861,7 +861,7 @@ alla conclusione che la strategia migliore per supportare i linguaggi ad alto li
 	\item \bt{ set di istruzioni semplificato, RISC } ed efficientemente implementato
 \end{itemize}
 
-\paragraph{Uso dei regsitri}%
+\pparagraph{Uso dei regsitri}%
 \label{par:uso_dei_regsitri}
 Un registro è una memoria interna alla CPU ad accesso molto rapido ( + veloce della cache ), 
 quindi hanno indirizzi più brevi di quelli della cache e della memoria principale,
@@ -893,7 +893,7 @@ Ogni gruppo è composto da:
 		non c'è nemmeno il bisogno di trasferire i dati
 \end{itemize}
 
-\paragraph{Buffer Circolare}%
+\pparagraph{Buffer Circolare}%
 \label{par:buffer_circolare}
 
 I registri sono spesso organizzati in un regitro circolare, in esso è presente il \bt{ CWP }, 
@@ -901,7 +901,7 @@ current window pointer, come suggerisce il nome esso indica la finestra corrente
 mentre il \bt{ SWP }, saved window pointer salva l'indrizzo della finestra in cui si deve 
 ritornare al termine della procedura in corso.
 
-\paragraph{Variabili Globali}%
+\pparagraph{Variabili Globali}%
 \label{par:variabili_globali}
 
 esse sono variabili che sono accessibili da qualunque procedura e da più di esse. Il compilatore
@@ -909,7 +909,7 @@ le allocca in memoria, questa cosa è però poco efficiente in quanto vengono us
 e l'utilizzo della memoria è un'operazione molto onerosa. La \bt{ soluzione } a questo problema
 è quello di usare un \bt{ gruppo di registri ad hoc } che sono disponibili a tutte le procedure.
 
-\paragraph{Otimizzazione dei registri}%
+\pparagraph{Otimizzazione dei registri}%
 \label{par:otimizzazione_dei_registri}
 
 Lo scopo di quest'operazione è quella di trovare gli operandi il più possibile nei registri
@@ -1019,6 +1019,86 @@ Per riferirsi agli scalari locali i registri sono più veloci della cache.
 
 \section{MIPS}%
 \label{sec:mips}
+MIPS = microprocessor without interlocked pipeline stages,\\
+Questa architettura fu progettata da Hennesy e Patterson con lo scopo di 
+implementare una \bt{pipeline efficiente}.\\
+Tutte le istruzioni sono a \tit{ 32 bit }, le operazioni avvengono fra
+\tit{ registri }, le uniche operazioni sulla memoria sono \tit{ load e store } e 
+servono per trasferire dati fra la memoria e i regsitri. I dati che vengono caricati
+sui registri possono essere sottoforma di: \tit{ byte, mezze parole, parole }
+
+\pparagraph{Modi di indirizzamento}%
+\label{ppar:Modi di indirizzamento}
+
+\begin{itemize}
+	\item Immediato	
+	\item Displacement
+	\item Alternative
+		\begin{itemize}
+			\item Indiretta registro ( displacement a 0 )
+			\item Assoluta ( Registro 0 come base ) 
+		\end{itemize}
+\end{itemize}
+
+\pparagraph{Formato Istruzioni}%
+\label{ppar:Formato Istruzioni}
+Esistono 3 tipi di formati nell'architettura MIPS:
+
+\begin{itemize}
+	\item Formato R(register):\\
+		\begin{itemize}
+			\item codop, 6bit,\\
+				sono istruzioni aritmetico-logiche
+			\item rs, 5 bit,\\
+				registro con il primo argomento
+			\item rt, 5 bit,\\
+				registro con il secondo argomento
+			\item rd, 5 bit,\\
+				registro destinazione che riceve il risultato
+			\item shamt, 5 bit,\\
+				shift amount, nelle istruzioni di shift dice di quanti bit 
+				fare lo shift
+			\item funct, 6 bit,\\
+				identifica la variante operativa
+		\end{itemize}
+	\item Formato I(mmediato):
+		\begin{itemize}
+			\item codop, 6 bit,\\
+				sono le istruzioni di load/store, immediate e salto condizionato
+			\item rs, 5 bit,\\
+				primo argomento
+			\item rt, 5 bit,\\
+				secondo argomento
+			\item address/const, 16 bit,\\
+				spiazzamento o costante
+		\end{itemize}	
+	\item Formato J(ump):
+		\begin{itemize}
+			\item codop, 6 bit,\\
+				salto incondizionato
+			\item target address, 26 bit
+		\end{itemize}
+\end{itemize}
+
+\pparagraph{Ciclo esecutivo MIPS}%
+\label{ppar:Ciclo esecutivo MIPS}
+Il ciclo esecutivo si suddivide in 5 fasi:
+
+
+\begin{itemize}
+	\item IF, instruction fetch
+	\item ID, instruction decode
+	\item EX, execution,\\
+		tutte le istruzioni usano l'alu fuorchè quella di salto incondizionato
+	\item MEM, Memory access/ branch completion
+	\item WB, write back, scrittura del risultato nei registri.
+\end{itemize}
+In un ciclo di clock si esegue una fase, un'istruzione viene eseguita in 5 cicli di clock 
+( a regime ).\\
+Ci sono dei registri fra ogni fase della pipeline, ( per esempio fra la fase ID e la EX ) e 
+servono per memorizzare i dati.\\
+Nella pipeline del MIPS è possibile individuare qualsiasi dipendenza dai dati nella fase di 
+decodifica delle istruzioni
 
 \section{Processori Multi-Core}%
 \label{sec:processori_multi_core}

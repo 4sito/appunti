@@ -71,32 +71,35 @@
 \contentsline {paragraph}{Registri di Controllo e di Stato:}{40}{section*.32}%
 \contentsline {paragraph}{Program Status Word:}{40}{section*.33}%
 \contentsline {paragraph}{Modo Supervisore:}{40}{section*.34}%
-\contentsline {subsubsection}{Ciclo di esecuzione CPU con indirettezza:}{40}{section*.35}%
+\contentsline {subsubsection}{Ciclo di esecuzione CPU con indirettezza:}{41}{section*.35}%
 \contentsline {paragraph}{Flusso dei dati}{41}{section*.36}%
 \contentsline {paragraph}{Data Fetch}{41}{section*.37}%
 \contentsline {paragraph}{Execute}{41}{section*.38}%
-\contentsline {paragraph}{Interrupt}{41}{section*.39}%
-\contentsline {paragraph}{Prefetch}{41}{section*.40}%
+\contentsline {paragraph}{Interrupt}{42}{section*.39}%
+\contentsline {paragraph}{Prefetch}{42}{section*.40}%
 \contentsline {section}{\numberline {2.3}Pipeline}{42}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Pipeline hazards}{43}{subsection.2.3.1}%
 \contentsline {paragraph}{Sbilanciamento delle fasi}{43}{section*.41}%
-\contentsline {paragraph}{Problemi strutturali}{43}{section*.42}%
-\contentsline {paragraph}{Dipendenza dai dati}{43}{section*.43}%
+\contentsline {paragraph}{Problemi strutturali}{44}{section*.42}%
+\contentsline {paragraph}{Dipendenza dai dati}{44}{section*.43}%
 \contentsline {paragraph}{Dipendenza dal controllo}{44}{section*.44}%
 \contentsline {section}{\numberline {2.4}CISC e RISC}{45}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}RISC}{45}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.1}RISC}{46}{subsection.2.4.1}%
 \contentsline {paragraph}{Esito Ricerca}{46}{section*.45}%
-\contentsline {paragraph}{Uso dei regsitri}{46}{section*.46}%
+\contentsline {paragraph}{Uso dei regsitri}{47}{section*.46}%
 \contentsline {paragraph}{Buffer Circolare}{47}{section*.47}%
 \contentsline {paragraph}{Variabili Globali}{47}{section*.48}%
 \contentsline {paragraph}{Otimizzazione dei registri}{47}{section*.49}%
-\contentsline {subsection}{\numberline {2.4.2}CISC}{47}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Confronto fra CISC e RISC}{47}{subsection.2.4.3}%
-\contentsline {paragraph}{Istruzinoi per ciclo di clock}{47}{section*.50}%
+\contentsline {subsection}{\numberline {2.4.2}CISC}{48}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Confronto fra CISC e RISC}{48}{subsection.2.4.3}%
+\contentsline {paragraph}{Istruzinoi per ciclo di clock}{48}{section*.50}%
 \contentsline {paragraph}{Memorie usate per le operazioni}{48}{section*.51}%
 \contentsline {paragraph}{Modi di indirizzamento}{48}{section*.52}%
 \contentsline {paragraph}{Caratteristiche architetturali}{48}{section*.53}%
-\contentsline {paragraph}{Verdetto}{48}{section*.54}%
-\contentsline {subsection}{\numberline {2.4.4}Banco registri vs Cache}{48}{subsection.2.4.4}%
+\contentsline {paragraph}{Verdetto}{49}{section*.54}%
+\contentsline {subsection}{\numberline {2.4.4}Banco registri vs Cache}{49}{subsection.2.4.4}%
 \contentsline {section}{\numberline {2.5}MIPS}{49}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Processori Multi-Core}{49}{section.2.6}%
+\contentsline {paragraph}{Modi di indirizzamento}{50}{section*.55}%
+\contentsline {paragraph}{Formato Istruzioni}{50}{section*.56}%
+\contentsline {paragraph}{Ciclo esecutivo MIPS}{51}{section*.57}%
+\contentsline {section}{\numberline {2.6}Processori Multi-Core}{51}{section.2.6}%
