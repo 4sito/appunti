@@ -210,11 +210,11 @@ Per esempio su 4 bit:
 \begin{equation}
 	1000 = -8\ ;\ 0111 = 7\ ;\ 1111 = -1\ ;\ 0000 = 0
 \end{equation}
-Per fare velocemente il complemento dei numeri in complemento a due basta:\\
-partendo da sinistra si lascia il numero uguale fino al primo uno incluso, e si fa il 
-complemento del resto.\\
-\bt{ VANTAGGI }:\\
-singola rappresentazione dell'uno, facili le operazioni aritmetiche, facile negazione
+Per fare il complemento dei numeri in basta:\\
+partendo da sinistra si lascia il numero uguale fino al primo uno incluso, e si 
+complementa il resto.\\
+\bt{ VANTAGGI }: singola rappresentazione dell'uno, facili le 
+operazioni aritmetiche, facile negazione
 
 \input{sub/complemento_due_tab}
 
@@ -251,7 +251,7 @@ però di una più complicata implementazione dell'aritmetica:\\
 controllo zero, allineamento mantisse, somma o sottrazione mantisse, normalizzazione del
 risultato
 
-\clearpage
+%\clearpage
 \section{Linguaggio Macchina}%
 \label{sub:linguaggio_macchina}
 
@@ -829,17 +829,11 @@ Il secondo metodo è quello più diffuso in quanto:
 	\item In ogni istante sono eseguite fasi diverse
 	\item In ogni fase successiva ogni operatore riesegue la stessa fase.
 \end{itemize}
-Le fasi del ciclo esecutivo di un'istruzione sono:
-
-\begin{itemize}
-	\item prelevare istruzione
-	\item interpretare istruzione
-	\item prelevare dati
-	\item elaborare dati
-	\item memorizzare dati
-\end{itemize}
-Ognuna di queste fasi è eseguita da una diversa unità funzionale della CPU,
-per esempio l'ALU esegue la fase di elaborazione dati.\\
+Le fasi del ciclo esecutivo di un'istruzione sono: \tit{prelevare} istruzione,
+\tit{interpretare} istruzione, \tit{prelevare} dati, \tit{elaborare} dati,
+\tit{memorizzare} dati.\\
+Ognuna è eseguita da una diversa unità funzionale della CPU,
+l'ALU esegue la fase di elaborazione.\\
 Per non perdere nessuna informazione senza dover utilizzare la memoria 
 principale si usano dei buffer ( registri temporanei ), nei quali si scrivono 
 i dati utili alla fase successiva. Ne viene posto uno fra ogni fase.\\
@@ -960,7 +954,7 @@ Nel caso del salto condizionato:
 				volta nella memoria ( scenario molto frequente con i loop )
 			\item Accopiato al pre-fetch 
 		\end{itemize}
-	\item Predizione dei salti:\\
+	\item \bt{Predizione dei salti}:\\
 		Si possono avere due tipi di approcci:
 		\begin{itemize}
 			\item \bt{ Statico },\\
@@ -990,7 +984,7 @@ Nel caso del salto condizionato:
 						ha bisogno di due errori consecutivi
 				\end{itemize}
 		\end{itemize}
-	\item Salto ritardato,\\
+	\item \bt{Salto ritardato},\\
 		finchè non si è a conoscenza dell'esito dell'istruzione di salto, per non
 		rimanere in stallo si esegue un'istruzione che non dipende dal salto,
 		il compilatore alloca un'istruzione 'opportuna' subito dopo l'istruzione 
@@ -1310,6 +1304,42 @@ termine della fase MEM
 
 \section{Processori Multi-Core}%
 \label{sec:processori_multi_core}
+Con la crescita esponenziale delle prestazioni dei microprocessori attraverso l'incremento 
+della frequenza di clock e un'organizzazione migliorata.\\
+Per aumentare ulteriormente le prestazioni si è pensato di mettere in \tit{ parallelo } la
+pipeline con altre pipeline \bt{ Multithreading Simultaneo}.\\
+I tipi di organizzazione sono:
 
+\begin{enumerate}
+	\item \bt{ Super Scalare },\\
+		È l'approccio classico che abbiamo utilizzato, si permette il
+		\bt{ SMT } replicando le sorgenti di esecuzione e si unifica il tutto
+		mediante una cache condivisa
+	\item \bt{ Multithreading Simultaneo },\\
+		Simile al super scalare, a differenza che ogni \tit{ thread } ha il proprio
+		insieme di banchi registri, ogni thread ha una cache per istruzioni e una 
+		per i dati, tutto unificato da una cache L2 condivisa
+	\item \bt{ Multicore },\\
+		Si hanno più \tit{ microprocessori } nello stesso chip
+\end{enumerate}
+Un processore \tit{ multicore } si contraddistingue per:
+
+\begin{itemize}
+	\item Un certo numero di core
+	\item Un certo numero di livelli di cache 
+	\item Una certa quantità di cache condivisa
+\end{itemize}
+Nel tenere la cache di secondo livello condivisa \bt{ L2 } si possono trarre molti vantaggi:
+
+\begin{itemize}
+	\item \bt{ Riduzione dei miss } totali, è molto più semplice che molti core
+		trovino la stessa risorsa
+	\item \bt{ Condivisione dei dati } non replicata, i dati presenti nella
+		 cache condivisa non vengono poi replicati nelle cache \tit{ private } 
+	\item \bt{ Cache dinamica } se si sfruttano algoritmi di sostituzione
+	\item \bt{ Mezzo di comunicazione } fra i vari core 
+\end{itemize}
+La differenza con una cache \bt{ L2 } \tit{ non } condivisa è che questa fornirebbe un
+accesso alla memoria più rapido a discapito però della coerenza dei dati ( non sincronizzati ) 
 
 \end{document}

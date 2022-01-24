@@ -59,71 +59,71 @@
 \contentsline {subsection}{\numberline {2.2.2}Complemento a due}{30}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Standard IEEE-754}{31}{subsection.2.2.3}%
 \contentsline {paragraph}{FORMATO SINGOLO}{31}{section*.25}%
-\contentsline {section}{\numberline {2.3}Linguaggio Macchina}{32}{section.2.3}%
-\contentsline {paragraph}{Elementi Istruzioni Macchina}{32}{section*.26}%
+\contentsline {section}{\numberline {2.3}Linguaggio Macchina}{31}{section.2.3}%
+\contentsline {paragraph}{Elementi Istruzioni Macchina}{31}{section*.26}%
 \contentsline {paragraph}{Locazione operandi}{32}{section*.27}%
 \contentsline {paragraph}{Formato Istruzione di 16 bit}{32}{section*.28}%
 \contentsline {paragraph}{Tipi di istruzioni}{32}{section*.29}%
-\contentsline {paragraph}{Indirizzi necessari per un'istruzione}{33}{section*.30}%
+\contentsline {paragraph}{Indirizzi necessari per un'istruzione}{32}{section*.30}%
 \contentsline {paragraph}{Progettazione di un'istruction set}{33}{section*.31}%
 \contentsline {subsubsection}{Tipi degli operandi}{33}{section*.32}%
-\contentsline {paragraph}{Dati logici}{34}{section*.33}%
+\contentsline {paragraph}{Dati logici}{33}{section*.33}%
 \contentsline {paragraph}{Tipi Dati Intel x86}{34}{section*.34}%
 \contentsline {paragraph}{Tipi di operazioni Intel x86}{34}{section*.35}%
 \contentsline {subsection}{\numberline {2.3.1}Linguaggio Assembly}{35}{subsection.2.3.1}%
 \contentsline {subsubsection}{Big / Little Endian}{35}{section*.36}%
 \contentsline {section}{\numberline {2.4}Modi di indirizzamento}{35}{section.2.4}%
-\contentsline {paragraph}{Immediato}{36}{section*.37}%
-\contentsline {paragraph}{Diretto}{36}{section*.38}%
-\contentsline {paragraph}{Indiretto}{36}{section*.39}%
+\contentsline {paragraph}{Immediato}{35}{section*.37}%
+\contentsline {paragraph}{Diretto}{35}{section*.38}%
+\contentsline {paragraph}{Indiretto}{35}{section*.39}%
 \contentsline {paragraph}{Registro}{36}{section*.40}%
 \contentsline {paragraph}{Registro Indiretto}{36}{section*.41}%
 \contentsline {paragraph}{Spiazzamento}{36}{section*.42}%
 \contentsline {paragraph}{Stack/Pila}{36}{section*.43}%
-\contentsline {subsection}{\numberline {2.4.1}Formato delle istruzioni}{37}{subsection.2.4.1}%
-\contentsline {subsubsection}{Lunghezza delle istruzioni}{37}{section*.44}%
+\contentsline {subsection}{\numberline {2.4.1}Formato delle istruzioni}{36}{subsection.2.4.1}%
+\contentsline {subsubsection}{Lunghezza delle istruzioni}{36}{section*.44}%
 \contentsline {paragraph}{Tipi di formati delle istruzioni}{37}{section*.45}%
 \contentsline {subsubsection}{Allocazione dei bit}{37}{section*.46}%
 \contentsline {subsection}{\numberline {2.4.2}Approfondimento sul funzionamento della CPU}{37}{subsection.2.4.2}%
-\contentsline {paragraph}{Componenti principali CPU}{38}{section*.47}%
-\contentsline {subsubsection}{Registri}{38}{section*.48}%
+\contentsline {paragraph}{Componenti principali CPU}{37}{section*.47}%
+\contentsline {subsubsection}{Registri}{37}{section*.48}%
 \contentsline {paragraph}{Tipi di Registri}{38}{section*.49}%
-\contentsline {paragraph}{Registri ad uso generale:}{39}{section*.50}%
-\contentsline {paragraph}{Lunghezza dei registri:}{39}{section*.51}%
-\contentsline {paragraph}{Registri per memorizzazione di Codici di Condizione:}{39}{section*.52}%
+\contentsline {paragraph}{Registri ad uso generale:}{38}{section*.50}%
+\contentsline {paragraph}{Lunghezza dei registri:}{38}{section*.51}%
+\contentsline {paragraph}{Registri per memorizzazione di Codici di Condizione:}{38}{section*.52}%
 \contentsline {paragraph}{Registri di Controllo e di Stato:}{39}{section*.53}%
 \contentsline {paragraph}{Program Status Word:}{39}{section*.54}%
 \contentsline {paragraph}{Modo Supervisore:}{39}{section*.55}%
 \contentsline {subsubsection}{Ciclo di esecuzione CPU con indirettezza:}{39}{section*.56}%
-\contentsline {paragraph}{Flusso dei dati}{40}{section*.57}%
-\contentsline {paragraph}{Data Fetch}{40}{section*.58}%
+\contentsline {paragraph}{Flusso dei dati}{39}{section*.57}%
+\contentsline {paragraph}{Data Fetch}{39}{section*.58}%
 \contentsline {paragraph}{Execute}{40}{section*.59}%
 \contentsline {paragraph}{Interrupt}{40}{section*.60}%
 \contentsline {paragraph}{Prefetch}{40}{section*.61}%
-\contentsline {section}{\numberline {2.5}Pipeline}{41}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Pipeline hazards}{42}{subsection.2.5.1}%
-\contentsline {paragraph}{Sbilanciamento delle fasi}{42}{section*.62}%
-\contentsline {paragraph}{Problemi strutturali}{42}{section*.63}%
+\contentsline {section}{\numberline {2.5}Pipeline}{40}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Pipeline hazards}{41}{subsection.2.5.1}%
+\contentsline {paragraph}{Sbilanciamento delle fasi}{41}{section*.62}%
+\contentsline {paragraph}{Problemi strutturali}{41}{section*.63}%
 \contentsline {paragraph}{Dipendenza dai dati}{42}{section*.64}%
-\contentsline {paragraph}{Dipendenza dal controllo}{43}{section*.65}%
-\contentsline {section}{\numberline {2.6}CISC e RISC}{44}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}RISC}{44}{subsection.2.6.1}%
+\contentsline {paragraph}{Dipendenza dal controllo}{42}{section*.65}%
+\contentsline {section}{\numberline {2.6}CISC e RISC}{43}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}RISC}{43}{subsection.2.6.1}%
 \contentsline {paragraph}{Esito Ricerca}{44}{section*.66}%
-\contentsline {paragraph}{Uso dei regsitri}{45}{section*.67}%
+\contentsline {paragraph}{Uso dei regsitri}{44}{section*.67}%
 \contentsline {paragraph}{Buffer Circolare}{45}{section*.68}%
 \contentsline {paragraph}{Variabili Globali}{45}{section*.69}%
 \contentsline {paragraph}{Otimizzazione dei registri}{45}{section*.70}%
-\contentsline {subsection}{\numberline {2.6.2}CISC}{46}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Confronto fra CISC e RISC}{46}{subsection.2.6.3}%
-\contentsline {paragraph}{Istruzioni per ciclo di clock}{46}{section*.71}%
-\contentsline {paragraph}{Memorie usate per le operazioni}{46}{section*.72}%
+\contentsline {subsection}{\numberline {2.6.2}CISC}{45}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Confronto fra CISC e RISC}{45}{subsection.2.6.3}%
+\contentsline {paragraph}{Istruzioni per ciclo di clock}{45}{section*.71}%
+\contentsline {paragraph}{Memorie usate per le operazioni}{45}{section*.72}%
 \contentsline {paragraph}{Modi di indirizzamento}{46}{section*.73}%
 \contentsline {paragraph}{Caratteristiche architetturali}{46}{section*.74}%
 \contentsline {paragraph}{Verdetto}{46}{section*.75}%
-\contentsline {subsection}{\numberline {2.6.4}Banco registri vs Cache}{47}{subsection.2.6.4}%
-\contentsline {section}{\numberline {2.7}MIPS}{47}{section.2.7}%
+\contentsline {subsection}{\numberline {2.6.4}Banco registri vs Cache}{46}{subsection.2.6.4}%
+\contentsline {section}{\numberline {2.7}MIPS}{46}{section.2.7}%
 \contentsline {paragraph}{Modi di indirizzamento}{47}{section*.76}%
 \contentsline {paragraph}{Formato Istruzioni}{47}{section*.77}%
-\contentsline {paragraph}{Ciclo esecutivo MIPS}{48}{section*.78}%
+\contentsline {paragraph}{Ciclo esecutivo MIPS}{47}{section*.78}%
 \contentsline {paragraph}{Note per gli esercizi}{48}{section*.79}%
 \contentsline {section}{\numberline {2.8}Processori Multi-Core}{48}{section.2.8}%
