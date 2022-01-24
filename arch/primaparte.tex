@@ -214,7 +214,7 @@ principali componenti:
 \begin{defn}[Programma]
 	Un programma è una sequenza di passi\\
 	Ogni passo corrsiponde ad un'operazionie logica.\\
-	Ogni operazione determina un diverso insieme di segnali di controllo.\\
+	Ogni operazione determina un diverso insieme di segnali di controllo.
 \end{defn}
 
 \begin{defn}[Programmazione software]
@@ -312,7 +312,7 @@ L'istruzione prelevata viene messa in IR poi viene eseguita.
 \begin{esem}	
 Parola = 16bit\\
 Istruzione = 16bit\\
-Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16\\
+Codici operativi = 4 bit a sinistra = $2^4$ combinazioni = 16
 
 \begin{itemize}
 	\item 0001 carica in AC (accumulatore) una cella di M
@@ -557,7 +557,7 @@ Esempio di Bus multiplo:
 
 \begin{itemize}
 	\item \bt{connessione punto a punto} fra CPU e cache, il che rende
-	il trasferimento dei dati molto più veloce ed efficiente.\\
+	il trasferimento dei dati molto più veloce ed efficiente.
 	\item \bt{Bus di espansione},	si interfaccia con i dispositivi I/O
 	\item \bt{Bus ad alta velocità}, si interfaccia con i dispositivi I/O
 		e fornisce una trasmissione di dati più rapida 
@@ -588,7 +588,7 @@ Coordinazione degli eventi su un bus
 \bt{Interconnessione Punto a Punto}, con l'aumentare della velocità dei 
 processori è sempre più frequenta una distribuzione di dati densa e veloce.\\
 Un bus condiviso però rallenta la comunicazione del processore (bottleneck)
-, per questo si adottano delle connessioni punto a punto.\\
+, per questo si adottano delle connessioni punto a punto.
 
 \begin{itemize}
 	\item Connessioni dirette multiple:\\
@@ -624,7 +624,7 @@ Livelli di QPI:
 	\item \bt{Routing}\\
 		Struttura per dirigere i pacchetti attraverso essa. Determina il
 		percorso che un pacchetto deve seguire.\\
-		Supportato da tabelle di instradamento:\\
+		Supportato da tabelle di instradamento:
 		\begin{itemize}
 			\item definite da software di basso livello che
 				contiene delle istruzioni
@@ -719,8 +719,7 @@ con un numero di istruzioni pari a circa il 10\% di tutte quelle che le compongo
 \end{defn}
 
 \subsection{Gerarchia di memoria}
-Tutte le locazioni di memoria sono suddivise in blocchi. \newline
-
+Tutte le locazioni di memoria sono suddivise in blocchi. \\
 Conviene organizzare la memoria in vari livelli gerarchici:
 
 \begin{itemize}
@@ -746,7 +745,7 @@ Memoria a livelli:
 		e meno capienti.
 \end{enumerate}
 La CPU usa il livello piu' alto. Ogni livello inferiore contiene tutti i dati presenti ai 
-livelli superiori.\\
+livelli superiori.
 
 \subsubsection{trasferimento dati}
 I dati vengono scambiati sotto forma di WORD/PAROLE:
@@ -757,10 +756,9 @@ I dati vengono scambiati sotto forma di WORD/PAROLE:
 \end{itemize}
 La memoria lavora efficientemente se la CPU trova il dato cercato nella CACHE. Avendo 
 piu' livelli di cache si ha una maggiore probabilità di trovare questo dato.\\
-
-Il numero di parole in un blocco è una potenza di 2. \newline
+Il numero di parole in un blocco è una potenza di 2. \\
 Una parola è composta da 4 byte, possiamo identificare i primi 14 bit come 
-"indirizo" del bit, mentre i restanti 2 come identificativi del bit.\\
+"indirizo" del bit, mentre i restanti 2 come identificativi del bit.
 
 \subsection{Cache}
 Un indirizzo di linea di cache e' costituito generalmente da:
@@ -784,13 +782,13 @@ La cache e' suddivisa in un multiplo di blocchi.
 
 \begin{defn}[Tempo medio di Accesso]
 $T_a$: Tempo medio di accesso ad un dato in memoria cache 
+
 \begin{equation} T_a\ =\ T_h \times P_h + T_m(1-P_h) \end{equation}
 $T_h$: tempo di accesso ad un dato presnte in cache
 $T_m$: tempo medio di accesso ad un dato \textbf{non} in cache (dimensione blocco)
-$P_h$: probabilità di hit \newline
+$P_h$: probabilità di hit \\
 \end{defn}
-\textit{Tecnica generale} \newline
-
+\textit{Tecnica generale} 
 
 \begin{enumerate}
 	\item Suddivisione della memoria centrale in blocchi logici
@@ -874,16 +872,17 @@ Non e' necessario avere un grande numero di N per raggiungere il massimo dell'ef
 \subsection{Politiche di rimpiazzo dei blocchi}
 Quando si ha un miss, come si decide quale blocco della cache dobbiamo rimpiazzare?\\
 Nell'associazione diretta non ci si pone questo problema, perchè ogni linea della 
-cache corrisponde un blocco della memoria centrale.\\
-
+cache corrisponde un blocco della memoria centrale.
 \begin{enumerate}
-	\item \textit{casuale}, viene occupato lo spazio omogeneamente, facile implementazione
-	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a lungo in cache,
-		complicata implementazione
+	\item \textit{casuale}, viene occupato lo spazio omogeneamente, 
+		facile implementazione
+	\item \textit{First-In-First-Out(FIFO)}, il blocco rimasto più a 
+		lungo in cache, complicata implementazione
 	\item \textit{Least Frequently Used(LFU)}, il blocco con meno accessi, 
 		complicata implementazione hardware
-	\item \textit{Least Recently Used(LRU)}, il blocco con l'accesso più distante,
-		per preservare quelli accessi più recentemente, implementazione difficile.
+	\item \textit{Least Recently Used(LRU)}, il blocco con 
+		l'accesso più distante,per preservare quelli accessi 
+		più recentemente, implementazione difficile.
 \end{enumerate}
 A minor quantità di cache si hanno migliori prestazioni con il rimpiazzo LRU.\\
 Questo e' il metodo piu' gettonato, e ad aumentare il livello di cache 
@@ -939,7 +938,7 @@ Possibili soluzioni
 	\item \textbf{trasparenza hardware}, hardware aggiuntivo: modifica a RAM = modifica a cache
 	\item \textbf{memoria non cacheable}, solo una porzione è condivisa e non cacheable
 \end{itemize}
-Cosa comporta la modifica di dati in una cache?\\
+Cosa comporta la modifica di dati in una cache?
 
 \begin{itemize}
 	\item invalida quella parola corrispondente nella memoria centrale
@@ -1074,7 +1073,7 @@ Questa quantità diminuisce drasticamente all'aumentare degli 'M' bit:
 \input{sub/cod_tab}
 
 Quando ci sono 2 errori si riesce a corregerne uno solo e si comunica che 
-è stato rilevato un errore ma non è correggibile.\\
+è stato rilevato un errore ma non è correggibile.
 
 \subsection{Memorie esterne}
 Le memorie esterne si suddividono in 4 macro-categorie:
@@ -1443,6 +1442,7 @@ Contro:
 
 \section{Formulario}
 
+\bt{ \tit{ TODO }  } 
 
 
 \subsubsection{Altri tipi di memorizzazione ottica}%
@@ -1472,7 +1472,6 @@ Contro:
 	\item utilizzato per backup e copia di riserva
 \end{itemize}
 Le informazioni possono essere memorizzate a serpentina, o possono essere scritte 
-a blocchi\\
-
+a blocchi
 
 \end{document}

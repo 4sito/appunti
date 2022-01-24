@@ -3,7 +3,7 @@
 \begin{document}
 
 \chapter{Seconda Parte}
-\subsection{Input/Output}%
+\section{Input/Output}%
 \label{sub:input_output}
 Un computer è collegato a innumerevoli apparecchi i quali
 
@@ -15,7 +15,6 @@ Un computer è collegato a innumerevoli apparecchi i quali
 È certo che siano più lenti della CPU e della RAM, per ottenere il massimo delle
 prestazioni della propria CPU è necessario che le periferiche esterne siano 
 controllate da dei moduli comuni: \bt{moduli di input output}.\\
-
 Vari tipi di dispositivi esterni:
 \begin{itemize}
 	\item Comprensibili dall'uomo\\
@@ -25,63 +24,140 @@ Vari tipi di dispositivi esterni:
 		Modem, router
 \end{itemize}
 
-I componenti di un dipositivo esterno:
+\pparagraph{Componenti di un dispositivo esterno}%
+\label{ppar:Componenti di un dispositivo esterno}
+
+
 
 \begin{itemize}
-	\item Logica di controllo\\
+	\item \bt{Logica di controllo}\\
 		Comunica con il modulo di I/O
-	\item Buffer di memoria\\
+	\item \bt{Buffer di memoria}\\
 		immaggazzina memoria, esempio (logistica container)
-	\item Transducer\\
+	\item \bt{Transducer}\\
 		trasforma dati fisici (analogici) in bits o viceversa
 \end{itemize}
 
-Componenti di un modulo I/O:
+\pparagraph{Componenti Modulo I/O}%
+\label{ppar:Componenti Modulo I/O}
+
+
 
 \begin{itemize}
-	\item 					
+	\item \bt{Registro Dati}, comunica con le linee dei dati
+	\item \bt{Registri di controllo}, comunica con le linee dei dati
+        \item \bt{Logica dell'I/O}, comunica con le linee indirizzi e le linee di controllo
+	\item \bt{Logiche di interfaccia} con i dispositivi esterni, 
+		inviano dati, stati e segnali di controllo
 \end{itemize}
 
+\pparagraph{Caratteristiche Modulo I/O}%
+\label{ppar:Caratteristiche Modulo I/O}
+
+
+\begin{itemize}
+	\item nascondono o rivelano le proprietà del dispositivo alla CPU
+	\item Supporto di dispositivi singoli o multipli
+	\item Controllo delle funzioni del dispositivo o delega del controllo alla CPU
+	\item Caratteristiche del sistema operativo
+\end{itemize}
+
+\pparagraph{Funzioni del Modulo I/O}%
+\label{ppar:Funzioni del Modulo I/O}
+
+
+\begin{itemize}
+	\item Controllo e temporizzazione
+	\item Comunicazione con CPU
+	\item Comunicazione con i dispositivi
+	\item Buffering dei dati
+	\item Rilevazione degli errori
+\end{itemize}
 \subsection{Tecniche di gestione input/output}%
 \label{sub:tecniche_di_gestione_input_output}
 
 \subsubsection{I/O da programma}
-Attesa attiva della CPU e si occupa del trasferimento dei dati 
-I/O memory mapped o separato
-
-\subsubsection{I/O guidato da interrupt}
-Non c'è l'attesa della CPU, essa viene interrota quando il dispositivo è pronto
-
-\subsubsection{Direct Memory Access}
-Hardware aggiuntivo
-
-Modulo DMA:
-
+Attesa attiva della CPU e si occupa del trasferimento dei dati, la CPU e il modulo
+I/O non sono sempre collegati, si spreca molto tempo lasciando la CPU in attesa.\\
+I comandi che si possono eseguire sono:\\
+CPU invia un indirizzo, che identifica il modulo ( e/o il dispositivo se  si ha moduli $>$ 1 )\\ 
+CPU invia comando di:
 \begin{itemize}
-	\item Data Lines
-		\begin{itemize}
-			\item Data Count
-			\item Data Register
-			\item Address Register
-		\end{itemize}
-	\item Address Lines\\
-		Address Register
-	\item Control Logic
+  	\item \bt{controllo}, cosa deve fare il modulo
+	\item \bt{test}, controllo dello stato
+	\item \bt{lettura/scrittura}, trasferimento dei dati tramite i buffer
 \end{itemize}
 
-Operazioni DMA:
+
+\pparagraph{I/O memory mapped}%
+\label{ppar:I/O memory mapped}
+\bt{ VANTAGGI }:
+
+\begin{itemize}
+	\item non necessita istruzioni speciali,\\
+		le istruzioni inviate alla memoria principale arrivano anche alle aree di I/O,\\
+		il software di controllo può essere scritto in HLL
+	\item protezione più agevole,\\
+		nascondere aree di I/O allo spazio indirizzato all'utente
+\end{itemize}
+
+\bt{ SVANTAGGI }:
+
+\begin{itemize}
+	\item non è compatibile con l'uso della \bt{cache}
+	\item non è compatibile con architetture a \bt{bus multipli}
+\end{itemize}
+
+\subsubsection{I/O guidato da interrupt}
+Non c'è l'attesa della CPU, essa viene interrota \tit{ SOLO } quando il dispositivo è pronto\\
+La CPU esegue altre operazioni e si ferma \tit{ SOLAMENTE } solamente quando ci sono delle 
+effettive interruzioni le quali vengono inviata alla CPU dal modulo di I/O.\\
+La procedura nel caso di interruzione:
+
+\begin{itemize}
+	\item La CPU salva il contenuto dei registri e del PC
+	\item viene interrotto il processo corrente e viene elaborato l'interrupt
+\end{itemize}
+
+\subsubsection{Direct Memory Access}
+A differenza degli altri due tipi di input di blocco di dati che richiedono l'intervento 
+\tit{ attivo } della CPU, questo tipo, richiede il minimo intervento della CPU.
+Esso è un pezzo d'hardware aggiuntivo connesso al \tit{ bus } e il \bt{ controllore DMA } 
+sostituisce \tit{ quasi } completamente la CPU nelle attività di I/O
+\pparagraph{Modulo DMA}%
+\label{ppar:Modulo DMA}
+
+
+\begin{itemize}
+	\item Linee dati
+		\begin{itemize}
+			\item Data Count
+			\item Registro dati
+			\item Indirizzo registri
+		\end{itemize}
+	\item Linee indirizzi\\
+		Registro Indirizzi
+	\item Logica di controllo
+\end{itemize}
+
+\pparagraph{Operazioni DMA}%
+\label{ppar:Operazioni DMA}
+	
 
 \begin{itemize}
 	\item CPU comunica al controllore DMA:
 
 		\begin{itemize}
 			\item lettura scrittura
-			\item 
+			\item indirizzo dispositivo
+			\item indirizzo iniziale in memoria del blocco di dati
+			\item quantità di dati da trasferire
 		\end{itemize}
-	\item 
-	\item 
+	\item CPU prosegue con altre attività
+	\item il controllore DMA trasferisce i dati e si interfaccia con la memoria principale
+	\item il controllore DMA invia un \tit{ interrupt } alla CPU quando ha terminato
+		il trasferimento,
 \end{itemize}
-
 Il trasferimento dei dati DMA occupa il bus e lo sottrae alla CPU, si possono
 utilizzare due metodi differenti per accedere al canale:
 
@@ -91,10 +167,91 @@ utilizzare due metodi differenti per accedere al canale:
 	\item Per blocchi, burst mode, è il metodo più efficace in quanto 
 		l'occupazione del bus è un'operazione molto onerosa.
 \end{itemize}
-a
+Il DMA può avere divrse configurazioni:
+
+\begin{itemize}
+	\item Bus singolo, il controllore DMA è isolato,\\
+		il trasferimento dati utilizza il bus \tit{ due } volte: I/O a DMA, DMA a 
+		Memoria
+	\item Bus singolo, il controllore DMA è integrato con I/O,\\
+		può controllare più di un dispositivo, ogni trasferimento usa il bus
+		\tit{ una } volta
+	\item Bus I/O separato, il DMA ha bisogno di una sola interfaccia I/O,\\
+		il trasferimento dati usa il bus \tit{ una } volta sola.
+\end{itemize}
 
 \section{Rappresentazione binari numeri reali}
 
+\subsection{Rappresentazione in modulo e segno}%
+\label{sub:rappresentazione_in_modulo_e_segno}
+Il bit di segno è quello più a sinistra e:\\
+\bt{ 0 } indica positivo\\
+\bt{ 1 } indica negativo\\
+Per esempio su 4 bit:
+\begin{equation}
+	0010 = 2\ ;\ 1010 = -2
+\end{equation}
+Con questa rappresentazione si hanno due rappresentazioni dello zero: $ \pm 0 $ 
+
+\subsection{Complemento a due}%
+\label{sub:complemento_a_due}
+\tit{ Positivi }: da \tit{ 0 } ( composto di \tit{ n } zeri ) a \tit{ $ 2^{n-1} - 1$  } 
+( uno zero seguito da \tit{ n - 1 } uni )\\
+\tit{ Negativi }: da \tit{ -1 } ( composto da \tit{ n } uni ) a \tit{ $ -2^{n-1} $  } 
+( un uno seguito da \tit{ n - 1 } zeri ).\\
+L'1 a sinistra indica il peso negativo, mentre gli altri bit sono pesi positivi.\\
+La formula generale è:
+
+\begin{equation}
+	numero = -2^{n-1} a_{n-1} + \sum_{i=0}^{n - 2} 2^i a_i
+\end{equation}
+Per esempio su 4 bit:
+
+\begin{equation}
+	1000 = -8\ ;\ 0111 = 7\ ;\ 1111 = -1\ ;\ 0000 = 0
+\end{equation}
+Per fare velocemente il complemento dei numeri in complemento a due basta:\\
+partendo da sinistra si lascia il numero uguale fino al primo uno incluso, e si fa il 
+complemento del resto.\\
+\bt{ VANTAGGI }:\\
+singola rappresentazione dell'uno, facili le operazioni aritmetiche, facile negazione
+
+\input{sub/complemento_due_tab}
+
+\subsection{Standard IEEE-754}%
+\label{sub:standard_ieee754}
+È lo standard per i numeri in virgola mobile, ha un \tit{ doppio } formato: singolo
+a 32 bit e doppio a 64 bit, l'esponente ha 8 o 11 bit. A sinistra della virgola si ha
+un \tit{ uno implicito }.
+
+\pparagraph{FORMATO SINGOLO}%
+\label{ppar:FORMATO SINGOLO}
+\begin{itemize}
+	\item 1 bit per il \tit{ segno } 
+	\item 8 bit per \tit{ esponente polarizzato },\\
+		ovvero da 1 a 254 ( -126 a 127 ) 
+	\item 23 bit per la \tit{ mantissa o frazione } 
+\end{itemize}
+
+\begin{equation}
+	\pm 2^{e - 127} \times 1.f
+\end{equation}
+Certe configurazioni assumono valori particolari:
+
+\begin{itemize}
+	\item exp 0, mantissa 0: 0 positivo ( $0^+$ )  o negativo ( $ 0^- $  ) 
+		( in base al bit di segno )
+	\item exp tutti 1, mantissa 0: infinito positivo o negativo $ \pm  \infty $
+	\item exp 0, mantissa non \tit{ nulla }: numero \tit{ denormalizzato },
+		bit a sinistra della virgola è 0 non 1: $ 2^{-126} \times 0.f $ 
+	\item exp tutti 1, mantissa non nulla: errore, not a number NAN
+\end{itemize}
+Questa rappresentazione offre una maggiore quantità di numeri rappresentabili al costo
+però di una più complicata implementazione dell'aritmetica:\\
+controllo zero, allineamento mantisse, somma o sottrazione mantisse, normalizzazione del
+risultato
+
+\clearpage
 \section{Linguaggio Macchina}%
 \label{sub:linguaggio_macchina}
 
@@ -105,8 +262,11 @@ Il linguaggio macchina è costituito da:
 	\item Tipi di operandi
 \end{itemize}
 Nessun linguaggio macchina è superiore ad un altro, ed esso dipende dall'ambito
-applicativo e dalle funzioni che si devono far svolgere ad esso.\\
-Gli elementi dell'istruzione della macchina:
+applicativo e dalle funzioni che si devono far svolgere.
+
+\pparagraph{Elementi Istruzioni Macchina}%
+\label{ppar:Elementi Istruzioni Macchina}
+
 
 \begin{itemize}
 	\item Codice operativo, specifica l'operazione da eseguire
@@ -117,28 +277,33 @@ Gli elementi dell'istruzione della macchina:
 	\item Riferimento all'istruzione successiva
 \end{itemize}
 
-Gli operandi si possono trovare:
+\pparagraph{Locazione operandi}%
+\label{ppar:Locazione operandi}
+
 
 \begin{itemize}
-	\item Memoria centrale, o ( virtuale ) 
-	\item Registri della CPU, ognuno ha il proprio numero identificativo
-	\item Dato immediato con l'istruzione
-	\item Dipsositivi di I/O 
+	\item \bt{Memoria centrale}, o ( virtuale ) 
+	\item \bt{Registri della CPU}, ognuno ha il proprio numero identificativo
+	\item \bt{Dato immediato} con istruzione
+	\item \bt{ Dipsositivi di I/O }
 \end{itemize}
-
-L'istruzione è una sequenza di bit divisa in campi, viene usata una 
+L'\tit{ istruzione } è una sequenza di bit divisa in campi, viene usata una 
 rappresentazione simbolica delle configurazioni di bit. Pure gli operandi
 hanno la propria rappresentazione simbolica
 
-Il formato di un'istruzione di 16 bit è:
+\pparagraph{Formato Istruzione di 16 bit}%
+\label{ppar:Formato Istruzione di 16 bit}
+
 
 \begin{itemize}
-	\item 4 bits, Codice operativo ( opcode ) 
-	\item 6 bits, Indirizzo operando, ( operand reference )
-	\item 6 bits, Indirizzo operando, ( operand reference ) 
+	\item 4 bits, \bt{ Codice operativo } ( opcode ) 
+	\item 6 bits, \bt{ Indirizzo operando }, ( operand reference )
+	\item 6 bits, \bt{ Indirizzo operando }, ( operand reference ) 
 \end{itemize}
 
-I vari tipi di istruzioni sono di:
+\pparagraph{Tipi di istruzioni}%
+\label{ppar:Tipi di istruzioni}
+
 
 \begin{itemize}
 	\item elaborazione dati, istruzioni aritmetico logiche, nei registri della
@@ -147,12 +312,16 @@ I vari tipi di istruzioni sono di:
 	\item Trasferimento dati ( I/O ) 
 	\item Controllo del flusso del programma		
 \end{itemize}
-Gli indirizzi necessari per un'istruzione possono essere:
+
+\pparagraph{Indirizzi necessari per un'istruzione}%
+\label{ppar:Indirizzi necessari per un'istruzione}
+
+
 
 \begin{itemize}
 	\item un indirizzo per ogni operando ( 1 o 2 ) 
-	\item uno per il risultato
-	\item indirizzo dell'istruzione successiva
+	\item uno per il risultato, ( 1 implicito ) 
+	\item indirizzo dell'istruzione successiva, ( entrambi impliciti ) 
 \end{itemize}
 Quindi possono essere al massimo 4, ( cosa molto rara e dispendiosa), ma in genere
 sono 1, 2 o 3 per gli operandi/risultati\\
@@ -160,44 +329,46 @@ Quando si riferisce ad un solo registro vuol dire che il secondo è implicito ed
 memorizzato in un registro, per esempio nell'accumulatore.\\
 Quando non si riferisce a nesssun indirizzo vuol dire che tutti gli indirizzi sono
 impliciti e si sta utilizzando una pila in cui si accumulano i vari indirizzi
-utilizzati.\\
+utilizzati.
 
 \begin{itemize}
-	\item Se si utilizzano \bt{meno indirizzi} di conseguenza si eseguiranno
-		delle istruzioni più elementari e corte, se si hanno 
-		più istruzioni per uni stesso programma porterà ad un tempo 
-		di esecuzione più lungo. L'archiettura RISC utilizza questa 
-		filosofia, significa infatti \bt{Reduced Instruction Set Computer}
+	\item Se si utilizzano \bt{meno indirizzi} si eseguono istruzioni più elementari
+		e corte, se si hanno più istruzioni per uno stesso programma implica un tempo 
+		di esecuzione più lungo.\\
+		L'archiettura RISC utilizza questa filosofia, 
+		significa \bt{Reduced Instruction Set Computer}
 		e si basa sul velocizzare le istruzioni più frequenti.
 	\item se si utilizzano \bt{più indirizzi} le istruzioni diventeranno 
 		più complesse quindi impiegherà meno tempo per eseguire istruzioni
 		più complesse ma userà più potenza per istruzioni semplici.\\
-		L'architettura RISC si basa su questo principio 
+		L'architettura CISC si basa su questo principio 
 		\bt{Complex Instruction Set Computer}
 \end{itemize}
 
-Cosa comporta progettare un insieme di istruzioni:
+\pparagraph{Progettazione di un'istruction set}%
+\label{ppar:Progettazione di un'istruction set}
+
 
 \begin{itemize}
-	\item Repertorio:\\
+	\item \bt{Repertorio}:\\
 		quante e quali operazioni
-	\item Tipo di dato:\\
+	\item \bt{Tipo di dato}:\\
 		su quali dati
-	\item Formato:\\
-		lunghezza, numero indirizzi, dimensione dei campi
-	\item Registri:\\
+	\item \bt{Formato}:\\
+		lunghezza istruzione, numero indirizzi, dimensione dei campi
+	\item \bt{Registri}:\\
 		numero di registri della CPU indirizzabili dalle istruzioni
-	\item Indirizzamento:\\
-		modo di specificare gli indirizzi degli operandi
+	\item \bt{Indirizzamento}:\\
+		modo di individuare gli indirizzi degli operandi
 \end{itemize}
 
 \subsubsection{Tipi degli operandi}
 
 \begin{itemize}
-	\item Indirizzi, rappresentati come interi senza segno\\
+	\item Indirizzi, rappresentati come interi senza segno
 	\item Numeri\\
 		limite al modulo\\
-		limite alla precisione\\
+		limite alla precisione
 	\item Caratteri ( stringhe ) 
 	\item Dati logici, variabili booleane per il controllo del flusso 
 		dell'esecuzione.
@@ -208,11 +379,10 @@ I numeri vengono rappresentati:
 \begin{itemize}
 	\item Interi ( con la virgola fissa ) 
 	\item Virgola Mobile ( Floating point, IEEE754 ) 
-	\item Decimali impaccati, nelle operazioni di I/O,
-		non efficienti in quanto per rappresentare una cifra decimale
-		si utilizzano 4 bit, che vuol dire solo 10 delle 16 configurazioni
-		disponibili vengono utilizzate, si utilizza per evitare la 
-		conversione.\\
+	\item Decimali impaccati, operazioni di I/O,
+		non efficienti per rappresentare una cifra decimale
+		si utilizzano 4 bit, ovvero impiegare solo 10 delle 16 configurazioni
+		disponibili,lo scopoo è di evitare la conversione.\\
 		es: 246 viene rappresentato come:
 
 		\begin{equation}
@@ -220,21 +390,23 @@ I numeri vengono rappresentati:
 			\underset{ + 6}{0110}
 		\end{equation}
 \end{itemize}
-
-I caratteri vengono rappresentati in ASCII ( American Standard Code for
+I caratteri vengono rappresentati in \tit{ASCII} ( American Standard Code for
 Infromation Exchange ) da 7 bit, quindi si hanno in totale 128 configurazioni
 disponibili.\\
 Si ha di solito 1 bit per i caratteri di controllo.\\
-C'è inoltre una versione estesa da 8 bit in cui si possono rappresentare 256 
-configurazioni.\\
-Dati Logici:
+C'è una versione estesa da 8 bit in cui si possono rappresentare 256 configurazioni.
+
+\pparagraph{Dati logici}%
+\label{ppar:Dati logici}
 
 \begin{itemize}
-	\item n bit, invece che un singolo dato
+	\item n bit, invece che singolo dato
 	\item manipolare bit separatamente
 \end{itemize}
 
-Tipi di dati Intel x86
+\pparagraph{Tipi Dati Intel x86}%
+\label{ppar:Tipi Dati Intel x86}
+
 
 \begin{itemize}
 	\item 8 (byte), 16 (word), 32 (doppia parola), 64 (quadword), 128 (double quadword) bits
@@ -244,11 +416,14 @@ Tipi di dati Intel x86
 	\item Bisogna allineare i dati per i trasferimenti dati nel bus
 \end{itemize}
 
-Ci sono vari tipi di operazioni:
+\pparagraph{Tipi di operazioni Intel x86}%
+\label{ppar:Tipi di operazioni Intel x86}
+
 
 \begin{itemize}
 	\item Trasferimento Dati,\\
-		comporta specificare: la sorgente (dove si trova il dato), la destinazione (dove andrà messo il d.),
+		comporta specificare: la sorgente (dove si trova), 
+		la destinazione (dove andrà messo),
 		la lunghezza del dato da trasferire
 	\item Aritmetiche,\\
 		somma, sottrazione, moltiplicazione, divisione.\\
@@ -262,23 +437,34 @@ Ci sono vari tipi di operazioni:
 	\item Conversione
 	\item I/O
 	\item Sistema
-	\item Trasferimento del controllo,\\
-		Salto condizionato (branch), per esempio BRE R1, R2, X (salta a X se R1 equivale a R2),
-		si ha la necessità di saltare se si deve eseguire più volte una stessa operazione come in 
-		un 'for, while' loop, il che dà spazio alla programmazione modulare.\\
-		Salto incondizionato, salta alla prossima istruzione, non ha operandi in quanto non si devono verificare 
-		delle condizioni.\\
-		Chiamata di procedura: una proc. è un pezzo di programma a cui si può dare un nome il che permetto di eseguirlo
-		indicandolo con il nome. Questo permette di risparmiare di scrivere codice e di poter affidare a qualcun'altro 
-		la scrittura di questo. Dobbiamo avere due istruzioni: la chiamata e il ritorno.\\
-		Al fine di memorizzare l'indirizzo di ritorno ci sono 3 luoghi di memorizzazione differenti:
-
+	\item Trasferimento del controllo,
 		\begin{itemize}
-			\item Registro, non funzionale quando sono presenti dei cicli ricorsivi (ovvero che si 'richiamano')
-			\item All'inzio delle procedura chiamata, non funzionali sempre in presenza di cicli ricorsivi
-			\item Cima della pila, ovvero si utilizza una porzione di M dove le scritture e le letture
-				avvengono sempre in cima. In questo modo si richiamano gli indirizzi che sono stati per ultimi scritti
-				nella pila e che si trovano appunto in cima, evitando il problema dei loop ricorsivi.
+		\item \tit{Salto condizionato} (branch), esempio BRE R1, R2, X 
+		(salta a X se R1 equivale a R2),\\
+		si ha la necessità di saltare se si deve eseguire 
+		più volte una stessa operazione come in 
+		un 'for, while' loop, favorisce la programmazione modulare.
+		\item	\tit{Salto incondizionato}, salta all'istruzione \tit{ x } , 
+		non ha operandi, non si devono verificare  delle condizioni.
+		\item \tit{ Chiamata di procedura }: una procedura è un pezzo di 
+		programma a cui si può assegnare un nome e che permette di eseguirlo
+		indicandolo con il nome. Risparmia la scrittura di codice e lo si può
+		delegare. Ci sono deu istruzioni obbligatorie: la chiamata e il ritorno.\\
+		L'indirizzo di ritorno ha 
+		3 luoghi di memorizzazione differenti:
+
+			\begin{itemize}
+			\item Registro, non funzionale quando sono presenti 
+				dei cicli ricorsivi (ovvero che si 'richiamano')
+			\item All'inzio delle procedura chiamata, 
+				non funzionali sempre in presenza di cicli ricorsivi
+			\item Cima della pila, ovvero si utilizza una porzione di 
+				memoria nella quale le scritture e le letture
+				avvengono sempre in 'cima'. Così si richiamano 
+				gli indirizzi che sono stati per ultimi scritti
+				nella pila e che si trovano appunto in cima, 
+				evitando il problema dei loop ricorsivi.
+			\end{itemize}
 		\end{itemize}
 	\end{itemize}
 
@@ -287,7 +473,7 @@ Ci sono vari tipi di operazioni:
 Questo linguaggio è ad un livello più alto rispetto al linguaggio macchina ed è più comprensbile dall'uomo.\\
 Gli indirizzi numerici (binario) vengono interpretati come indirizzi simbolici (A, B, ...,Z),\\
 I codici operativi diventano simboli (SUB, ADD, BRE).\\
-L'assemblatore è un programma che traduce dal linguaggio assembly al linguaggio macchina.\\
+L'assemblatore è un programma che traduce dal linguaggio assembly al linguaggio macchina.
 
 \subsubsection{Big / Little Endian}
 I bit nella memoria vengono memorizzati in maniera differente in base all'architettura del calcolatore, ovvero:
@@ -300,7 +486,7 @@ I bit nella memoria vengono memorizzati in maniera differente in base all'archit
 \end{itemize}
 
 
-\subsection{Modi di indirizzamento}%
+\section{Modi di indirizzamento}%
 \label{sub:modi_di_indirizzamento}
 
 Esistono diversi tipi per specificare l'indirizzo degli operandi:
@@ -316,7 +502,10 @@ Esistono diversi tipi per specificare l'indirizzo degli operandi:
 \end{itemize}
 
 
-\subsubsection{Immediato}
+\pparagraph{Immediato}%
+\label{sub:immediato}
+
+
 L'operando è specificato nell'istruzione stessa, (nella parte del campo 
 indirizzo)\\
 \bt{VANTAGGIO}: non si esegue nessun accesso in Memoria
@@ -326,56 +515,64 @@ Se abbiamo per esempio 6 bit destinati al campo indirizzo, avremo  $ 2^6 $
 valori diversi.
 
 
-\subsubsection{Diretto}
+\pparagraph{Diretto}%
+\label{sub:diretto}
 Il campo indirizzo contiene l'indirizzo dell'operando in Memoria.\\
 \bt{SVANTAGGIO}: un accesso in Memoria (operazione onerosa) e, spazio di indirizzamento 
 limitato legato alla grandezza della memoria.
 
 
-\subsubsection{Indiretto}
+\pparagraph{Indiretto}%
+\label{sub:indiretto}
 Il campo indirizzo contiene l'indirizzo di una cella di Memoria che contiene 
 l'indirizzo dell'operando. \\
 \bt{VANTAGGIO}: Con parole di lungehzza N si possono indirizzare
-$ 2^n $ entità diverse, $ n $ deve essere comunque uguale o inferiore alla
+$ 2^n $ entità diverse, $ n $ deve essere uguale o inferiore alla
 grandezza del campo indirizzo.\\
-\bt{SVANTAGGIO}: è che si avrà bisogno di 2 accessi alla memoria.
+\bt{SVANTAGGIO}: 2 accessi alla memoria.
 
 
-\subsubsection{Registro}
+\pparagraph{Registro}%
+\label{sub:registro}
 L'operando si trova in un registro indicato nel campo indirizzo\\
 \bt{VANTAGGIO}: pochi bit per l'indirizzamento.\\
 \bt{SVANTAGGIO}: limitato dal numero di registri disponibili dal 
 tipo di architettura.
 
 
-\subsubsection{Registro Indiretto}
+\pparagraph{Registro Indiretto}%
+\label{sub:registro_indiretto}
 Si basa sullo stesso principio dell'indirizzamento a registro, l'operando 
 si trovan in una cellla di Memoria puntata dal contenuto del registro.\\
 \bt{VANTAGGIO}: si ha solo 1 accesso in memoria a differenza dell'indirizzamento indiretto,
 si ha anche un grande spazio di indirizzamento (che dipende dal numero di registri e dalla
 lunghezza del campo indirizzo )
 
-
-\subsubsection{Spiazzamento}
+\pparagraph{Spiazzamento}%
+\label{sub:spiazzamento}
 È la combinazione dell'indirizzamento diretto e a registro indiretto. Il campo indirizzo
-è suddiviso in due parti:\\
-il valore di base ( A )\\
-il registro che contiene l'indirizzo di un valore da sommare ad A\\
-Una versione di questo tipo è l'indirizzamento \bt{relativo}, 
-in cui non si ha un registro casuale ma il Program Counter.\\
-L'indirizzamento \bt{registro-base}, in esso A contiene lo spiazzamento, R contiene il 
-puntatore all'indirizzo base.\\
-L'\bt{indicizzazione} ha in 'A' l'indirizzo base e nel campo registro lo 'spiazzamento',
-per indicare gli operandi da un certo punto della memoria in poi indicheremo con 'A' 
-questo punto di partenza e per accedere a tutti i dati successivi basta incrementare il contenuto
-del campo registro di 1.
+è suddiviso in due parti:
 
-\subsection{Stack/Pila}
+\begin{enumerate}
+	\item il valore di base ( A )
+	\item un registro  ( R ) contiene l'indirizzo di un valore da sommare ad A
+\end{enumerate}
+Alcuni esempi:
+
+\begin{itemize}
+	\item l'indirizzamento \bt{relativo}, R è il Program Counter.
+	\item L'indirizzamento \bt{registro-base}, A contiene lo spiazzamento, 
+		R contiene il puntatore all'indirizzo base.
+	\item L'\bt{indicizzazione} ha in 'A' l'indirizzo base e in R lo 'spiazzamento' 
+		( offset ), per indicare gli operandi da un certo punto della memoria 
+		basta incrementare il contenuto di R di 1.
+\end{itemize}
+\pparagraph{Stack/Pila}%
+\label{sub:stack_pila}
 La pila è una sequenza lineare di locazioni riservate della Memoria, c'è un puntatore (che si 
 trova nel registro SP, stack pointer, ha come indirizzo la cima della pila). L'operando
 si trova nella cima della pila, si può considerare come un'evoluzione dell'indirizzamento a
 registro indiretto.
-
 \subsection{Formato delle istruzioni}%
 \label{sub:formato_delle_istruzioni}
 Il formato delle istruzioni è come sono scritte le istruzioni date alla macchina, influsice
@@ -394,10 +591,12 @@ e generalmente si ha più di un formato per linguaggio macchina.
 \end{itemize}
 Per sfruttare al meglio tutte le risorse di un calcolatore deve essere un giusto compromesso
 fra un repertorio delle istruzioni potente e la necessità di risparmiare spazio ( fisicamente
-nella parte hardware della macchina). \\
+nella parte hardware della macchina).
+
+\pparagraph{Tipi di formati delle istruzioni}%
+\label{ppar:Tipi di formati delle istruzioni}
 
 
-Esiston due tipi di formati delle istruzioni:
 \begin{itemize}
 	\item Lungehzza fissa ( fixed length ),\\
 		esempio: PDP-8, PDP-10
@@ -428,7 +627,10 @@ essa ha i compiti di:
 	\item Elaborare Dati ( Execute ) 
 	\item Scrivere Dati ( Write Back ) 
 \end{itemize}
-Le componenti principali della CPU sono:
+
+\pparagraph{Componenti principali CPU}%
+\label{ppar:Componenti principali CPU}
+
 
 \begin{itemize}
 	\item ALU, l'unità aritmetico logica, il 'cervello' della CPU
@@ -436,28 +638,28 @@ Le componenti principali della CPU sono:
 	\item Unità di Controllo, le parti che verificano il corretto funzionamento del
 		processore
 \end{itemize}
-La CPU è inoltre collegata al bus di sistema per poter interagire con gli altri componenti 
+La CPU è collegata al bus di sistema per poter interagire con gli altri componenti 
 dell'elaboratore
-
-
 \subsubsection{Registri}
 I registri sono uno 'spazio' di lavoro in cui la CPU può memorizzare i dati che ha 
-elaborato senza dover interagire con la Memoria Principale, in quanto questa è un'operazione
-molto onerosa e che si deve cercare di limitare al più possibile.\\
+elaborato senza dover interagire con la Memoria Principale, essendo un'operazione molto onerosa
+e che si deve cercare di limitare il più possibile.\\
 I registri sono al vertice della gerarchia di memoria. Essi possono avere funzioni diverse
-determinate dall'impianto progettuale della CPU.\\
+determinate dall'impianto progettuale della CPU.
 
-I tipi di Registri sono:
+\pparagraph{Tipi di Registri}%
+\label{ppar:Tipi di Registri}
+
+
 
 \begin{itemize}
-	\item Utente, vengono utilizzati dal 'programmatore' per memorizzare internamente
+	\item \bt{Utente}, vengono utilizzati dal 'programmatore' per memorizzare internamente
 		i dati alla CPU e successivamente da elaborare.
-	\item di Controllo e di Stato, utilizzati dall'unità di controllo per monitorare
+	\item \bt{di Controllo e di Stato}, utilizzati dall'unità di controllo per monitorare
 		le operazioni svolte dalla CPU, sono anche utilizzati dai programmi del sistema
 		operativo per controllare l'esecuzione dei programmi.
 \end{itemize}
 Con 'programmatore' ci si riferisce a:
-
 \begin{itemize}
 	\item L'umano che programma in assembly, ( che poi viene trasformato in codice macchina
 		dall'assemblatore)
@@ -465,18 +667,17 @@ Con 'programmatore' ci si riferisce a:
 		( Linguaggio ad Alto Livello ) 
 \end{itemize}
 I registri che sono visibili all'utente sono:
-
 \begin{itemize}
 	\item Uso generale ( general purpose ),\\
 		possono essere ad uso generale o dedicati a particolari funzioni, possono
-		memorizzare indirizi, dati
+		memorizzare indirizzi, dati
 	\item memorizzazione dei dati
 	\item memorizzazione di indirizzi
 	\item memorizzazione dei codici di condizione
 \end{itemize}
-Inoltre la memoria principale può essere organizzata logicamente come un insieme di
+La memoria principale può essere organizzata logicamente come un insieme di
 'segmenti' ( spazi di indirizzamento multipli ).\\
-Un segmento al suo interno contiene locazioni di memoria indirizzabili, inoltre si può indicare
+Un \tit{segmento} contiene locazioni di memoria indirizzabili, si può indicare
 all'interno della memoria fisica la 'base' del segmento ( dove comincia ) e la sua
 'lunghezza' ( quanto è lungo effettivamente ) 
 
@@ -496,7 +697,7 @@ Questi registri si possono dividere in due sottocategorie:
 In genere il numero dei registri generali varia da 8 a 32, se ce ne fossero meno di 8 si avrebbe un maggior
 numero di accessi in memoria principale ( operazione onerosa ), se fossero più di 32 non si limiterebbe
 l'accesso alla memoria e aggiungerebbe molta complessità alla struttura della CPU.\\
-Tuttavia l'architettura RISC arriva ad utilizzare fino a centinaia di registri.\\
+Tuttavia l'architettura RISC arriva ad utilizzare fino a centinaia di registri.
 
 \pparagraph{Lunghezza dei registri:}
 Generalmente un registro è lungo abbastanza da poter contenere un indirizzo della memoria principale e 
@@ -527,7 +728,8 @@ critiche del sistema, ovvero l'esecuzione di istruzioni privilegiate. Essa è di
 all'utente o al programmatore in assembler.
 
 \subsubsection{Ciclo di esecuzione CPU con indirettezza:}
-Al ciclo di esecuzione della CPU nella fase di fetch e di execute hanno un sottociclo che è l'indirettezza.\\
+Durantei il ciclo di esecuzione della CPU le fasi di fetch e di execute hanno un sottociclo 
+chiamato \bt{ indirettezza } .\\
 Al fine di recuperare gli operandi indicati in un'istruzione può essere necessario accedere più volte in memoria
 secondo la modalità di indirzzamento indiretto.
 
@@ -578,19 +780,19 @@ di istruzioni che bisogna eseguire e può includere le operazioni di:
 
 \pparagraph{Interrupt}%
 \label{par:interrupt}
-Esso è semplice e prevedibile si svolge come segue:
+Esso è semplice e prevedibile, si svolge come segue:
 
 \begin{itemize}
-	\item Viene salvato il contenuto del PC, al fine di recuperare il ripristino dell'esecuzione dopo
-		la gestione dell'interruzione;
-	\item Il PC viene caricato con l'indirizzo della prima istruzione della routine di gestione 
-		dell'interruzione;
-	\item Il fetch dell'istruzione viene puntato al PC;
+	\item Viene salvato il contenuto del PC, al fine di recuperare 
+		il ripristino dell'esecuzione dopo
+		la gestione dell'interruzione
+	\item Il PC viene caricato con l'indirizzo della prima istruzione 
+		della routine di gestione dell'interruzione
+	\item Il fetch dell'istruzione viene puntato al PC
 \end{itemize}
 
 \pparagraph{Prefetch}%
 \label{par:prefetch}
-
 È la fase di prelievo dell'istruzione e accede alla memoria principale, quest'istruzione viene di solito
 eseguita durante la fase di esecuzione dell'istruzione corrente ( durante questa fase non si deve accedere in memoria ).\\
 Questa procedura può diventare inutile se sono in esecuzione delle istruzioni di 'jump' o 'branch' che vanno
@@ -608,12 +810,12 @@ Il concetto di \bt{pipeline} è quello di suddividere il lavoro e:
 Tuttavia non si può raggiungere il parallelismo totale come conseguenza della \bt{
 dipendenza funzionale}, ovvero quando si necessità che l'attività precedente sia
 terminata per poter accedere ai dati che ha elaborato.\\
-Nella pipeline i lavori sono affidati a degli \bt{esecutori} che possono
+Nella pipeline i lavori sono affidati a degli \bt{esecutori} che possono essere
 di diversi tipi:
 
 \begin{itemize}
 	\item generici, ogni esecutore può eseguire un lavoro completo,
-		ogni esecutore ha le stesse risore, ha lo stesso throughput del
+		ogni esecutore ha le stesse risorse, ha lo stesso throughput del
 		parallelismo totale
 	\item specializzati, ogni esecutore svolge sempre la stessa fase,
 		ogni esecutore è limitato alla propria fase, ogni lavoro passa 
@@ -622,7 +824,7 @@ di diversi tipi:
 Il secondo metodo è quello più diffuso in quanto:
 
 \begin{itemize}
-	\item Ogni lavoro viene suddiviso in certo numero di fasi (i)
+	\item Ogni lavoro viene suddiviso in un certo numero di fasi (i)
 	\item Ogni fase è svolta da operatori diversi
 	\item In ogni istante sono eseguite fasi diverse
 	\item In ogni fase successiva ogni operatore riesegue la stessa fase.
@@ -637,9 +839,9 @@ Le fasi del ciclo esecutivo di un'istruzione sono:
 	\item memorizzare dati
 \end{itemize}
 Ognuna di queste fasi è eseguita da una diversa unità funzionale della CPU,
-per esempio l'ALU esegui la fase di elaborazione dati.\\
-Al fine di non perdere nessuna informazione e senza dover utilizzare la memoria 
-principale si utilizzano dei buffer ( registri temporanei ), su cui si scrivono 
+per esempio l'ALU esegue la fase di elaborazione dati.\\
+Per non perdere nessuna informazione senza dover utilizzare la memoria 
+principale si usano dei buffer ( registri temporanei ), nei quali si scrivono 
 i dati utili alla fase successiva. Ne viene posto uno fra ogni fase.\\
 Per aumentare le prestazioni bisogna:
 
@@ -667,22 +869,22 @@ immediatamente successivo ( stallo ).
 
 \pparagraph{Sbilanciamento delle fasi}%
 \label{par:sbilanciamento_delle_fasi}
-Questa criticità si ha in quanto non tutte le fasi richiedono lo stesso tempo
+Questa criticità si ha quando non tutte le fasi richiedono lo stesso tempo
 di esecuzione.\\
 per esempio: la lettura di un operando tramite registro o mediante indirizzamento
 indiretto.\\
-Per questo motivo la suddivisione in fasi va misurata in base alla durate 
-dell'istruzione più onerosa.\\
-Inoltre non tutte le istruzioni richiedono le stesse  fasi e le stesse risorse.\\
-Il rischio che si corre con questo tipo di problema è che se un esecutore ha svolto
-un lavoro e deve passare un dato al successivo esecutore finchè quest'altro
+La suddivisione in fasi va misurata in base alla durata 
+dell'istruzione più lunga.\\
+Non tutte le istruzioni richiedono le stesse  fasi e le stesse risorse.\\
+Il rischio che si corre è: se un esecutore ha svolto
+un lavoro e deve passare un dato al successivo esecutore finchè questo
 sta ancora svolgendo la propria mansione rischia di sovrascrivere i dati 
-di quest'ultimo.\\
-Come soluzione a questo tipo di problema ci sono due possibli soluzioni:
+dell'ultimo.\\
+Come soluzione ci sono due opzioni:
 
 \begin{itemize}
 	\item decomporre le fasi più onerose in più sottofasi,\\
-		ha però un elevato costo e una scarsa utilizzazione.
+		ha un elevato costo e una scarsa utilizzazione.
 	\item duplicare gli esecutori delle fasi più onerose e farli operare in 
 		parallelo,\\
 		per esempio due ALU, una per l'aritmetica intera e una per
@@ -706,14 +908,14 @@ Per risolvere questo tipo di problema si attuano queste strategie:
 \pparagraph{Dipendenza dai dati}%
 \label{par:dipendenza_dai_dati}
 Accade quando una fase non può essere eseguita in un certo ciclo di clock 
-perchè i dati di cui ha bisogno non sono ancora disponibili, ovvero deve attendere
+perchè i dati di cui ha bisogno non sono ancora disponibili, deve attendere
 il termine dell'elaboraione di una fase precedente.\\
-Avendo due istruzioni: istruzione i, istruzione i+1, si possono 
+Avendo due istruzioni: $i$ e $i+1$, si possono 
 avere questi tipi di criticità:
 
 \begin{itemize}
 	\item \bt{read after write}: lettura dopo scrittura,\\
-		i+1 legge prima che i abbia scritto,\\
+		i+1 legge prima che i abbia scritto,
 		\begin{enumerate}
 		\item Si introducono fasi non operative (nop) quindi fasi di stallo
 		\item si propagano i dati appena sono stati calcolati, 
@@ -732,7 +934,7 @@ avere questi tipi di criticità:
 \pparagraph{Dipendenza dal controllo}%
 \label{par:dipendenza_dal_controllo}
 Accade quando entra nella pipeline un'istruzione di salto condizionato o incodizionato.\\
-Nel caso del salto condizionato:\\
+Nel caso del salto condizionato:
 
 \begin{itemize}
 	\item Si mette in stallo la pipeline finchè non si conosce l'esito 
@@ -747,7 +949,7 @@ Nel caso del salto condizionato:\\
 		ha una capienza di 256 bytes, viene indirizzato al byte, dato un indirizzo di 
 		target controllo se c'è nel buffer: 8 bit meno significativi ( come indice 
 		buffer ), gli altri bit più significativi si utilizzano per verificare se la 
-		destinazione del salto sta già nello sticker
+		destinazione del salto sta già nel stack pointer
 		\begin{itemize}
 			\item Piccola e veloce memoria che ricorda tutte le ultime n
 				instruzioni prelevate
@@ -789,12 +991,11 @@ Nel caso del salto condizionato:\\
 				\end{itemize}
 		\end{itemize}
 	\item Salto ritardato,\\
-		finchè non si è a conoscenza dell'esito dell'istruzione di salto, al posto di 
+		finchè non si è a conoscenza dell'esito dell'istruzione di salto, per non
 		rimanere in stallo si esegue un'istruzione che non dipende dal salto,
-		il compilatore alloca un'istruzione 'opportuna' subito dopo l'istruzione di salto
-		quindi la CPU esegue sempre PRIMA l'istruzione presente nel 
-		\tit{ branch delay slot } e dopo altera l'ordine di esecuzione  delle istruzioni.
-
+		il compilatore alloca un'istruzione 'opportuna' subito dopo l'istruzione 
+		di salto quindi la CPU esegue sempre PRIMA l'istruzione presente nel 
+		\tit{ branch delay slot } e dopo altera l'ordine di esecuzione  delle istruzioni
 \end{itemize}
 
 \section{CISC e RISC}%
@@ -813,13 +1014,12 @@ in linguaggio macchina, una soluzione dei progettisti hardware è stata quella d
 	\item Aggiunta di diversi modi di indirizzamento
 	\item Implementazione hardware di costrutti di linguaggi ad alto livello
 \end{itemize}
-
 Così si semplifica il lavoro del compilatore, l'esecuzione diventa più efficiente, si possono
 supportare HLL più complessi.\\
 Un approccio diverso a questa soluzione può essere:
 
 \begin{itemize}
-	\item Individuazione delle caratteristiche e e dei pattern di esecuzione delle istruzioni
+	\item Individuazione delle caratteristiche e dei pattern di esecuzione delle istruzioni
 		macchina generate dai programmi in HLL
 	\item Semplificazione dell'architettura di base piuttosto che la sua complicazione
 \end{itemize}
@@ -844,11 +1044,11 @@ del programma e contano il numero di occorrenze di una certa proprietà o di una
 caratteristica.\\
 Per esempio nei linguaggi ad alto livello si hanno molte occorenze delle istruzioni di 
 assegnamento e delle istruzioni condizionali. Oltre alla frequenza di un'istruzione
-è importante tenere in conto il tempo d'esecuzione di un'istruzione.\\
+è importante tenere in conto il tempo d'esecuzione di un'istruzione.
 
 \pparagraph{Esito Ricerca}%
 \label{par:esito_ricerca}
-Il risultato della ricerca eseguita in particolare Hennessy e Patterson negli anni '80 porta 
+Il risultato della ricerca eseguita in particolare da Hennessy e Patterson negli anni '80 porta 
 alla conclusione che la strategia migliore per supportare i linguaggi ad alto livello è di:
 
 \begin{itemize}
@@ -903,15 +1103,13 @@ ritornare al termine della procedura in corso.
 
 \pparagraph{Variabili Globali}%
 \label{par:variabili_globali}
-
-esse sono variabili che sono accessibili da qualunque procedura e da più di esse. Il compilatore
+Sono accessibili da qualunque procedura e da più di esse. Il compilatore
 le allocca in memoria, questa cosa è però poco efficiente in quanto vengono usate spesso 
 e l'utilizzo della memoria è un'operazione molto onerosa. La \bt{ soluzione } a questo problema
 è quello di usare un \bt{ gruppo di registri ad hoc } che sono disponibili a tutte le procedure.
 
 \pparagraph{Otimizzazione dei registri}%
 \label{par:otimizzazione_dei_registri}
-
 Lo scopo di quest'operazione è quella di trovare gli operandi il più possibile nei registri
 e minimizzare le operazioni di \tit{ load/store }. L'implementazione \tit{ software } avviene
 attraverso l'ottimizzazione del compilatore e mediante l'utilizzo di \bt{ registri simbolici }.\\
@@ -944,7 +1142,7 @@ Le istruzioni più complesse possono essere eseguite più \tit{ velocemente } \b
 \subsection{Confronto fra CISC e RISC}%
 \label{sub:confronto_fra_cisc_e_risc}
 
-\paragraph{Istruzinoi per ciclo di clock} \mbox{} \\%
+\paragraph{Istruzioni per ciclo di clock} \mbox{} \\%
 \label{par:istruzinoi_per_ciclo_di_clock}
 
 \bt{ RISC }: il ciclo esecutivo di quest'architettura dura un solo machine cycle, 
@@ -978,13 +1176,14 @@ accesso ai registri può essere simultaneo
 
 \paragraph{Verdetto} \mbox{} \\%
 \label{par:verdetto}
-
 Tuttavia non si può notare quale architettura sia la \tit{ migliore } ma ciò dipende dai campi
 applicativi in cui queste vengnono utilizzate, è difficile capire quanta influenza viene
-data dal \tit{ compilatore }, ( per esempio un buon compilatore CISC può rendere quest'architettura
-migliore nel confronto se si ha uno scarso compilatore RISC). Inoltre, la maggior parte dei 
-confronti eseguiti sono stati fatti su prototipi semplificati e non su macchine ad uso 
-commerciale. Al giorno d'oggi alcune architetture utilizzano aspetti caratteristici delle
+data dal \tit{ compilatore },\\
+( per esempio un buon compilatore CISC può rendere quest'architettura
+migliore nel confronto se si ha uno scarso compilatore RISC ).\\
+La maggior parte dei confronti eseguiti sono stati fatti su prototipi semplificati 
+e non su macchine ad uso commerciale. 
+Al giorno d'oggi alcune architetture utilizzano aspetti caratteristici delle
 altre, per esempio architetture RISC con elementi CISC o viceversa.\\
 Altre componenti cominciano a dover essere tenute in considerazione come:
 
@@ -1045,7 +1244,7 @@ sui registri possono essere sottoforma di: \tit{ byte, mezze parole, parole }
 Esistono 3 tipi di formati nell'architettura MIPS:
 
 \begin{itemize}
-	\item Formato R(register):\\
+	\item Formato R(register):
 		\begin{itemize}
 			\item codop, 6bit,\\
 				sono istruzioni aritmetico-logiche
@@ -1064,7 +1263,8 @@ Esistono 3 tipi di formati nell'architettura MIPS:
 	\item Formato I(mmediato):
 		\begin{itemize}
 			\item codop, 6 bit,\\
-				sono le istruzioni di load/store, immediate e salto condizionato
+				sono le istruzioni di load/store, aritmetiche immediate 
+				e salto condizionato
 			\item rs, 5 bit,\\
 				primo argomento
 			\item rt, 5 bit,\\
@@ -1098,7 +1298,15 @@ In un ciclo di clock si esegue una fase, un'istruzione viene eseguita in 5 cicli
 Ci sono dei registri fra ogni fase della pipeline, ( per esempio fra la fase ID e la EX ) e 
 servono per memorizzare i dati.\\
 Nella pipeline del MIPS è possibile individuare qualsiasi dipendenza dai dati nella fase di 
-decodifica delle istruzioni
+decodifica delle istruzioni e inoltre in un ciclo di clock si può scrivere ( prima metà ) e
+leggere ( seconda metà ) uno stesso registro.
+
+\pparagraph{Note per gli esercizi}%
+\label{ppar:Note per gli esercizi}
+Le operazioni di aritmetica \tit{ ADD, SUB } possono trasmettere un dato al termine della fase
+\bt{ EX }.\\
+La \tit{ load/store }, dato che devono accedere alla memoria possono trasmettere un dato al 
+termine della fase MEM
 
 \section{Processori Multi-Core}%
 \label{sec:processori_multi_core}

@@ -1,0 +1,43 @@
+
+
+\begin{center}
+\begin{tabular}{||c | c ||}
+\hline
+Binario & Decimale \\
+
+\hline\hline
+0111 & 7 \\
+\hline
+0110 & 6 \\
+\hline
+0101 & 5\\
+\hline
+0100 & 4\\
+\hline
+0011 & 3\\
+\hline
+0010 & 2\\
+\hline
+0001 & 1\\
+\hline
+0000 & 0\\
+\hline
+1111 & -1\\
+\hline
+1110 & -2\\
+\hline
+1101 & -3\\
+\hline
+1100 & -4\\
+\hline
+1011 & -5\\
+\hline
+1010 & -6\\
+\hline
+1001 & -7\\
+\hline
+1000 & -8\\ [1ex]
+\hline
+\end{tabular}
+\end{center}
+
