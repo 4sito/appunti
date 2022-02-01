@@ -17,4 +17,4 @@ On linux you need to copy the package here:
 Then run the command ```mktexlsr``` to update Latex's database
 and reload any documents that needs to be compiled with that package.
 
-(in Linux you have to run the command as superuser because it needs to access file that require root privileges)
+(in Linux you have to run the command as superuser because it needs to access files that require root privileges)
