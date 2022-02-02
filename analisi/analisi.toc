@@ -26,11 +26,11 @@
 \contentsline {section}{\numberline {5}Derivate}{33}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Rapporto incrementale e derivate}{33}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Teoremi Fondamentali delle derivate}{36}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Tablle Utili}{39}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Studi di Funzioni}{41}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Dominio della funzione}{41}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Limiti agli estremi del dominio}{41}{subsubsection.5.4.2}%
-\contentsline {subsubsection}{\numberline {5.4.3}Asintoti obliqui}{41}{subsubsection.5.4.3}%
-\contentsline {subsubsection}{\numberline {5.4.4}Monotonia}{42}{subsubsection.5.4.4}%
-\contentsline {subsubsection}{\numberline {5.4.5}Derivabilità}{42}{subsubsection.5.4.5}%
-\contentsline {subsubsection}{\numberline {5.4.6}Derivata seconda e conseguenze}{42}{subsubsection.5.4.6}%
+\contentsline {subsection}{\numberline {5.3}Tablle Utili}{40}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Studi di Funzioni}{42}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Dominio della funzione}{42}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Limiti agli estremi del dominio}{42}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Asintoti obliqui}{42}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Monotonia}{43}{subsubsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.5}Derivabilità}{43}{subsubsection.5.4.5}%
+\contentsline {subsubsection}{\numberline {5.4.6}Derivata seconda e conseguenze}{43}{subsubsection.5.4.6}%
