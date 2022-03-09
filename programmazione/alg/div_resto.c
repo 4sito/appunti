@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-int div(x,y) {
+int div(int x,int y) {
 
 	int q = x / y;
 
 	return q;
 }
 
-int resto(x,y) {
+int resto(int x,int y) {
 
 	int r = x % y;
 
@@ -28,6 +28,9 @@ printf("%d = %d x %d + %d \n", x, y, div(x,y), resto(x,y));
 
 printf("quoziente: %d; resto: %d \n", div(x,y), resto(x,y));
 
+const double pi = 3.14;
+
+//pi = 3;
 
 return 0;
 }

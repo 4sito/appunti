@@ -1,7 +1,15 @@
-#include <stdio.h>	
+//
+//  test.c
+//  
+//
+//  Created by Andreas Araya Osorio on 08/03/22.
+//
 
-int main() {
+#include "test.h"
 
-	printf("hello\n");
-
+int main(){
+    
+    printf("ciao nonna");
+    
+    return 0;
 }
