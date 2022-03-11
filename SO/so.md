@@ -23,7 +23,7 @@
 	simultaneamente, con i _mono_processori, il parallelismo è simulato.
 
 4. Anni '70:
-	Alcune big tech companies nasce proprio in questo periodo:
+	Molte big tech companies nascono proprio in questo periodo:
 	Apple, Microsoft, IBM, etc.
 
 5. Anni '80:
@@ -70,18 +70,20 @@ I due modi per gestire l'esecuzione dei processi:
 	- gestire in maniera otttimale le risorse fisiche e  logice dell'elaboratore
 ```
 
-Astrazione semplice e potente:
+**Astrazione semplice e potente**:
+
 - Macchina Virtuale:
-	- ambiente in cui eseguire applicazioni
-	- era pensato per macchine multi-utente (esempio, stesso computer per 
+   - ambiente in cui eseguire applicazioni
+   - era pensato per macchine multi-utente (esempio, stesso computer per 
 		più persone, ora per stessa persona ma diversi processi)
 - Più semplice da usare e non serve conoscere la 'microprogrammazione'
 - Più potente, utilizzo la memoria secondaria per realizzare una memoria
 		virtuale principale più capiente.
 
 Gestione _ottimale_ delle risorse:
-- ottimalità è la minimizzazione dei tempi di attesa e le
-	massimizzazione dei lavori svolti per unità di tempo
+
+- l'ottimalità è la __minimizzazione__ dei tempi di attesa e le
+	__massimizzazione__ dei lavori svolti per unità di tempo
 
 minimizzare: non si può ridurre più di così,
 massimizzare: non si possono ottenere più prestazioni.
@@ -95,7 +97,7 @@ ottimizzare: migliorare le prestazioni
 ---
 
 ```
-È un programma in esecuzione
+Un processo è  un programma in esecuzione
 ```
 
 Corrisponde a: 
@@ -103,30 +105,29 @@ Corrisponde a:
 - l'insieme ordinato di **stati** assunti dal programma durante l'esecuzione
 - l'insieme ordinato delle **azioni** effettuate dal programma
 
-Durante la realizzazione di un processo:
-- lo spazio di indirizzamento **logico** è la memoria della macchina virtuale che
-	il processo può scrivere e leggere (la memoria virtuale è organizzata
-	in pagine e/o segmenti):
-	1. programma eseguibile
-	2. dati del programma
-	3. aree di lavoro
+Durante la realizzazione di un processo lo spazio di indirizzamento **logico** è la memoria della macchina 
+virtuale che il processo può scrivere e leggere (la memoria virtuale è organizzata in pagine e/o segmenti):
+
+1. programma eseguibile
+2. dati del programma
+3. aree di lavoro
+
 
 Alcune parti del sistema operativo possono essere processi, rispetto a quelli 
 utente _generalmente_ hanno maggiore **priorità** e sono più **corti**:
 
-I processi utente e di sistema operativo operano **concorrentemente**
+I processi utente e di sistema operativo sono eseguiti **concorrentemente**
 
 IL S/O può sincronizzare e far comunicare più processi
 
-I processi possono:
+I processi possono essere:
 1. Creati
 2. Sospesi
 3. Terminati
 
 
-coda di attesa, non ho tutte le risorse necessarie per eseguire il processo
-coda di pronto, ho tutte le risorse necessarie per eseguire il processo, ma non
-il processore
+**coda di attesa**, non ho tutte le risorse necessarie per eseguire il processo \
+**coda di pronto**, ho tutte le risorse necessarie per eseguire il processo, ma non il processore
 
 #### Il gestore dei processi
 Costituisce il cuore o nucleo del S/O **kernel**:
@@ -144,3 +145,23 @@ Le risorse possono essere:
 - consumabili
 - ad accesso divisibile e indivisbile
 - ad accesso individuale o molteplice
+
+Tipi di risorse:
+
+1. CPU
+  
+   - è una risorsa indispensabile per l'avanzamento di **tutti** i processi
+   - corrisponde alla CPU
+   - logicamente, si può vedere come una macchina virtuale
+
+2. Memoria
+  
+   - Scrittura: ad accesso _individuale_
+	 - Lettura: ad accesso _multiplo_
+	 - Viene _virtualizzata_ dalla gestione software
+	 - Se virtualizzata, diventa **riutilizzabile** e **prerilasciata**
+	
+3. I/O
+	
+	 - generalmente riutilizzabili, non _prerilascaibili_ ad accesso _individuale_
+	 - La gestione software ne facilita l'impiego e **nasconde** le caratteristiche hardware
