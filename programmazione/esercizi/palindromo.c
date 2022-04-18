@@ -7,62 +7,68 @@
  * ATTENZIONE: l'input non è più fisso, la dimensione N e i valori dell'array saranno forniti come input. 
 */
 
-bool is_even(int size){
-
-	if ( size % 2 == 0){
-	return false; //as the value of array starts from 0 an array as arr[4] is not 
-								// even as it has 5 elements
-	}
-	else { return true;	}
-
-}
-
-
-bool palindromo(int array[], int lunghezza){
+bool palindromo(int array[], int len){
 	
-	int i, j = lunghezza;
+	int i, j = len - 1 ; // mettiamo che j è len - 1
 	bool valore;
-	int half_array_len = lunghezza + 1 / 2
 
-		printf("%d\n", half_array_len);
-
-  if (is_even(lunghezza) == true) { // se l'array è pari basta controllare che le
-												 // prima metà e la seconda metà (invertita) siano uguali
-	for (i = 0; i < half_array_len; ++i) {
+	for (i = 0; i < len ; ++i) {
 		
-	if( array[i] == array[j]){
-	
-		valore = true;
+		// printf("array[%d] > %d ; array[%d] > %d\n", i, array[i], j, array[j]);
+		
+		// stiamo scorrendo da destra a sinistra con array[i]
+		// e lo scorriamo da sinistra a destra con array[j],
+		// ad ogni ciclo del for controlliamo che i due valori siano uguali, se non lo sono la funzione ritorna il valore
+		// di falso e termina il programma
 
-	}
-	else{
-		valore = false;
-		return valore;}
+		if ( array[i] == array[j]){
+			
+				valore = true;
+
+		}
+		
+		else{ 
+
+			valore = false;
+			return valore;
+
+			}
 
 	j--;
+	
 	}
 
-	}
-	printf("Pari? %d\n", is_even(lunghezza));
-return 0;
+return valore;
 }
-int main(){
 
-    //int N = 5;
+
+
+int main(void){
+
+    int N = 5;
     //leggere da input grandezza array
-    // scanf("%d", &N);
+    scanf("%d", &N);
 
-    int array[] = {1, 2, 2, 1};
-		int size = sizeof array / sizeof array[1] - 1;
+    int array[N];
 
-    printf("size: %d\n", size); 
+    //printf("size: %d\n", size); 
     //leggere da input dati array
-    //for(int i = 0; i < N; i++){
-    //    scanf("%d", array+i);
-    //}
+    
+		for(int i = 0; i < N; i++){
+        scanf("%d", array+i);
+    }
 		
-    //inserite il vostro codice qui
-		printf("Palindromo: %d \n", palindromo(array, size));		
+		int size = sizeof array / sizeof array[1];
 
-    return 0;
+    //inserite il vostro codice qui
+		if ( palindromo(array, size) == true){
+			
+		printf("L'array è un palindromo\n");
+
+		}
+		
+		else {
+		printf("l'array NON è un palindromo\n");
+
+		}
 }
